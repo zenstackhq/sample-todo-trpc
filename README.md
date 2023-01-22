@@ -1,4 +1,4 @@
-# A Collaborative Todo Sample
+# A Collaborative Todo Sample - ZenStack + tRPC + Next.js
 
 This project is a collaborative todo app built with [tRPC](https://trpc.io], [Next.js](https://nextjs.org), [Next-Auth](nextauth.org), and [ZenStack](https://zenstack.dev).
 
