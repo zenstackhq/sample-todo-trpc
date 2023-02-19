@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { z } from 'zod';
 import { SpaceWhereUniqueInputObjectSchema } from './SpaceWhereUniqueInput.schema';
 import { SpaceCreateWithoutMembersInputObjectSchema } from './SpaceCreateWithoutMembersInput.schema';

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { z } from 'zod';
 import { NestedIntFilterObjectSchema } from './NestedIntFilter.schema';
 import { NestedDateTimeFilterObjectSchema } from './NestedDateTimeFilter.schema';

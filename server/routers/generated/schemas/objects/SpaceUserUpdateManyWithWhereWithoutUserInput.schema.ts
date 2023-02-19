@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { z } from 'zod';
 import { SpaceUserScalarWhereInputObjectSchema } from './SpaceUserScalarWhereInput.schema';
 import { SpaceUserUpdateManyMutationInputObjectSchema } from './SpaceUserUpdateManyMutationInput.schema';

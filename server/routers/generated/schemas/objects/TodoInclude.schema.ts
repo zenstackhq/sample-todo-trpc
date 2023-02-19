@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { z } from 'zod';
 import { UserArgsObjectSchema } from './UserArgs.schema';
 import { ListArgsObjectSchema } from './ListArgs.schema';

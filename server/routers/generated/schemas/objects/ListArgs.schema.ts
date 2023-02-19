@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { z } from 'zod';
 import { ListSelectObjectSchema } from './ListSelect.schema';
 import { ListIncludeObjectSchema } from './ListInclude.schema';

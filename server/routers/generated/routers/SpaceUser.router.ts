@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { type RouterFactory, type ProcBuilder, type BaseConfig, db } from ".";
 import { SpaceUserSchema } from '../schemas/SpaceUser.schema';
 

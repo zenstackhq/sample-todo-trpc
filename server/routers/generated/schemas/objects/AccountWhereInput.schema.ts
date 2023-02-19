@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { z } from 'zod';
 import { StringFilterObjectSchema } from './StringFilter.schema';
 import { StringNullableFilterObjectSchema } from './StringNullableFilter.schema';

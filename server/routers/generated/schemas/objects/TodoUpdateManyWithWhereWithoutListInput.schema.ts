@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { z } from 'zod';
 import { TodoScalarWhereInputObjectSchema } from './TodoScalarWhereInput.schema';
 import { TodoUpdateManyMutationInputObjectSchema } from './TodoUpdateManyMutationInput.schema';

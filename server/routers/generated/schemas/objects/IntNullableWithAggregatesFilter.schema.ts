@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { z } from 'zod';
 import { NestedIntNullableWithAggregatesFilterObjectSchema } from './NestedIntNullableWithAggregatesFilter.schema';
 import { NestedIntNullableFilterObjectSchema } from './NestedIntNullableFilter.schema';

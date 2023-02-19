@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { z } from 'zod';
 import { UserSelectObjectSchema } from './objects/UserSelect.schema';
 import { UserIncludeObjectSchema } from './objects/UserInclude.schema';

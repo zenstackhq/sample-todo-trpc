@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { z } from 'zod';
 import { SpaceUserRoleSchema } from '../enums/SpaceUserRole.schema';
 import { NestedIntFilterObjectSchema } from './NestedIntFilter.schema';

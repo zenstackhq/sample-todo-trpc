@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { z } from 'zod';
 import { ListWhereUniqueInputObjectSchema } from './ListWhereUniqueInput.schema';
 import { ListUpdateWithoutSpaceInputObjectSchema } from './ListUpdateWithoutSpaceInput.schema';

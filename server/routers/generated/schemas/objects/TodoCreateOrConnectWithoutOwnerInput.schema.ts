@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { z } from 'zod';
 import { TodoWhereUniqueInputObjectSchema } from './TodoWhereUniqueInput.schema';
 import { TodoCreateWithoutOwnerInputObjectSchema } from './TodoCreateWithoutOwnerInput.schema';

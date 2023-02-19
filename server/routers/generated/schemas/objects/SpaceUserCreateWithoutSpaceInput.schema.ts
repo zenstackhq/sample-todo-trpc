@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { z } from 'zod';
 import { UserCreateNestedOneWithoutSpacesInputObjectSchema } from './UserCreateNestedOneWithoutSpacesInput.schema';
 import { SpaceUserRoleSchema } from '../enums/SpaceUserRole.schema';

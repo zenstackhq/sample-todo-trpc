@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { z } from 'zod';
 import { TodoSelectObjectSchema } from './TodoSelect.schema';
 import { TodoIncludeObjectSchema } from './TodoInclude.schema';

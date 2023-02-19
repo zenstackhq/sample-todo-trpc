@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { z } from 'zod';
 import { AccountWhereUniqueInputObjectSchema } from './AccountWhereUniqueInput.schema';
 import { AccountUpdateWithoutUserInputObjectSchema } from './AccountUpdateWithoutUserInput.schema';

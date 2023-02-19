@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { z } from 'zod';
 import { SpaceSelectObjectSchema } from './SpaceSelect.schema';
 import { SpaceIncludeObjectSchema } from './SpaceInclude.schema';

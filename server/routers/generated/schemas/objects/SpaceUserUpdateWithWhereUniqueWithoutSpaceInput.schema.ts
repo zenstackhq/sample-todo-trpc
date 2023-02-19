@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { z } from 'zod';
 import { SpaceUserWhereUniqueInputObjectSchema } from './SpaceUserWhereUniqueInput.schema';
 import { SpaceUserUpdateWithoutSpaceInputObjectSchema } from './SpaceUserUpdateWithoutSpaceInput.schema';

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { AnyRootConfig } from "@trpc/server";
 import { PrismaClient } from "@prisma/client";
 import { createRouterFactory } from "@trpc/server/dist/core/router";

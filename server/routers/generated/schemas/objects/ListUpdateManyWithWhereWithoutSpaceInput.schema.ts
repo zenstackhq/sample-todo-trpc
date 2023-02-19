@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { z } from 'zod';
 import { ListScalarWhereInputObjectSchema } from './ListScalarWhereInput.schema';
 import { ListUpdateManyMutationInputObjectSchema } from './ListUpdateManyMutationInput.schema';

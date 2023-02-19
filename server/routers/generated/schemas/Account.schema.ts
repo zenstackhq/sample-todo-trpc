@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { z } from 'zod';
 import { AccountSelectObjectSchema } from './objects/AccountSelect.schema';
 import { AccountIncludeObjectSchema } from './objects/AccountInclude.schema';

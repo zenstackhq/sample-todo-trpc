@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { z } from 'zod';
 import { QueryModeSchema } from '../enums/QueryMode.schema';
 import { NestedStringNullableFilterObjectSchema } from './NestedStringNullableFilter.schema';

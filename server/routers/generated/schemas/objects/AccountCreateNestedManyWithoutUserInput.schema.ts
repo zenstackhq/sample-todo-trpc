@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { z } from 'zod';
 import { AccountCreateWithoutUserInputObjectSchema } from './AccountCreateWithoutUserInput.schema';
 import { AccountUncheckedCreateWithoutUserInputObjectSchema } from './AccountUncheckedCreateWithoutUserInput.schema';

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { z } from 'zod';
 import { SpaceCountOutputTypeSelectObjectSchema } from './SpaceCountOutputTypeSelect.schema';
 

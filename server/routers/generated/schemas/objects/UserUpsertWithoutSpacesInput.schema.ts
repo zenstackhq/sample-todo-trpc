@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { z } from 'zod';
 import { UserUpdateWithoutSpacesInputObjectSchema } from './UserUpdateWithoutSpacesInput.schema';
 import { UserUncheckedUpdateWithoutSpacesInputObjectSchema } from './UserUncheckedUpdateWithoutSpacesInput.schema';

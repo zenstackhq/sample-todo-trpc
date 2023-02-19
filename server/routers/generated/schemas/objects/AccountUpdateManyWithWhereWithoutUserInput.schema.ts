@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { z } from 'zod';
 import { AccountScalarWhereInputObjectSchema } from './AccountScalarWhereInput.schema';
 import { AccountUpdateManyMutationInputObjectSchema } from './AccountUpdateManyMutationInput.schema';

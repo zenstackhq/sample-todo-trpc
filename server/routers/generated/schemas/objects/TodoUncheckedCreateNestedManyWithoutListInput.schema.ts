@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { z } from 'zod';
 import { TodoCreateWithoutListInputObjectSchema } from './TodoCreateWithoutListInput.schema';
 import { TodoUncheckedCreateWithoutListInputObjectSchema } from './TodoUncheckedCreateWithoutListInput.schema';

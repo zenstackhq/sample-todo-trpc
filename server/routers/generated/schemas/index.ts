@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { SpaceSchema } from './Space.schema';
 import { SpaceUserSchema } from './SpaceUser.schema';
 import { UserSchema } from './User.schema';
