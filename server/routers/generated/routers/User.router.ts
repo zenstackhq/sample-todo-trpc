@@ -7,13 +7,57 @@ export default function createRouter<Config extends BaseConfig>(router: RouterFa
 
         aggregate: procedure.input(UserSchema.aggregate).query(({ ctx, input }) => db(ctx).user.aggregate(input)),
 
-        createMany: procedure.input(UserSchema.createMany).mutation(({ ctx, input }) => db(ctx).user.createMany(input)),
+        createMany: procedure.input(UserSchema.createMany).mutation(async ({ ctx, input }) => {
+            try {
+                return await db(ctx).user.createMany(input);
+            } catch (err: any) {
+                if (err.code === 'P2004' && err.meta?.reason === 'RESULT_NOT_READABLE') {
+                    // unable to readback data
+                    return undefined;
+                } else {
+                    throw err;
+                }
+            }
+        }),
 
-        create: procedure.input(UserSchema.create).mutation(({ ctx, input }) => db(ctx).user.create(input)),
+        create: procedure.input(UserSchema.create).mutation(async ({ ctx, input }) => {
+            try {
+                return await db(ctx).user.create(input);
+            } catch (err: any) {
+                if (err.code === 'P2004' && err.meta?.reason === 'RESULT_NOT_READABLE') {
+                    // unable to readback data
+                    return undefined;
+                } else {
+                    throw err;
+                }
+            }
+        }),
 
-        deleteMany: procedure.input(UserSchema.deleteMany).mutation(({ ctx, input }) => db(ctx).user.deleteMany(input)),
+        deleteMany: procedure.input(UserSchema.deleteMany).mutation(async ({ ctx, input }) => {
+            try {
+                return await db(ctx).user.deleteMany(input);
+            } catch (err: any) {
+                if (err.code === 'P2004' && err.meta?.reason === 'RESULT_NOT_READABLE') {
+                    // unable to readback data
+                    return undefined;
+                } else {
+                    throw err;
+                }
+            }
+        }),
 
-        delete: procedure.input(UserSchema.delete).mutation(({ ctx, input }) => db(ctx).user.delete(input)),
+        delete: procedure.input(UserSchema.delete).mutation(async ({ ctx, input }) => {
+            try {
+                return await db(ctx).user.delete(input);
+            } catch (err: any) {
+                if (err.code === 'P2004' && err.meta?.reason === 'RESULT_NOT_READABLE') {
+                    // unable to readback data
+                    return undefined;
+                } else {
+                    throw err;
+                }
+            }
+        }),
 
         findFirst: procedure.input(UserSchema.findFirst).query(({ ctx, input }) => db(ctx).user.findFirst(input)),
 
@@ -27,11 +71,44 @@ export default function createRouter<Config extends BaseConfig>(router: RouterFa
 
         groupBy: procedure.input(UserSchema.groupBy).query(({ ctx, input }) => db(ctx).user.groupBy(input)),
 
-        updateMany: procedure.input(UserSchema.updateMany).mutation(({ ctx, input }) => db(ctx).user.updateMany(input)),
+        updateMany: procedure.input(UserSchema.updateMany).mutation(async ({ ctx, input }) => {
+            try {
+                return await db(ctx).user.updateMany(input);
+            } catch (err: any) {
+                if (err.code === 'P2004' && err.meta?.reason === 'RESULT_NOT_READABLE') {
+                    // unable to readback data
+                    return undefined;
+                } else {
+                    throw err;
+                }
+            }
+        }),
 
-        update: procedure.input(UserSchema.update).mutation(({ ctx, input }) => db(ctx).user.update(input)),
+        update: procedure.input(UserSchema.update).mutation(async ({ ctx, input }) => {
+            try {
+                return await db(ctx).user.update(input);
+            } catch (err: any) {
+                if (err.code === 'P2004' && err.meta?.reason === 'RESULT_NOT_READABLE') {
+                    // unable to readback data
+                    return undefined;
+                } else {
+                    throw err;
+                }
+            }
+        }),
 
-        upsert: procedure.input(UserSchema.upsert).mutation(({ ctx, input }) => db(ctx).user.upsert(input)),
+        upsert: procedure.input(UserSchema.upsert).mutation(async ({ ctx, input }) => {
+            try {
+                return await db(ctx).user.upsert(input);
+            } catch (err: any) {
+                if (err.code === 'P2004' && err.meta?.reason === 'RESULT_NOT_READABLE') {
+                    // unable to readback data
+                    return undefined;
+                } else {
+                    throw err;
+                }
+            }
+        }),
 
     }
     );

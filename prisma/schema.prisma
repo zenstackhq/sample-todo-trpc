@@ -136,5 +136,6 @@ model Account {
     id_token String?
     session_state String?
     user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+    zenstack_guard Boolean @default(true)
     @@unique([provider, providerAccountId])
 }

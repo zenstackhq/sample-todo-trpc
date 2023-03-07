@@ -48,7 +48,7 @@ function CreateDialog({ created }: { created: (list: List) => void }) {
                 },
             });
 
-            if (created) {
+            if (created && list) {
                 created(list);
             }
         } catch (err: any) {

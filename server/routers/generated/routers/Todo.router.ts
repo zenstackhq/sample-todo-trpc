@@ -7,13 +7,57 @@ export default function createRouter<Config extends BaseConfig>(router: RouterFa
 
         aggregate: procedure.input(TodoSchema.aggregate).query(({ ctx, input }) => db(ctx).todo.aggregate(input)),
 
-        createMany: procedure.input(TodoSchema.createMany).mutation(({ ctx, input }) => db(ctx).todo.createMany(input)),
+        createMany: procedure.input(TodoSchema.createMany).mutation(async ({ ctx, input }) => {
+            try {
+                return await db(ctx).todo.createMany(input);
+            } catch (err: any) {
+                if (err.code === 'P2004' && err.meta?.reason === 'RESULT_NOT_READABLE') {
+                    // unable to readback data
+                    return undefined;
+                } else {
+                    throw err;
+                }
+            }
+        }),
 
-        create: procedure.input(TodoSchema.create).mutation(({ ctx, input }) => db(ctx).todo.create(input)),
+        create: procedure.input(TodoSchema.create).mutation(async ({ ctx, input }) => {
+            try {
+                return await db(ctx).todo.create(input);
+            } catch (err: any) {
+                if (err.code === 'P2004' && err.meta?.reason === 'RESULT_NOT_READABLE') {
+                    // unable to readback data
+                    return undefined;
+                } else {
+                    throw err;
+                }
+            }
+        }),
 
-        deleteMany: procedure.input(TodoSchema.deleteMany).mutation(({ ctx, input }) => db(ctx).todo.deleteMany(input)),
+        deleteMany: procedure.input(TodoSchema.deleteMany).mutation(async ({ ctx, input }) => {
+            try {
+                return await db(ctx).todo.deleteMany(input);
+            } catch (err: any) {
+                if (err.code === 'P2004' && err.meta?.reason === 'RESULT_NOT_READABLE') {
+                    // unable to readback data
+                    return undefined;
+                } else {
+                    throw err;
+                }
+            }
+        }),
 
-        delete: procedure.input(TodoSchema.delete).mutation(({ ctx, input }) => db(ctx).todo.delete(input)),
+        delete: procedure.input(TodoSchema.delete).mutation(async ({ ctx, input }) => {
+            try {
+                return await db(ctx).todo.delete(input);
+            } catch (err: any) {
+                if (err.code === 'P2004' && err.meta?.reason === 'RESULT_NOT_READABLE') {
+                    // unable to readback data
+                    return undefined;
+                } else {
+                    throw err;
+                }
+            }
+        }),
 
         findFirst: procedure.input(TodoSchema.findFirst).query(({ ctx, input }) => db(ctx).todo.findFirst(input)),
 
@@ -27,11 +71,44 @@ export default function createRouter<Config extends BaseConfig>(router: RouterFa
 
         groupBy: procedure.input(TodoSchema.groupBy).query(({ ctx, input }) => db(ctx).todo.groupBy(input)),
 
-        updateMany: procedure.input(TodoSchema.updateMany).mutation(({ ctx, input }) => db(ctx).todo.updateMany(input)),
+        updateMany: procedure.input(TodoSchema.updateMany).mutation(async ({ ctx, input }) => {
+            try {
+                return await db(ctx).todo.updateMany(input);
+            } catch (err: any) {
+                if (err.code === 'P2004' && err.meta?.reason === 'RESULT_NOT_READABLE') {
+                    // unable to readback data
+                    return undefined;
+                } else {
+                    throw err;
+                }
+            }
+        }),
 
-        update: procedure.input(TodoSchema.update).mutation(({ ctx, input }) => db(ctx).todo.update(input)),
+        update: procedure.input(TodoSchema.update).mutation(async ({ ctx, input }) => {
+            try {
+                return await db(ctx).todo.update(input);
+            } catch (err: any) {
+                if (err.code === 'P2004' && err.meta?.reason === 'RESULT_NOT_READABLE') {
+                    // unable to readback data
+                    return undefined;
+                } else {
+                    throw err;
+                }
+            }
+        }),
 
-        upsert: procedure.input(TodoSchema.upsert).mutation(({ ctx, input }) => db(ctx).todo.upsert(input)),
+        upsert: procedure.input(TodoSchema.upsert).mutation(async ({ ctx, input }) => {
+            try {
+                return await db(ctx).todo.upsert(input);
+            } catch (err: any) {
+                if (err.code === 'P2004' && err.meta?.reason === 'RESULT_NOT_READABLE') {
+                    // unable to readback data
+                    return undefined;
+                } else {
+                    throw err;
+                }
+            }
+        }),
 
     }
     );
