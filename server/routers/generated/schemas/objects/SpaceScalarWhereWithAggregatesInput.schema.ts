@@ -5,7 +5,12 @@ import { DateTimeWithAggregatesFilterObjectSchema } from './DateTimeWithAggregat
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.SpaceScalarWhereWithAggregatesInput> = z
+const Schema: z.ZodType<
+  Omit<
+    Prisma.SpaceScalarWhereWithAggregatesInput,
+    'zenstack_transaction' | 'zenstack_guard'
+  >
+> = z
   .object({
     AND: z
       .union([

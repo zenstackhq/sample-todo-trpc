@@ -4,7 +4,12 @@ import { UserCreateNestedOneWithoutTodosInputObjectSchema } from './UserCreateNe
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.TodoCreateWithoutListInput> = z
+const Schema: z.ZodType<
+  Omit<
+    Prisma.TodoCreateWithoutListInput,
+    'zenstack_transaction' | 'zenstack_guard'
+  >
+> = z
   .object({
     id: z.string().optional(),
     createdAt: z.date().optional(),

@@ -5,7 +5,9 @@ import { NestedStringNullableFilterObjectSchema } from './NestedStringNullableFi
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.StringNullableFilter> = z
+const Schema: z.ZodType<
+  Omit<Prisma.StringNullableFilter, 'zenstack_transaction' | 'zenstack_guard'>
+> = z
   .object({
     equals: z.string().optional().nullable(),
     in: z.string().array().optional().nullable(),

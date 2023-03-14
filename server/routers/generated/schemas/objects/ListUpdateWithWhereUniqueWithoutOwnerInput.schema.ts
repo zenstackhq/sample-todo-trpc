@@ -6,7 +6,12 @@ import { ListUncheckedUpdateWithoutOwnerInputObjectSchema } from './ListUnchecke
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.ListUpdateWithWhereUniqueWithoutOwnerInput> = z
+const Schema: z.ZodType<
+  Omit<
+    Prisma.ListUpdateWithWhereUniqueWithoutOwnerInput,
+    'zenstack_transaction' | 'zenstack_guard'
+  >
+> = z
   .object({
     where: z.lazy(() => ListWhereUniqueInputObjectSchema),
     data: z.union([

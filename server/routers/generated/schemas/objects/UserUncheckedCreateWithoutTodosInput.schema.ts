@@ -6,7 +6,12 @@ import { AccountUncheckedCreateNestedManyWithoutUserInputObjectSchema } from './
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.UserUncheckedCreateWithoutTodosInput> = z
+const Schema: z.ZodType<
+  Omit<
+    Prisma.UserUncheckedCreateWithoutTodosInput,
+    'zenstack_transaction' | 'zenstack_guard'
+  >
+> = z
   .object({
     id: z.string().optional(),
     createdAt: z.date().optional(),

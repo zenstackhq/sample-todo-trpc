@@ -7,7 +7,9 @@ import { ListListRelationFilterObjectSchema } from './ListListRelationFilter.sch
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.SpaceWhereInput> = z
+const Schema: z.ZodType<
+  Omit<Prisma.SpaceWhereInput, 'zenstack_transaction' | 'zenstack_guard'>
+> = z
   .object({
     AND: z
       .union([

@@ -6,7 +6,12 @@ import { SpaceUserUncheckedUpdateManyWithoutSpacesInputObjectSchema } from './Sp
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.SpaceUserUpdateManyWithWhereWithoutUserInput> = z
+const Schema: z.ZodType<
+  Omit<
+    Prisma.SpaceUserUpdateManyWithWhereWithoutUserInput,
+    'zenstack_transaction' | 'zenstack_guard'
+  >
+> = z
   .object({
     where: z.lazy(() => SpaceUserScalarWhereInputObjectSchema),
     data: z.union([

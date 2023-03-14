@@ -6,7 +6,12 @@ import { NestedEnumSpaceUserRoleFilterObjectSchema } from './NestedEnumSpaceUser
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.NestedEnumSpaceUserRoleWithAggregatesFilter> = z
+const Schema: z.ZodType<
+  Omit<
+    Prisma.NestedEnumSpaceUserRoleWithAggregatesFilter,
+    'zenstack_transaction' | 'zenstack_guard'
+  >
+> = z
   .object({
     equals: z.lazy(() => SpaceUserRoleSchema).optional(),
     in: z

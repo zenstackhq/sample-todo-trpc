@@ -7,7 +7,12 @@ import { SpaceUserRoleSchema } from '../enums/SpaceUserRole.schema';
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.SpaceUserScalarWhereWithAggregatesInput> = z
+const Schema: z.ZodType<
+  Omit<
+    Prisma.SpaceUserScalarWhereWithAggregatesInput,
+    'zenstack_transaction' | 'zenstack_guard'
+  >
+> = z
   .object({
     AND: z
       .union([

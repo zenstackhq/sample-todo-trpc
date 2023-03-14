@@ -15,5 +15,4 @@ export const AccountScalarFieldEnumSchema = z.enum([
   'scope',
   'id_token',
   'session_state',
-  'zenstack_guard',
 ]);

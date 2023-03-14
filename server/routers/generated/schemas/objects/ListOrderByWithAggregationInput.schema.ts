@@ -7,7 +7,12 @@ import { ListMinOrderByAggregateInputObjectSchema } from './ListMinOrderByAggreg
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.ListOrderByWithAggregationInput> = z
+const Schema: z.ZodType<
+  Omit<
+    Prisma.ListOrderByWithAggregationInput,
+    'zenstack_transaction' | 'zenstack_guard'
+  >
+> = z
   .object({
     id: z.lazy(() => SortOrderSchema).optional(),
     createdAt: z.lazy(() => SortOrderSchema).optional(),

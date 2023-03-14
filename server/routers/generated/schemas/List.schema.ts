@@ -18,13 +18,13 @@ import { ListScalarWhereWithAggregatesInputObjectSchema } from './objects/ListSc
 
 export const ListSchema = {
   findUnique: z.object({
-    select: ListSelectObjectSchema.optional(),
-    include: ListIncludeObjectSchema.optional(),
+    select: z.lazy(() => ListSelectObjectSchema.optional()),
+    include: z.lazy(() => ListIncludeObjectSchema.optional()),
     where: ListWhereUniqueInputObjectSchema,
   }),
   findFirst: z.object({
-    select: ListSelectObjectSchema.optional(),
-    include: ListIncludeObjectSchema.optional(),
+    select: z.lazy(() => ListSelectObjectSchema.optional()),
+    include: z.lazy(() => ListIncludeObjectSchema.optional()),
     where: ListWhereInputObjectSchema.optional(),
     orderBy: z
       .union([
@@ -53,20 +53,20 @@ export const ListSchema = {
     distinct: z.array(ListScalarFieldEnumSchema).optional(),
   }),
   create: z.object({
-    select: ListSelectObjectSchema.optional(),
-    include: ListIncludeObjectSchema.optional(),
+    select: z.lazy(() => ListSelectObjectSchema.optional()),
+    include: z.lazy(() => ListIncludeObjectSchema.optional()),
     data: ListCreateInputObjectSchema,
   }),
   createMany: z.object({ data: ListCreateManyInputObjectSchema }),
   delete: z.object({
-    select: ListSelectObjectSchema.optional(),
-    include: ListIncludeObjectSchema.optional(),
+    select: z.lazy(() => ListSelectObjectSchema.optional()),
+    include: z.lazy(() => ListIncludeObjectSchema.optional()),
     where: ListWhereUniqueInputObjectSchema,
   }),
   deleteMany: z.object({ where: ListWhereInputObjectSchema.optional() }),
   update: z.object({
-    select: ListSelectObjectSchema.optional(),
-    include: ListIncludeObjectSchema.optional(),
+    select: z.lazy(() => ListSelectObjectSchema.optional()),
+    include: z.lazy(() => ListIncludeObjectSchema.optional()),
     data: ListUpdateInputObjectSchema,
     where: ListWhereUniqueInputObjectSchema,
   }),
@@ -75,8 +75,8 @@ export const ListSchema = {
     where: ListWhereInputObjectSchema.optional(),
   }),
   upsert: z.object({
-    select: ListSelectObjectSchema.optional(),
-    include: ListIncludeObjectSchema.optional(),
+    select: z.lazy(() => ListSelectObjectSchema.optional()),
+    include: z.lazy(() => ListIncludeObjectSchema.optional()),
     where: ListWhereUniqueInputObjectSchema,
     create: ListCreateInputObjectSchema,
     update: ListUpdateInputObjectSchema,

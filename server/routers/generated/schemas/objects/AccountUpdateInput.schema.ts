@@ -7,7 +7,9 @@ import { UserUpdateOneRequiredWithoutAccountsNestedInputObjectSchema } from './U
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.AccountUpdateInput> = z
+const Schema: z.ZodType<
+  Omit<Prisma.AccountUpdateInput, 'zenstack_transaction' | 'zenstack_guard'>
+> = z
   .object({
     id: z
       .union([

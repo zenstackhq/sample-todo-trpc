@@ -12,7 +12,12 @@ import { AccountScalarWhereInputObjectSchema } from './AccountScalarWhereInput.s
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.AccountUpdateManyWithoutUserNestedInput> = z
+const Schema: z.ZodType<
+  Omit<
+    Prisma.AccountUpdateManyWithoutUserNestedInput,
+    'zenstack_transaction' | 'zenstack_guard'
+  >
+> = z
   .object({
     create: z
       .union([

@@ -5,7 +5,9 @@ import { ListArgsObjectSchema } from './ListArgs.schema';
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.TodoInclude> = z
+const Schema: z.ZodType<
+  Omit<Prisma.TodoInclude, 'zenstack_transaction' | 'zenstack_guard'>
+> = z
   .object({
     owner: z
       .union([z.boolean(), z.lazy(() => UserArgsObjectSchema)])

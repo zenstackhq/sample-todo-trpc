@@ -6,7 +6,12 @@ import { NullableIntFieldUpdateOperationsInputObjectSchema } from './NullableInt
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.AccountUpdateManyMutationInput> = z
+const Schema: z.ZodType<
+  Omit<
+    Prisma.AccountUpdateManyMutationInput,
+    'zenstack_transaction' | 'zenstack_guard'
+  >
+> = z
   .object({
     id: z
       .union([

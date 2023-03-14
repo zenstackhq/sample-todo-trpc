@@ -4,7 +4,12 @@ import { TodoUncheckedCreateNestedManyWithoutListInputObjectSchema } from './Tod
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.ListUncheckedCreateWithoutSpaceInput> = z
+const Schema: z.ZodType<
+  Omit<
+    Prisma.ListUncheckedCreateWithoutSpaceInput,
+    'zenstack_transaction' | 'zenstack_guard'
+  >
+> = z
   .object({
     id: z.string().optional(),
     createdAt: z.date().optional(),

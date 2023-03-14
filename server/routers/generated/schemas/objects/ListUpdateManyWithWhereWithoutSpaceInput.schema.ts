@@ -6,7 +6,12 @@ import { ListUncheckedUpdateManyWithoutListsInputObjectSchema } from './ListUnch
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.ListUpdateManyWithWhereWithoutSpaceInput> = z
+const Schema: z.ZodType<
+  Omit<
+    Prisma.ListUpdateManyWithWhereWithoutSpaceInput,
+    'zenstack_transaction' | 'zenstack_guard'
+  >
+> = z
   .object({
     where: z.lazy(() => ListScalarWhereInputObjectSchema),
     data: z.union([

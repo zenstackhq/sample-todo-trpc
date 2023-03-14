@@ -7,7 +7,9 @@ import { ListCountOutputTypeArgsObjectSchema } from './ListCountOutputTypeArgs.s
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.ListInclude> = z
+const Schema: z.ZodType<
+  Omit<Prisma.ListInclude, 'zenstack_transaction' | 'zenstack_guard'>
+> = z
   .object({
     space: z
       .union([z.boolean(), z.lazy(() => SpaceArgsObjectSchema)])

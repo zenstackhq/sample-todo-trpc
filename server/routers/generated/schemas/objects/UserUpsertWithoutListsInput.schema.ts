@@ -7,7 +7,12 @@ import { UserUncheckedCreateWithoutListsInputObjectSchema } from './UserUnchecke
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.UserUpsertWithoutListsInput> = z
+const Schema: z.ZodType<
+  Omit<
+    Prisma.UserUpsertWithoutListsInput,
+    'zenstack_transaction' | 'zenstack_guard'
+  >
+> = z
   .object({
     update: z.union([
       z.lazy(() => UserUpdateWithoutListsInputObjectSchema),

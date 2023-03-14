@@ -6,7 +6,12 @@ import { NullableIntFieldUpdateOperationsInputObjectSchema } from './NullableInt
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.AccountUncheckedUpdateInput> = z
+const Schema: z.ZodType<
+  Omit<
+    Prisma.AccountUncheckedUpdateInput,
+    'zenstack_transaction' | 'zenstack_guard'
+  >
+> = z
   .object({
     id: z
       .union([

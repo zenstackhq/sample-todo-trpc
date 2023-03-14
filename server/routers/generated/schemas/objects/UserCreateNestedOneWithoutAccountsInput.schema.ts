@@ -7,7 +7,12 @@ import { UserWhereUniqueInputObjectSchema } from './UserWhereUniqueInput.schema'
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.UserCreateNestedOneWithoutAccountsInput> = z
+const Schema: z.ZodType<
+  Omit<
+    Prisma.UserCreateNestedOneWithoutAccountsInput,
+    'zenstack_transaction' | 'zenstack_guard'
+  >
+> = z
   .object({
     create: z
       .union([

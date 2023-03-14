@@ -7,7 +7,12 @@ import { NestedStringNullableFilterObjectSchema } from './NestedStringNullableFi
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.StringNullableWithAggregatesFilter> = z
+const Schema: z.ZodType<
+  Omit<
+    Prisma.StringNullableWithAggregatesFilter,
+    'zenstack_transaction' | 'zenstack_guard'
+  >
+> = z
   .object({
     equals: z.string().optional().nullable(),
     in: z.string().array().optional().nullable(),

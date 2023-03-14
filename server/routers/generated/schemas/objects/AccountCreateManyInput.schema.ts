@@ -3,7 +3,9 @@ import { z } from 'zod';
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.AccountCreateManyInput> = z
+const Schema: z.ZodType<
+  Omit<Prisma.AccountCreateManyInput, 'zenstack_transaction' | 'zenstack_guard'>
+> = z
   .object({
     id: z.string().optional(),
     userId: z.string(),

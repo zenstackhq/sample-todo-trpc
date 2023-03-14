@@ -4,7 +4,12 @@ import { SpaceUserWhereInputObjectSchema } from './SpaceUserWhereInput.schema';
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.SpaceUserListRelationFilter> = z
+const Schema: z.ZodType<
+  Omit<
+    Prisma.SpaceUserListRelationFilter,
+    'zenstack_transaction' | 'zenstack_guard'
+  >
+> = z
   .object({
     every: z.lazy(() => SpaceUserWhereInputObjectSchema).optional(),
     some: z.lazy(() => SpaceUserWhereInputObjectSchema).optional(),

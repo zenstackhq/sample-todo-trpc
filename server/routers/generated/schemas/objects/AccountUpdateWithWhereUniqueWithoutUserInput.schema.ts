@@ -6,7 +6,12 @@ import { AccountUncheckedUpdateWithoutUserInputObjectSchema } from './AccountUnc
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.AccountUpdateWithWhereUniqueWithoutUserInput> = z
+const Schema: z.ZodType<
+  Omit<
+    Prisma.AccountUpdateWithWhereUniqueWithoutUserInput,
+    'zenstack_transaction' | 'zenstack_guard'
+  >
+> = z
   .object({
     where: z.lazy(() => AccountWhereUniqueInputObjectSchema),
     data: z.union([

@@ -8,7 +8,12 @@ import { SpaceUserWhereUniqueInputObjectSchema } from './SpaceUserWhereUniqueInp
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.SpaceUserCreateNestedManyWithoutUserInput> = z
+const Schema: z.ZodType<
+  Omit<
+    Prisma.SpaceUserCreateNestedManyWithoutUserInput,
+    'zenstack_transaction' | 'zenstack_guard'
+  >
+> = z
   .object({
     create: z
       .union([

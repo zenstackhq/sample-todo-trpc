@@ -4,7 +4,12 @@ import { AccountCreateManyUserInputObjectSchema } from './AccountCreateManyUserI
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.AccountCreateManyUserInputEnvelope> = z
+const Schema: z.ZodType<
+  Omit<
+    Prisma.AccountCreateManyUserInputEnvelope,
+    'zenstack_transaction' | 'zenstack_guard'
+  >
+> = z
   .object({
     data: z.lazy(() => AccountCreateManyUserInputObjectSchema).array(),
     skipDuplicates: z.boolean().optional(),

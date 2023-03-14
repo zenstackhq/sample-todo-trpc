@@ -4,7 +4,9 @@ import { NestedDateTimeNullableFilterObjectSchema } from './NestedDateTimeNullab
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.DateTimeNullableFilter> = z
+const Schema: z.ZodType<
+  Omit<Prisma.DateTimeNullableFilter, 'zenstack_transaction' | 'zenstack_guard'>
+> = z
   .object({
     equals: z.date().optional().nullable(),
     in: z.date().array().optional().nullable(),

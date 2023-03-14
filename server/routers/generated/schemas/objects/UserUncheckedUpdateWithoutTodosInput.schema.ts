@@ -10,7 +10,12 @@ import { AccountUncheckedUpdateManyWithoutUserNestedInputObjectSchema } from './
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.UserUncheckedUpdateWithoutTodosInput> = z
+const Schema: z.ZodType<
+  Omit<
+    Prisma.UserUncheckedUpdateWithoutTodosInput,
+    'zenstack_transaction' | 'zenstack_guard'
+  >
+> = z
   .object({
     id: z
       .union([

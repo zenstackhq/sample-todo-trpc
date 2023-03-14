@@ -6,7 +6,9 @@ import { BoolFilterObjectSchema } from './BoolFilter.schema';
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.ListScalarWhereInput> = z
+const Schema: z.ZodType<
+  Omit<Prisma.ListScalarWhereInput, 'zenstack_transaction' | 'zenstack_guard'>
+> = z
   .object({
     AND: z
       .union([

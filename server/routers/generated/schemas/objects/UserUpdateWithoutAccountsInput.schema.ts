@@ -10,7 +10,12 @@ import { TodoUpdateManyWithoutOwnerNestedInputObjectSchema } from './TodoUpdateM
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.UserUpdateWithoutAccountsInput> = z
+const Schema: z.ZodType<
+  Omit<
+    Prisma.UserUpdateWithoutAccountsInput,
+    'zenstack_transaction' | 'zenstack_guard'
+  >
+> = z
   .object({
     id: z
       .union([

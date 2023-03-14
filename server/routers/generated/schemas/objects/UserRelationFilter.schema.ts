@@ -4,7 +4,9 @@ import { UserWhereInputObjectSchema } from './UserWhereInput.schema';
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.UserRelationFilter> = z
+const Schema: z.ZodType<
+  Omit<Prisma.UserRelationFilter, 'zenstack_transaction' | 'zenstack_guard'>
+> = z
   .object({
     is: z.lazy(() => UserWhereInputObjectSchema).optional(),
     isNot: z.lazy(() => UserWhereInputObjectSchema).optional(),

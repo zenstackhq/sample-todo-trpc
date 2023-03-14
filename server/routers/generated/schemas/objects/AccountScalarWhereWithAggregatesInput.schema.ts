@@ -6,7 +6,12 @@ import { IntNullableWithAggregatesFilterObjectSchema } from './IntNullableWithAg
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.AccountScalarWhereWithAggregatesInput> = z
+const Schema: z.ZodType<
+  Omit<
+    Prisma.AccountScalarWhereWithAggregatesInput,
+    'zenstack_transaction' | 'zenstack_guard'
+  >
+> = z
   .object({
     AND: z
       .union([

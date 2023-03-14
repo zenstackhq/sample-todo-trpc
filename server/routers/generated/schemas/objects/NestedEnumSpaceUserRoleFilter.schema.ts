@@ -4,7 +4,12 @@ import { SpaceUserRoleSchema } from '../enums/SpaceUserRole.schema';
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.NestedEnumSpaceUserRoleFilter> = z
+const Schema: z.ZodType<
+  Omit<
+    Prisma.NestedEnumSpaceUserRoleFilter,
+    'zenstack_transaction' | 'zenstack_guard'
+  >
+> = z
   .object({
     equals: z.lazy(() => SpaceUserRoleSchema).optional(),
     in: z

@@ -9,6 +9,4 @@ export const TodoScalarFieldEnumSchema = z.enum([
   'listId',
   'title',
   'completedAt',
-  'zenstack_guard',
-  'zenstack_transaction',
 ]);

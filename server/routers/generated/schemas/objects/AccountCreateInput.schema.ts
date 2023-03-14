@@ -4,7 +4,9 @@ import { UserCreateNestedOneWithoutAccountsInputObjectSchema } from './UserCreat
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.AccountCreateInput> = z
+const Schema: z.ZodType<
+  Omit<Prisma.AccountCreateInput, 'zenstack_transaction' | 'zenstack_guard'>
+> = z
   .object({
     id: z.string().optional(),
     type: z.string(),

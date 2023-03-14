@@ -8,7 +8,9 @@ import { UserCountOutputTypeArgsObjectSchema } from './UserCountOutputTypeArgs.s
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.UserSelect> = z
+const Schema: z.ZodType<
+  Omit<Prisma.UserSelect, 'zenstack_transaction' | 'zenstack_guard'>
+> = z
   .object({
     id: z.boolean().optional(),
     createdAt: z.boolean().optional(),

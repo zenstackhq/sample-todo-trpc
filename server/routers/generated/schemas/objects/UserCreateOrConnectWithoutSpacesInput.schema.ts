@@ -6,7 +6,12 @@ import { UserUncheckedCreateWithoutSpacesInputObjectSchema } from './UserUncheck
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.UserCreateOrConnectWithoutSpacesInput> = z
+const Schema: z.ZodType<
+  Omit<
+    Prisma.UserCreateOrConnectWithoutSpacesInput,
+    'zenstack_transaction' | 'zenstack_guard'
+  >
+> = z
   .object({
     where: z.lazy(() => UserWhereUniqueInputObjectSchema),
     create: z.union([

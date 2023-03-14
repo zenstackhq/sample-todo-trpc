@@ -5,7 +5,9 @@ import { ListArgsObjectSchema } from './ListArgs.schema';
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.TodoSelect> = z
+const Schema: z.ZodType<
+  Omit<Prisma.TodoSelect, 'zenstack_transaction' | 'zenstack_guard'>
+> = z
   .object({
     id: z.boolean().optional(),
     createdAt: z.boolean().optional(),

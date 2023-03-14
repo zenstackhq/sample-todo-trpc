@@ -3,7 +3,12 @@ import { z } from 'zod';
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.NullableIntFieldUpdateOperationsInput> = z
+const Schema: z.ZodType<
+  Omit<
+    Prisma.NullableIntFieldUpdateOperationsInput,
+    'zenstack_transaction' | 'zenstack_guard'
+  >
+> = z
   .object({
     set: z.number().optional().nullable(),
     increment: z.number().optional(),

@@ -5,7 +5,9 @@ import { ListIncludeObjectSchema } from './ListInclude.schema';
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.ListArgs> = z
+const Schema: z.ZodType<
+  Omit<Prisma.ListArgs, 'zenstack_transaction' | 'zenstack_guard'>
+> = z
   .object({
     select: z.lazy(() => ListSelectObjectSchema).optional(),
     include: z.lazy(() => ListIncludeObjectSchema).optional(),

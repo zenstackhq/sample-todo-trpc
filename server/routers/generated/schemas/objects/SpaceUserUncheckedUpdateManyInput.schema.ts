@@ -7,7 +7,12 @@ import { EnumSpaceUserRoleFieldUpdateOperationsInputObjectSchema } from './EnumS
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.SpaceUserUncheckedUpdateManyInput> = z
+const Schema: z.ZodType<
+  Omit<
+    Prisma.SpaceUserUncheckedUpdateManyInput,
+    'zenstack_transaction' | 'zenstack_guard'
+  >
+> = z
   .object({
     id: z
       .union([

@@ -10,30 +10,32 @@ import { SpaceUncheckedUpdateWithoutMembersInputObjectSchema } from './SpaceUnch
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.SpaceUpdateOneRequiredWithoutMembersNestedInput> =
-  z
-    .object({
-      create: z
-        .union([
-          z.lazy(() => SpaceCreateWithoutMembersInputObjectSchema),
-          z.lazy(() => SpaceUncheckedCreateWithoutMembersInputObjectSchema),
-        ])
-        .optional(),
-      connectOrCreate: z
-        .lazy(() => SpaceCreateOrConnectWithoutMembersInputObjectSchema)
-        .optional(),
-      upsert: z
-        .lazy(() => SpaceUpsertWithoutMembersInputObjectSchema)
-        .optional(),
-      connect: z.lazy(() => SpaceWhereUniqueInputObjectSchema).optional(),
-      update: z
-        .union([
-          z.lazy(() => SpaceUpdateWithoutMembersInputObjectSchema),
-          z.lazy(() => SpaceUncheckedUpdateWithoutMembersInputObjectSchema),
-        ])
-        .optional(),
-    })
-    .strict();
+const Schema: z.ZodType<
+  Omit<
+    Prisma.SpaceUpdateOneRequiredWithoutMembersNestedInput,
+    'zenstack_transaction' | 'zenstack_guard'
+  >
+> = z
+  .object({
+    create: z
+      .union([
+        z.lazy(() => SpaceCreateWithoutMembersInputObjectSchema),
+        z.lazy(() => SpaceUncheckedCreateWithoutMembersInputObjectSchema),
+      ])
+      .optional(),
+    connectOrCreate: z
+      .lazy(() => SpaceCreateOrConnectWithoutMembersInputObjectSchema)
+      .optional(),
+    upsert: z.lazy(() => SpaceUpsertWithoutMembersInputObjectSchema).optional(),
+    connect: z.lazy(() => SpaceWhereUniqueInputObjectSchema).optional(),
+    update: z
+      .union([
+        z.lazy(() => SpaceUpdateWithoutMembersInputObjectSchema),
+        z.lazy(() => SpaceUncheckedUpdateWithoutMembersInputObjectSchema),
+      ])
+      .optional(),
+  })
+  .strict();
 
 export const SpaceUpdateOneRequiredWithoutMembersNestedInputObjectSchema =
   Schema;

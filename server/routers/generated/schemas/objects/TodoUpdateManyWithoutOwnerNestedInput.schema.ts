@@ -12,7 +12,12 @@ import { TodoScalarWhereInputObjectSchema } from './TodoScalarWhereInput.schema'
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.TodoUpdateManyWithoutOwnerNestedInput> = z
+const Schema: z.ZodType<
+  Omit<
+    Prisma.TodoUpdateManyWithoutOwnerNestedInput,
+    'zenstack_transaction' | 'zenstack_guard'
+  >
+> = z
   .object({
     create: z
       .union([

@@ -6,7 +6,12 @@ import { DateTimeNullableWithAggregatesFilterObjectSchema } from './DateTimeNull
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.TodoScalarWhereWithAggregatesInput> = z
+const Schema: z.ZodType<
+  Omit<
+    Prisma.TodoScalarWhereWithAggregatesInput,
+    'zenstack_transaction' | 'zenstack_guard'
+  >
+> = z
   .object({
     AND: z
       .union([

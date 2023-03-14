@@ -5,7 +5,9 @@ import { ListCreateNestedManyWithoutSpaceInputObjectSchema } from './ListCreateN
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.SpaceCreateInput> = z
+const Schema: z.ZodType<
+  Omit<Prisma.SpaceCreateInput, 'zenstack_transaction' | 'zenstack_guard'>
+> = z
   .object({
     id: z.string().optional(),
     createdAt: z.date().optional(),

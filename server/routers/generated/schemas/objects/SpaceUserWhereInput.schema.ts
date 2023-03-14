@@ -11,7 +11,9 @@ import { SpaceUserRoleSchema } from '../enums/SpaceUserRole.schema';
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.SpaceUserWhereInput> = z
+const Schema: z.ZodType<
+  Omit<Prisma.SpaceUserWhereInput, 'zenstack_transaction' | 'zenstack_guard'>
+> = z
   .object({
     AND: z
       .union([

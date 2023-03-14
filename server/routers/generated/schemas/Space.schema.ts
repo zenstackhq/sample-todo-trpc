@@ -18,13 +18,13 @@ import { SpaceScalarWhereWithAggregatesInputObjectSchema } from './objects/Space
 
 export const SpaceSchema = {
   findUnique: z.object({
-    select: SpaceSelectObjectSchema.optional(),
-    include: SpaceIncludeObjectSchema.optional(),
+    select: z.lazy(() => SpaceSelectObjectSchema.optional()),
+    include: z.lazy(() => SpaceIncludeObjectSchema.optional()),
     where: SpaceWhereUniqueInputObjectSchema,
   }),
   findFirst: z.object({
-    select: SpaceSelectObjectSchema.optional(),
-    include: SpaceIncludeObjectSchema.optional(),
+    select: z.lazy(() => SpaceSelectObjectSchema.optional()),
+    include: z.lazy(() => SpaceIncludeObjectSchema.optional()),
     where: SpaceWhereInputObjectSchema.optional(),
     orderBy: z
       .union([
@@ -53,20 +53,20 @@ export const SpaceSchema = {
     distinct: z.array(SpaceScalarFieldEnumSchema).optional(),
   }),
   create: z.object({
-    select: SpaceSelectObjectSchema.optional(),
-    include: SpaceIncludeObjectSchema.optional(),
+    select: z.lazy(() => SpaceSelectObjectSchema.optional()),
+    include: z.lazy(() => SpaceIncludeObjectSchema.optional()),
     data: SpaceCreateInputObjectSchema,
   }),
   createMany: z.object({ data: SpaceCreateManyInputObjectSchema }),
   delete: z.object({
-    select: SpaceSelectObjectSchema.optional(),
-    include: SpaceIncludeObjectSchema.optional(),
+    select: z.lazy(() => SpaceSelectObjectSchema.optional()),
+    include: z.lazy(() => SpaceIncludeObjectSchema.optional()),
     where: SpaceWhereUniqueInputObjectSchema,
   }),
   deleteMany: z.object({ where: SpaceWhereInputObjectSchema.optional() }),
   update: z.object({
-    select: SpaceSelectObjectSchema.optional(),
-    include: SpaceIncludeObjectSchema.optional(),
+    select: z.lazy(() => SpaceSelectObjectSchema.optional()),
+    include: z.lazy(() => SpaceIncludeObjectSchema.optional()),
     data: SpaceUpdateInputObjectSchema,
     where: SpaceWhereUniqueInputObjectSchema,
   }),
@@ -75,8 +75,8 @@ export const SpaceSchema = {
     where: SpaceWhereInputObjectSchema.optional(),
   }),
   upsert: z.object({
-    select: SpaceSelectObjectSchema.optional(),
-    include: SpaceIncludeObjectSchema.optional(),
+    select: z.lazy(() => SpaceSelectObjectSchema.optional()),
+    include: z.lazy(() => SpaceIncludeObjectSchema.optional()),
     where: SpaceWhereUniqueInputObjectSchema,
     create: SpaceCreateInputObjectSchema,
     update: SpaceUpdateInputObjectSchema,

@@ -9,7 +9,12 @@ import { AccountSumOrderByAggregateInputObjectSchema } from './AccountSumOrderBy
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.AccountOrderByWithAggregationInput> = z
+const Schema: z.ZodType<
+  Omit<
+    Prisma.AccountOrderByWithAggregationInput,
+    'zenstack_transaction' | 'zenstack_guard'
+  >
+> = z
   .object({
     id: z.lazy(() => SortOrderSchema).optional(),
     userId: z.lazy(() => SortOrderSchema).optional(),

@@ -20,13 +20,13 @@ import { AccountScalarWhereWithAggregatesInputObjectSchema } from './objects/Acc
 
 export const AccountSchema = {
   findUnique: z.object({
-    select: AccountSelectObjectSchema.optional(),
-    include: AccountIncludeObjectSchema.optional(),
+    select: z.lazy(() => AccountSelectObjectSchema.optional()),
+    include: z.lazy(() => AccountIncludeObjectSchema.optional()),
     where: AccountWhereUniqueInputObjectSchema,
   }),
   findFirst: z.object({
-    select: AccountSelectObjectSchema.optional(),
-    include: AccountIncludeObjectSchema.optional(),
+    select: z.lazy(() => AccountSelectObjectSchema.optional()),
+    include: z.lazy(() => AccountIncludeObjectSchema.optional()),
     where: AccountWhereInputObjectSchema.optional(),
     orderBy: z
       .union([
@@ -55,20 +55,20 @@ export const AccountSchema = {
     distinct: z.array(AccountScalarFieldEnumSchema).optional(),
   }),
   create: z.object({
-    select: AccountSelectObjectSchema.optional(),
-    include: AccountIncludeObjectSchema.optional(),
+    select: z.lazy(() => AccountSelectObjectSchema.optional()),
+    include: z.lazy(() => AccountIncludeObjectSchema.optional()),
     data: AccountCreateInputObjectSchema,
   }),
   createMany: z.object({ data: AccountCreateManyInputObjectSchema }),
   delete: z.object({
-    select: AccountSelectObjectSchema.optional(),
-    include: AccountIncludeObjectSchema.optional(),
+    select: z.lazy(() => AccountSelectObjectSchema.optional()),
+    include: z.lazy(() => AccountIncludeObjectSchema.optional()),
     where: AccountWhereUniqueInputObjectSchema,
   }),
   deleteMany: z.object({ where: AccountWhereInputObjectSchema.optional() }),
   update: z.object({
-    select: AccountSelectObjectSchema.optional(),
-    include: AccountIncludeObjectSchema.optional(),
+    select: z.lazy(() => AccountSelectObjectSchema.optional()),
+    include: z.lazy(() => AccountIncludeObjectSchema.optional()),
     data: AccountUpdateInputObjectSchema,
     where: AccountWhereUniqueInputObjectSchema,
   }),
@@ -77,8 +77,8 @@ export const AccountSchema = {
     where: AccountWhereInputObjectSchema.optional(),
   }),
   upsert: z.object({
-    select: AccountSelectObjectSchema.optional(),
-    include: AccountIncludeObjectSchema.optional(),
+    select: z.lazy(() => AccountSelectObjectSchema.optional()),
+    include: z.lazy(() => AccountIncludeObjectSchema.optional()),
     where: AccountWhereUniqueInputObjectSchema,
     create: AccountCreateInputObjectSchema,
     update: AccountUpdateInputObjectSchema,

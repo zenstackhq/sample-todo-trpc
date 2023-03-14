@@ -8,7 +8,12 @@ import { TodoUpdateManyWithoutListNestedInputObjectSchema } from './TodoUpdateMa
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.ListUpdateWithoutSpaceInput> = z
+const Schema: z.ZodType<
+  Omit<
+    Prisma.ListUpdateWithoutSpaceInput,
+    'zenstack_transaction' | 'zenstack_guard'
+  >
+> = z
   .object({
     id: z
       .union([

@@ -6,7 +6,12 @@ import { SpaceUncheckedCreateWithoutMembersInputObjectSchema } from './SpaceUnch
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.SpaceCreateOrConnectWithoutMembersInput> = z
+const Schema: z.ZodType<
+  Omit<
+    Prisma.SpaceCreateOrConnectWithoutMembersInput,
+    'zenstack_transaction' | 'zenstack_guard'
+  >
+> = z
   .object({
     where: z.lazy(() => SpaceWhereUniqueInputObjectSchema),
     create: z.union([

@@ -5,7 +5,9 @@ import { AccountIncludeObjectSchema } from './AccountInclude.schema';
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.AccountArgs> = z
+const Schema: z.ZodType<
+  Omit<Prisma.AccountArgs, 'zenstack_transaction' | 'zenstack_guard'>
+> = z
   .object({
     select: z.lazy(() => AccountSelectObjectSchema).optional(),
     include: z.lazy(() => AccountIncludeObjectSchema).optional(),

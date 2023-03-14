@@ -6,7 +6,9 @@ import { SpaceCountOutputTypeArgsObjectSchema } from './SpaceCountOutputTypeArgs
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.SpaceInclude> = z
+const Schema: z.ZodType<
+  Omit<Prisma.SpaceInclude, 'zenstack_transaction' | 'zenstack_guard'>
+> = z
   .object({
     members: z
       .union([z.boolean(), z.lazy(() => SpaceUserSchema.findMany)])

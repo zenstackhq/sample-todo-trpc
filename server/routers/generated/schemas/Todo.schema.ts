@@ -18,13 +18,13 @@ import { TodoScalarWhereWithAggregatesInputObjectSchema } from './objects/TodoSc
 
 export const TodoSchema = {
   findUnique: z.object({
-    select: TodoSelectObjectSchema.optional(),
-    include: TodoIncludeObjectSchema.optional(),
+    select: z.lazy(() => TodoSelectObjectSchema.optional()),
+    include: z.lazy(() => TodoIncludeObjectSchema.optional()),
     where: TodoWhereUniqueInputObjectSchema,
   }),
   findFirst: z.object({
-    select: TodoSelectObjectSchema.optional(),
-    include: TodoIncludeObjectSchema.optional(),
+    select: z.lazy(() => TodoSelectObjectSchema.optional()),
+    include: z.lazy(() => TodoIncludeObjectSchema.optional()),
     where: TodoWhereInputObjectSchema.optional(),
     orderBy: z
       .union([
@@ -53,20 +53,20 @@ export const TodoSchema = {
     distinct: z.array(TodoScalarFieldEnumSchema).optional(),
   }),
   create: z.object({
-    select: TodoSelectObjectSchema.optional(),
-    include: TodoIncludeObjectSchema.optional(),
+    select: z.lazy(() => TodoSelectObjectSchema.optional()),
+    include: z.lazy(() => TodoIncludeObjectSchema.optional()),
     data: TodoCreateInputObjectSchema,
   }),
   createMany: z.object({ data: TodoCreateManyInputObjectSchema }),
   delete: z.object({
-    select: TodoSelectObjectSchema.optional(),
-    include: TodoIncludeObjectSchema.optional(),
+    select: z.lazy(() => TodoSelectObjectSchema.optional()),
+    include: z.lazy(() => TodoIncludeObjectSchema.optional()),
     where: TodoWhereUniqueInputObjectSchema,
   }),
   deleteMany: z.object({ where: TodoWhereInputObjectSchema.optional() }),
   update: z.object({
-    select: TodoSelectObjectSchema.optional(),
-    include: TodoIncludeObjectSchema.optional(),
+    select: z.lazy(() => TodoSelectObjectSchema.optional()),
+    include: z.lazy(() => TodoIncludeObjectSchema.optional()),
     data: TodoUpdateInputObjectSchema,
     where: TodoWhereUniqueInputObjectSchema,
   }),
@@ -75,8 +75,8 @@ export const TodoSchema = {
     where: TodoWhereInputObjectSchema.optional(),
   }),
   upsert: z.object({
-    select: TodoSelectObjectSchema.optional(),
-    include: TodoIncludeObjectSchema.optional(),
+    select: z.lazy(() => TodoSelectObjectSchema.optional()),
+    include: z.lazy(() => TodoIncludeObjectSchema.optional()),
     where: TodoWhereUniqueInputObjectSchema,
     create: TodoCreateInputObjectSchema,
     update: TodoUpdateInputObjectSchema,

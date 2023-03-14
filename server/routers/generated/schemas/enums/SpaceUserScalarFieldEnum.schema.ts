@@ -8,6 +8,4 @@ export const SpaceUserScalarFieldEnumSchema = z.enum([
   'spaceId',
   'userId',
   'role',
-  'zenstack_guard',
-  'zenstack_transaction',
 ]);

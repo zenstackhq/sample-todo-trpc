@@ -10,6 +10,4 @@ export const UserScalarFieldEnumSchema = z.enum([
   'password',
   'name',
   'image',
-  'zenstack_guard',
-  'zenstack_transaction',
 ]);

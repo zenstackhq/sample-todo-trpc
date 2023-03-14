@@ -7,7 +7,12 @@ import { ListWhereUniqueInputObjectSchema } from './ListWhereUniqueInput.schema'
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.ListCreateNestedOneWithoutTodosInput> = z
+const Schema: z.ZodType<
+  Omit<
+    Prisma.ListCreateNestedOneWithoutTodosInput,
+    'zenstack_transaction' | 'zenstack_guard'
+  >
+> = z
   .object({
     create: z
       .union([

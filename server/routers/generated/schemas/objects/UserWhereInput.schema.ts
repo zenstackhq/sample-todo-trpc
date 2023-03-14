@@ -11,7 +11,9 @@ import { AccountListRelationFilterObjectSchema } from './AccountListRelationFilt
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.UserWhereInput> = z
+const Schema: z.ZodType<
+  Omit<Prisma.UserWhereInput, 'zenstack_transaction' | 'zenstack_guard'>
+> = z
   .object({
     AND: z
       .union([

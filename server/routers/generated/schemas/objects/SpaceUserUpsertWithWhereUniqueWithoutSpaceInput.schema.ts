@@ -8,20 +8,24 @@ import { SpaceUserUncheckedCreateWithoutSpaceInputObjectSchema } from './SpaceUs
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.SpaceUserUpsertWithWhereUniqueWithoutSpaceInput> =
-  z
-    .object({
-      where: z.lazy(() => SpaceUserWhereUniqueInputObjectSchema),
-      update: z.union([
-        z.lazy(() => SpaceUserUpdateWithoutSpaceInputObjectSchema),
-        z.lazy(() => SpaceUserUncheckedUpdateWithoutSpaceInputObjectSchema),
-      ]),
-      create: z.union([
-        z.lazy(() => SpaceUserCreateWithoutSpaceInputObjectSchema),
-        z.lazy(() => SpaceUserUncheckedCreateWithoutSpaceInputObjectSchema),
-      ]),
-    })
-    .strict();
+const Schema: z.ZodType<
+  Omit<
+    Prisma.SpaceUserUpsertWithWhereUniqueWithoutSpaceInput,
+    'zenstack_transaction' | 'zenstack_guard'
+  >
+> = z
+  .object({
+    where: z.lazy(() => SpaceUserWhereUniqueInputObjectSchema),
+    update: z.union([
+      z.lazy(() => SpaceUserUpdateWithoutSpaceInputObjectSchema),
+      z.lazy(() => SpaceUserUncheckedUpdateWithoutSpaceInputObjectSchema),
+    ]),
+    create: z.union([
+      z.lazy(() => SpaceUserCreateWithoutSpaceInputObjectSchema),
+      z.lazy(() => SpaceUserUncheckedCreateWithoutSpaceInputObjectSchema),
+    ]),
+  })
+  .strict();
 
 export const SpaceUserUpsertWithWhereUniqueWithoutSpaceInputObjectSchema =
   Schema;

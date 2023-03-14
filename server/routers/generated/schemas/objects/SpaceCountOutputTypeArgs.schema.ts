@@ -4,7 +4,12 @@ import { SpaceCountOutputTypeSelectObjectSchema } from './SpaceCountOutputTypeSe
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.SpaceCountOutputTypeArgs> = z
+const Schema: z.ZodType<
+  Omit<
+    Prisma.SpaceCountOutputTypeArgs,
+    'zenstack_transaction' | 'zenstack_guard'
+  >
+> = z
   .object({
     select: z.lazy(() => SpaceCountOutputTypeSelectObjectSchema).optional(),
   })

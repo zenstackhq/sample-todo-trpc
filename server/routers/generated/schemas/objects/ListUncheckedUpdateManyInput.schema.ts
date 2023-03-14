@@ -6,7 +6,12 @@ import { BoolFieldUpdateOperationsInputObjectSchema } from './BoolFieldUpdateOpe
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.ListUncheckedUpdateManyInput> = z
+const Schema: z.ZodType<
+  Omit<
+    Prisma.ListUncheckedUpdateManyInput,
+    'zenstack_transaction' | 'zenstack_guard'
+  >
+> = z
   .object({
     id: z
       .union([

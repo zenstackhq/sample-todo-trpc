@@ -6,7 +6,12 @@ import { UserUncheckedCreateWithoutListsInputObjectSchema } from './UserUnchecke
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.UserCreateOrConnectWithoutListsInput> = z
+const Schema: z.ZodType<
+  Omit<
+    Prisma.UserCreateOrConnectWithoutListsInput,
+    'zenstack_transaction' | 'zenstack_guard'
+  >
+> = z
   .object({
     where: z.lazy(() => UserWhereUniqueInputObjectSchema),
     create: z.union([

@@ -4,7 +4,12 @@ import { ListUncheckedCreateNestedManyWithoutSpaceInputObjectSchema } from './Li
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.SpaceUncheckedCreateWithoutMembersInput> = z
+const Schema: z.ZodType<
+  Omit<
+    Prisma.SpaceUncheckedCreateWithoutMembersInput,
+    'zenstack_transaction' | 'zenstack_guard'
+  >
+> = z
   .object({
     id: z.string().optional(),
     createdAt: z.date().optional(),

@@ -6,7 +6,9 @@ import { SpaceCountOutputTypeArgsObjectSchema } from './SpaceCountOutputTypeArgs
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.SpaceSelect> = z
+const Schema: z.ZodType<
+  Omit<Prisma.SpaceSelect, 'zenstack_transaction' | 'zenstack_guard'>
+> = z
   .object({
     id: z.boolean().optional(),
     createdAt: z.boolean().optional(),

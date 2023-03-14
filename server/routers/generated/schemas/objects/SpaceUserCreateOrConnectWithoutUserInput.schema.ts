@@ -6,7 +6,12 @@ import { SpaceUserUncheckedCreateWithoutUserInputObjectSchema } from './SpaceUse
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.SpaceUserCreateOrConnectWithoutUserInput> = z
+const Schema: z.ZodType<
+  Omit<
+    Prisma.SpaceUserCreateOrConnectWithoutUserInput,
+    'zenstack_transaction' | 'zenstack_guard'
+  >
+> = z
   .object({
     where: z.lazy(() => SpaceUserWhereUniqueInputObjectSchema),
     create: z.union([

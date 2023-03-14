@@ -6,7 +6,12 @@ import { AccountUncheckedUpdateManyWithoutAccountsInputObjectSchema } from './Ac
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.AccountUpdateManyWithWhereWithoutUserInput> = z
+const Schema: z.ZodType<
+  Omit<
+    Prisma.AccountUpdateManyWithWhereWithoutUserInput,
+    'zenstack_transaction' | 'zenstack_guard'
+  >
+> = z
   .object({
     where: z.lazy(() => AccountScalarWhereInputObjectSchema),
     data: z.union([

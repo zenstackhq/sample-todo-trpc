@@ -7,41 +7,45 @@ import { EnumSpaceUserRoleFieldUpdateOperationsInputObjectSchema } from './EnumS
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.SpaceUserUncheckedUpdateManyWithoutMembersInput> =
-  z
-    .object({
-      id: z
-        .union([
-          z.string(),
-          z.lazy(() => StringFieldUpdateOperationsInputObjectSchema),
-        ])
-        .optional(),
-      createdAt: z
-        .union([
-          z.date(),
-          z.lazy(() => DateTimeFieldUpdateOperationsInputObjectSchema),
-        ])
-        .optional(),
-      updatedAt: z
-        .union([
-          z.date(),
-          z.lazy(() => DateTimeFieldUpdateOperationsInputObjectSchema),
-        ])
-        .optional(),
-      userId: z
-        .union([
-          z.string(),
-          z.lazy(() => StringFieldUpdateOperationsInputObjectSchema),
-        ])
-        .optional(),
-      role: z
-        .union([
-          z.lazy(() => SpaceUserRoleSchema),
-          z.lazy(() => EnumSpaceUserRoleFieldUpdateOperationsInputObjectSchema),
-        ])
-        .optional(),
-    })
-    .strict();
+const Schema: z.ZodType<
+  Omit<
+    Prisma.SpaceUserUncheckedUpdateManyWithoutMembersInput,
+    'zenstack_transaction' | 'zenstack_guard'
+  >
+> = z
+  .object({
+    id: z
+      .union([
+        z.string(),
+        z.lazy(() => StringFieldUpdateOperationsInputObjectSchema),
+      ])
+      .optional(),
+    createdAt: z
+      .union([
+        z.date(),
+        z.lazy(() => DateTimeFieldUpdateOperationsInputObjectSchema),
+      ])
+      .optional(),
+    updatedAt: z
+      .union([
+        z.date(),
+        z.lazy(() => DateTimeFieldUpdateOperationsInputObjectSchema),
+      ])
+      .optional(),
+    userId: z
+      .union([
+        z.string(),
+        z.lazy(() => StringFieldUpdateOperationsInputObjectSchema),
+      ])
+      .optional(),
+    role: z
+      .union([
+        z.lazy(() => SpaceUserRoleSchema),
+        z.lazy(() => EnumSpaceUserRoleFieldUpdateOperationsInputObjectSchema),
+      ])
+      .optional(),
+  })
+  .strict();
 
 export const SpaceUserUncheckedUpdateManyWithoutMembersInputObjectSchema =
   Schema;

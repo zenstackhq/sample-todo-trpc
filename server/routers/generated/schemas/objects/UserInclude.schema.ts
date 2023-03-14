@@ -8,7 +8,9 @@ import { UserCountOutputTypeArgsObjectSchema } from './UserCountOutputTypeArgs.s
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.UserInclude> = z
+const Schema: z.ZodType<
+  Omit<Prisma.UserInclude, 'zenstack_transaction' | 'zenstack_guard'>
+> = z
   .object({
     spaces: z
       .union([z.boolean(), z.lazy(() => SpaceUserSchema.findMany)])

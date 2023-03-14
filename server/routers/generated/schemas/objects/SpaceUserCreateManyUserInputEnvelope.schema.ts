@@ -4,7 +4,12 @@ import { SpaceUserCreateManyUserInputObjectSchema } from './SpaceUserCreateManyU
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.SpaceUserCreateManyUserInputEnvelope> = z
+const Schema: z.ZodType<
+  Omit<
+    Prisma.SpaceUserCreateManyUserInputEnvelope,
+    'zenstack_transaction' | 'zenstack_guard'
+  >
+> = z
   .object({
     data: z.lazy(() => SpaceUserCreateManyUserInputObjectSchema).array(),
     skipDuplicates: z.boolean().optional(),

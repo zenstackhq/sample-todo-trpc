@@ -7,7 +7,12 @@ import { SpaceUncheckedCreateWithoutListsInputObjectSchema } from './SpaceUnchec
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.SpaceUpsertWithoutListsInput> = z
+const Schema: z.ZodType<
+  Omit<
+    Prisma.SpaceUpsertWithoutListsInput,
+    'zenstack_transaction' | 'zenstack_guard'
+  >
+> = z
   .object({
     update: z.union([
       z.lazy(() => SpaceUpdateWithoutListsInputObjectSchema),

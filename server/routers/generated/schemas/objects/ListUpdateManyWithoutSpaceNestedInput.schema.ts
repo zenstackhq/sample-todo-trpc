@@ -12,7 +12,12 @@ import { ListScalarWhereInputObjectSchema } from './ListScalarWhereInput.schema'
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.ListUpdateManyWithoutSpaceNestedInput> = z
+const Schema: z.ZodType<
+  Omit<
+    Prisma.ListUpdateManyWithoutSpaceNestedInput,
+    'zenstack_transaction' | 'zenstack_guard'
+  >
+> = z
   .object({
     create: z
       .union([

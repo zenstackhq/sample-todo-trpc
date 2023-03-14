@@ -7,7 +7,9 @@ import { ListUpdateManyWithoutSpaceNestedInputObjectSchema } from './ListUpdateM
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.SpaceUpdateInput> = z
+const Schema: z.ZodType<
+  Omit<Prisma.SpaceUpdateInput, 'zenstack_transaction' | 'zenstack_guard'>
+> = z
   .object({
     id: z
       .union([

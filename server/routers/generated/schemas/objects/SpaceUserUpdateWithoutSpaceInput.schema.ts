@@ -8,7 +8,12 @@ import { EnumSpaceUserRoleFieldUpdateOperationsInputObjectSchema } from './EnumS
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.SpaceUserUpdateWithoutSpaceInput> = z
+const Schema: z.ZodType<
+  Omit<
+    Prisma.SpaceUserUpdateWithoutSpaceInput,
+    'zenstack_transaction' | 'zenstack_guard'
+  >
+> = z
   .object({
     id: z
       .union([

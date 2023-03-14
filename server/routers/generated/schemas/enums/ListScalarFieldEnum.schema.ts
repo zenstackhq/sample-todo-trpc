@@ -9,6 +9,4 @@ export const ListScalarFieldEnumSchema = z.enum([
   'ownerId',
   'title',
   'private',
-  'zenstack_guard',
-  'zenstack_transaction',
 ]);

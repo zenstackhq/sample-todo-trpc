@@ -12,7 +12,12 @@ import { SpaceUserScalarWhereInputObjectSchema } from './SpaceUserScalarWhereInp
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.SpaceUserUpdateManyWithoutUserNestedInput> = z
+const Schema: z.ZodType<
+  Omit<
+    Prisma.SpaceUserUpdateManyWithoutUserNestedInput,
+    'zenstack_transaction' | 'zenstack_guard'
+  >
+> = z
   .object({
     create: z
       .union([

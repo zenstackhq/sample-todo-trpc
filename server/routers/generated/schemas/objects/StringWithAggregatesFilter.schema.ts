@@ -7,7 +7,12 @@ import { NestedStringFilterObjectSchema } from './NestedStringFilter.schema';
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.StringWithAggregatesFilter> = z
+const Schema: z.ZodType<
+  Omit<
+    Prisma.StringWithAggregatesFilter,
+    'zenstack_transaction' | 'zenstack_guard'
+  >
+> = z
   .object({
     equals: z.string().optional(),
     in: z.string().array().optional(),

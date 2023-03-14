@@ -5,7 +5,12 @@ import { UserOrderByWithRelationInputObjectSchema } from './UserOrderByWithRelat
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.AccountOrderByWithRelationInput> = z
+const Schema: z.ZodType<
+  Omit<
+    Prisma.AccountOrderByWithRelationInput,
+    'zenstack_transaction' | 'zenstack_guard'
+  >
+> = z
   .object({
     id: z.lazy(() => SortOrderSchema).optional(),
     userId: z.lazy(() => SortOrderSchema).optional(),

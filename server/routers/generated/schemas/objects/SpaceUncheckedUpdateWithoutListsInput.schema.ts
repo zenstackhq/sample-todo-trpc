@@ -6,7 +6,12 @@ import { SpaceUserUncheckedUpdateManyWithoutSpaceNestedInputObjectSchema } from 
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.SpaceUncheckedUpdateWithoutListsInput> = z
+const Schema: z.ZodType<
+  Omit<
+    Prisma.SpaceUncheckedUpdateWithoutListsInput,
+    'zenstack_transaction' | 'zenstack_guard'
+  >
+> = z
   .object({
     id: z
       .union([

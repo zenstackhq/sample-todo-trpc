@@ -5,7 +5,9 @@ import { TodoIncludeObjectSchema } from './TodoInclude.schema';
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.TodoArgs> = z
+const Schema: z.ZodType<
+  Omit<Prisma.TodoArgs, 'zenstack_transaction' | 'zenstack_guard'>
+> = z
   .object({
     select: z.lazy(() => TodoSelectObjectSchema).optional(),
     include: z.lazy(() => TodoIncludeObjectSchema).optional(),

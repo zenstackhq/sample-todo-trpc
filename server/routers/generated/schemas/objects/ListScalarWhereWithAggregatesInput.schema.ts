@@ -6,7 +6,12 @@ import { BoolWithAggregatesFilterObjectSchema } from './BoolWithAggregatesFilter
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.ListScalarWhereWithAggregatesInput> = z
+const Schema: z.ZodType<
+  Omit<
+    Prisma.ListScalarWhereWithAggregatesInput,
+    'zenstack_transaction' | 'zenstack_guard'
+  >
+> = z
   .object({
     AND: z
       .union([

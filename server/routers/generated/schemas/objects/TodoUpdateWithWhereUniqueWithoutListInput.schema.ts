@@ -6,7 +6,12 @@ import { TodoUncheckedUpdateWithoutListInputObjectSchema } from './TodoUnchecked
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.TodoUpdateWithWhereUniqueWithoutListInput> = z
+const Schema: z.ZodType<
+  Omit<
+    Prisma.TodoUpdateWithWhereUniqueWithoutListInput,
+    'zenstack_transaction' | 'zenstack_guard'
+  >
+> = z
   .object({
     where: z.lazy(() => TodoWhereUniqueInputObjectSchema),
     data: z.union([

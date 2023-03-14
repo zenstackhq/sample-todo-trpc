@@ -3,7 +3,12 @@ import { z } from 'zod';
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.NestedFloatNullableFilter> = z
+const Schema: z.ZodType<
+  Omit<
+    Prisma.NestedFloatNullableFilter,
+    'zenstack_transaction' | 'zenstack_guard'
+  >
+> = z
   .object({
     equals: z.number().optional().nullable(),
     in: z.number().array().optional().nullable(),

@@ -7,6 +7,4 @@ export const SpaceScalarFieldEnumSchema = z.enum([
   'updatedAt',
   'name',
   'slug',
-  'zenstack_guard',
-  'zenstack_transaction',
 ]);

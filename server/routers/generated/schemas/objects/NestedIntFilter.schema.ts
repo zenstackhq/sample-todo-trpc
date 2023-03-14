@@ -3,7 +3,9 @@ import { z } from 'zod';
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.NestedIntFilter> = z
+const Schema: z.ZodType<
+  Omit<Prisma.NestedIntFilter, 'zenstack_transaction' | 'zenstack_guard'>
+> = z
   .object({
     equals: z.number().optional(),
     in: z.number().array().optional(),

@@ -3,7 +3,12 @@ import { z } from 'zod';
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.AccountMinAggregateInputType> = z
+const Schema: z.ZodType<
+  Omit<
+    Prisma.AccountMinAggregateInputType,
+    'zenstack_transaction' | 'zenstack_guard'
+  >
+> = z
   .object({
     id: z.literal(true).optional(),
     userId: z.literal(true).optional(),

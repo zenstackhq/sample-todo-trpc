@@ -10,7 +10,9 @@ import { DateTimeNullableFilterObjectSchema } from './DateTimeNullableFilter.sch
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.TodoWhereInput> = z
+const Schema: z.ZodType<
+  Omit<Prisma.TodoWhereInput, 'zenstack_transaction' | 'zenstack_guard'>
+> = z
   .object({
     AND: z
       .union([

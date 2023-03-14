@@ -4,7 +4,9 @@ import { UserArgsObjectSchema } from './UserArgs.schema';
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.AccountInclude> = z
+const Schema: z.ZodType<
+  Omit<Prisma.AccountInclude, 'zenstack_transaction' | 'zenstack_guard'>
+> = z
   .object({
     user: z.union([z.boolean(), z.lazy(() => UserArgsObjectSchema)]).optional(),
   })

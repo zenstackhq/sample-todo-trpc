@@ -4,7 +4,12 @@ import { TodoCreateManyOwnerInputObjectSchema } from './TodoCreateManyOwnerInput
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.TodoCreateManyOwnerInputEnvelope> = z
+const Schema: z.ZodType<
+  Omit<
+    Prisma.TodoCreateManyOwnerInputEnvelope,
+    'zenstack_transaction' | 'zenstack_guard'
+  >
+> = z
   .object({
     data: z.lazy(() => TodoCreateManyOwnerInputObjectSchema).array(),
     skipDuplicates: z.boolean().optional(),

@@ -7,7 +7,12 @@ import { SpaceWhereUniqueInputObjectSchema } from './SpaceWhereUniqueInput.schem
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.SpaceCreateNestedOneWithoutMembersInput> = z
+const Schema: z.ZodType<
+  Omit<
+    Prisma.SpaceCreateNestedOneWithoutMembersInput,
+    'zenstack_transaction' | 'zenstack_guard'
+  >
+> = z
   .object({
     create: z
       .union([

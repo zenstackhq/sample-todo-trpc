@@ -6,7 +6,12 @@ import { IntNullableFilterObjectSchema } from './IntNullableFilter.schema';
 
 import type { Prisma } from '@prisma/client';
 
-const Schema: z.ZodType<Prisma.AccountScalarWhereInput> = z
+const Schema: z.ZodType<
+  Omit<
+    Prisma.AccountScalarWhereInput,
+    'zenstack_transaction' | 'zenstack_guard'
+  >
+> = z
   .object({
     AND: z
       .union([
