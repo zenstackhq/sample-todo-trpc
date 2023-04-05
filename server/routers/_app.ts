@@ -45,7 +45,6 @@ const t = initTRPC.context<Context>().create({
 // middleware for wrapping access denied errors from enhanced Prisma
 // to proper TRPC errors with 403 code
 const errorWrappedProc = t.procedure.use(async ({ next }) => {
-    console.log('Calling middleware');
     const result = await next();
     if (
         !result.ok &&
