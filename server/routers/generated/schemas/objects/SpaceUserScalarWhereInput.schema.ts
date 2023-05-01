@@ -34,10 +34,16 @@ const Schema: z.ZodType<
       .union([z.lazy(() => StringFilterObjectSchema), z.string()])
       .optional(),
     createdAt: z
-      .union([z.lazy(() => DateTimeFilterObjectSchema), z.date()])
+      .union([
+        z.lazy(() => DateTimeFilterObjectSchema),
+        z.union([z.date(), z.string().datetime().optional()]),
+      ])
       .optional(),
     updatedAt: z
-      .union([z.lazy(() => DateTimeFilterObjectSchema), z.date()])
+      .union([
+        z.lazy(() => DateTimeFilterObjectSchema),
+        z.union([z.date(), z.string().datetime().optional()]),
+      ])
       .optional(),
     spaceId: z
       .union([z.lazy(() => StringFilterObjectSchema), z.string()])

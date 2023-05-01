@@ -10,8 +10,8 @@ const Schema: z.ZodType<
 > = z
   .object({
     id: z.string().optional(),
-    createdAt: z.date().optional(),
-    updatedAt: z.date().optional(),
+    createdAt: z.union([z.date().optional(), z.string().datetime().optional()]),
+    updatedAt: z.union([z.date().optional(), z.string().datetime().optional()]),
     name: z.string(),
     slug: z.string(),
     members: z

@@ -34,10 +34,16 @@ const Schema: z.ZodType<
       .union([z.lazy(() => StringFilterObjectSchema), z.string()])
       .optional(),
     createdAt: z
-      .union([z.lazy(() => DateTimeFilterObjectSchema), z.date()])
+      .union([
+        z.lazy(() => DateTimeFilterObjectSchema),
+        z.union([z.date(), z.string().datetime().optional()]),
+      ])
       .optional(),
     updatedAt: z
-      .union([z.lazy(() => DateTimeFilterObjectSchema), z.date()])
+      .union([
+        z.lazy(() => DateTimeFilterObjectSchema),
+        z.union([z.date(), z.string().datetime().optional()]),
+      ])
       .optional(),
     owner: z
       .union([
@@ -61,7 +67,10 @@ const Schema: z.ZodType<
       .union([z.lazy(() => StringFilterObjectSchema), z.string()])
       .optional(),
     completedAt: z
-      .union([z.lazy(() => DateTimeNullableFilterObjectSchema), z.date()])
+      .union([
+        z.lazy(() => DateTimeNullableFilterObjectSchema),
+        z.union([z.date(), z.string().datetime().optional()]),
+      ])
       .optional()
       .nullable(),
   })

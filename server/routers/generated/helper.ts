@@ -30,7 +30,6 @@ export async function checkMutate<T>(promise: Promise<T>): Promise<T | undefined
             throw err;
         }
     }
-
 }
 
 export async function checkRead<T>(promise: Promise<T>): Promise<T> {
@@ -58,11 +57,10 @@ export async function checkRead<T>(promise: Promise<T>): Promise<T> {
                     code: 'BAD_REQUEST',
                     message: err.message,
                     cause: err,
-                })
+                });
             }
         } else {
             throw err;
         }
     }
-
 }

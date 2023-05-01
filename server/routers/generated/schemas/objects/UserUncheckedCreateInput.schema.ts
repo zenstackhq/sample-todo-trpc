@@ -15,10 +15,12 @@ const Schema: z.ZodType<
 > = z
   .object({
     id: z.string().optional(),
-    createdAt: z.date().optional(),
-    updatedAt: z.date().optional(),
+    createdAt: z.union([z.date().optional(), z.string().datetime().optional()]),
+    updatedAt: z.union([z.date().optional(), z.string().datetime().optional()]),
     email: z.string(),
-    emailVerified: z.date().optional().nullable(),
+    emailVerified: z
+      .union([z.date().optional(), z.string().datetime().optional()])
+      .nullable(),
     password: z.string().optional().nullable(),
     name: z.string().optional().nullable(),
     spaces: z

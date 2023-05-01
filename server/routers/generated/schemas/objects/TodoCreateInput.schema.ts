@@ -10,12 +10,14 @@ const Schema: z.ZodType<
 > = z
   .object({
     id: z.string().optional(),
-    createdAt: z.date().optional(),
-    updatedAt: z.date().optional(),
+    createdAt: z.union([z.date().optional(), z.string().datetime().optional()]),
+    updatedAt: z.union([z.date().optional(), z.string().datetime().optional()]),
     owner: z.lazy(() => UserCreateNestedOneWithoutTodosInputObjectSchema),
     list: z.lazy(() => ListCreateNestedOneWithoutTodosInputObjectSchema),
     title: z.string(),
-    completedAt: z.date().optional().nullable(),
+    completedAt: z
+      .union([z.date().optional(), z.string().datetime().optional()])
+      .nullable(),
   })
   .strict();
 

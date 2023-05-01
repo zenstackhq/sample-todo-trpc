@@ -10,7 +10,9 @@ const Schema: z.ZodType<
   >
 > = z
   .object({
-    set: z.date().optional().nullable(),
+    set: z
+      .union([z.date().optional(), z.string().datetime().optional()])
+      .nullable(),
   })
   .strict();
 

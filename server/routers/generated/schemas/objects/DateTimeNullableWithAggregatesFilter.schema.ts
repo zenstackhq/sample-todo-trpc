@@ -13,16 +13,28 @@ const Schema: z.ZodType<
   >
 > = z
   .object({
-    equals: z.date().optional().nullable(),
-    in: z.date().array().optional().nullable(),
-    notIn: z.date().array().optional().nullable(),
-    lt: z.date().optional(),
-    lte: z.date().optional(),
-    gt: z.date().optional(),
-    gte: z.date().optional(),
+    equals: z
+      .union([z.date().optional(), z.string().datetime().optional()])
+      .nullable(),
+    in: z
+      .union([
+        z.date().array().optional(),
+        z.string().datetime().array().optional(),
+      ])
+      .nullable(),
+    notIn: z
+      .union([
+        z.date().array().optional(),
+        z.string().datetime().array().optional(),
+      ])
+      .nullable(),
+    lt: z.union([z.date().optional(), z.string().datetime().optional()]),
+    lte: z.union([z.date().optional(), z.string().datetime().optional()]),
+    gt: z.union([z.date().optional(), z.string().datetime().optional()]),
+    gte: z.union([z.date().optional(), z.string().datetime().optional()]),
     not: z
       .union([
-        z.date(),
+        z.union([z.date(), z.string().datetime().optional()]),
         z.lazy(() => NestedDateTimeNullableWithAggregatesFilterObjectSchema),
       ])
       .optional()

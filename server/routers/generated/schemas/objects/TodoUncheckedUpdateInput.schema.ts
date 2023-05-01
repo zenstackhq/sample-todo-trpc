@@ -21,13 +21,13 @@ const Schema: z.ZodType<
       .optional(),
     createdAt: z
       .union([
-        z.date(),
+        z.union([z.date(), z.string().datetime().optional()]),
         z.lazy(() => DateTimeFieldUpdateOperationsInputObjectSchema),
       ])
       .optional(),
     updatedAt: z
       .union([
-        z.date(),
+        z.union([z.date(), z.string().datetime().optional()]),
         z.lazy(() => DateTimeFieldUpdateOperationsInputObjectSchema),
       ])
       .optional(),
@@ -51,7 +51,7 @@ const Schema: z.ZodType<
       .optional(),
     completedAt: z
       .union([
-        z.date(),
+        z.union([z.date(), z.string().datetime().optional()]),
         z.lazy(() => NullableDateTimeFieldUpdateOperationsInputObjectSchema),
       ])
       .optional()

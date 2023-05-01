@@ -33,10 +33,16 @@ const Schema: z.ZodType<
       .union([z.lazy(() => StringWithAggregatesFilterObjectSchema), z.string()])
       .optional(),
     createdAt: z
-      .union([z.lazy(() => DateTimeWithAggregatesFilterObjectSchema), z.date()])
+      .union([
+        z.lazy(() => DateTimeWithAggregatesFilterObjectSchema),
+        z.union([z.date(), z.string().datetime().optional()]),
+      ])
       .optional(),
     updatedAt: z
-      .union([z.lazy(() => DateTimeWithAggregatesFilterObjectSchema), z.date()])
+      .union([
+        z.lazy(() => DateTimeWithAggregatesFilterObjectSchema),
+        z.union([z.date(), z.string().datetime().optional()]),
+      ])
       .optional(),
     ownerId: z
       .union([z.lazy(() => StringWithAggregatesFilterObjectSchema), z.string()])
@@ -50,7 +56,7 @@ const Schema: z.ZodType<
     completedAt: z
       .union([
         z.lazy(() => DateTimeNullableWithAggregatesFilterObjectSchema),
-        z.date(),
+        z.union([z.date(), z.string().datetime().optional()]),
       ])
       .optional()
       .nullable(),
