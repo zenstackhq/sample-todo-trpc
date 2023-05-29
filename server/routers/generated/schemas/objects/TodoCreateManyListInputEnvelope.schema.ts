@@ -11,7 +11,10 @@ const Schema: z.ZodType<
   >
 > = z
   .object({
-    data: z.lazy(() => TodoCreateManyListInputObjectSchema).array(),
+    data: z.union([
+      z.lazy(() => TodoCreateManyListInputObjectSchema),
+      z.lazy(() => TodoCreateManyListInputObjectSchema).array(),
+    ]),
     skipDuplicates: z.boolean().optional(),
   })
   .strict();

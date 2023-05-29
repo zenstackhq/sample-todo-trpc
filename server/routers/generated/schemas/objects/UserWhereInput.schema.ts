@@ -64,11 +64,11 @@ const Schema: z.ZodType<
       .union([z.lazy(() => StringNullableFilterObjectSchema), z.string()])
       .optional()
       .nullable(),
-    spaces: z.lazy(() => SpaceUserListRelationFilterObjectSchema).optional(),
     image: z
       .union([z.lazy(() => StringNullableFilterObjectSchema), z.string()])
       .optional()
       .nullable(),
+    spaces: z.lazy(() => SpaceUserListRelationFilterObjectSchema).optional(),
     lists: z.lazy(() => ListListRelationFilterObjectSchema).optional(),
     todos: z.lazy(() => TodoListRelationFilterObjectSchema).optional(),
     accounts: z.lazy(() => AccountListRelationFilterObjectSchema).optional(),

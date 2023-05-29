@@ -2,9 +2,9 @@
 import { z } from 'zod';
 import { StringFieldUpdateOperationsInputObjectSchema } from './StringFieldUpdateOperationsInput.schema';
 import { DateTimeFieldUpdateOperationsInputObjectSchema } from './DateTimeFieldUpdateOperationsInput.schema';
-import { UserUpdateOneRequiredWithoutSpacesNestedInputObjectSchema } from './UserUpdateOneRequiredWithoutSpacesNestedInput.schema';
 import { SpaceUserRoleSchema } from '../enums/SpaceUserRole.schema';
 import { EnumSpaceUserRoleFieldUpdateOperationsInputObjectSchema } from './EnumSpaceUserRoleFieldUpdateOperationsInput.schema';
+import { UserUpdateOneRequiredWithoutSpacesNestedInputObjectSchema } from './UserUpdateOneRequiredWithoutSpacesNestedInput.schema';
 
 import type { Prisma } from '@prisma/client';
 
@@ -33,14 +33,14 @@ const Schema: z.ZodType<
         z.lazy(() => DateTimeFieldUpdateOperationsInputObjectSchema),
       ])
       .optional(),
-    user: z
-      .lazy(() => UserUpdateOneRequiredWithoutSpacesNestedInputObjectSchema)
-      .optional(),
     role: z
       .union([
         z.lazy(() => SpaceUserRoleSchema),
         z.lazy(() => EnumSpaceUserRoleFieldUpdateOperationsInputObjectSchema),
       ])
+      .optional(),
+    user: z
+      .lazy(() => UserUpdateOneRequiredWithoutSpacesNestedInputObjectSchema)
       .optional(),
   })
   .strict();

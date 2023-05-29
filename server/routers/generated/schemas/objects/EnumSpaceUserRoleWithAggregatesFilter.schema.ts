@@ -16,12 +16,16 @@ const Schema: z.ZodType<
   .object({
     equals: z.lazy(() => SpaceUserRoleSchema).optional(),
     in: z
-      .lazy(() => SpaceUserRoleSchema)
-      .array()
+      .union([
+        z.lazy(() => SpaceUserRoleSchema).array(),
+        z.lazy(() => SpaceUserRoleSchema),
+      ])
       .optional(),
     notIn: z
-      .lazy(() => SpaceUserRoleSchema)
-      .array()
+      .union([
+        z.lazy(() => SpaceUserRoleSchema).array(),
+        z.lazy(() => SpaceUserRoleSchema),
+      ])
       .optional(),
     not: z
       .union([

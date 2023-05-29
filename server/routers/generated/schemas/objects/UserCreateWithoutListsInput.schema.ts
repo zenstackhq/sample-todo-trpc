@@ -22,10 +22,10 @@ const Schema: z.ZodType<
       .nullable(),
     password: z.string().optional().nullable(),
     name: z.string().optional().nullable(),
+    image: z.string().optional().nullable(),
     spaces: z
       .lazy(() => SpaceUserCreateNestedManyWithoutUserInputObjectSchema)
       .optional(),
-    image: z.string().optional().nullable(),
     todos: z
       .lazy(() => TodoCreateNestedManyWithoutOwnerInputObjectSchema)
       .optional(),

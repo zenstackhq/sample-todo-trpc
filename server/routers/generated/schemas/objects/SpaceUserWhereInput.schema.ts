@@ -2,12 +2,12 @@
 import { z } from 'zod';
 import { StringFilterObjectSchema } from './StringFilter.schema';
 import { DateTimeFilterObjectSchema } from './DateTimeFilter.schema';
+import { EnumSpaceUserRoleFilterObjectSchema } from './EnumSpaceUserRoleFilter.schema';
+import { SpaceUserRoleSchema } from '../enums/SpaceUserRole.schema';
 import { SpaceRelationFilterObjectSchema } from './SpaceRelationFilter.schema';
 import { SpaceWhereInputObjectSchema } from './SpaceWhereInput.schema';
 import { UserRelationFilterObjectSchema } from './UserRelationFilter.schema';
 import { UserWhereInputObjectSchema } from './UserWhereInput.schema';
-import { EnumSpaceUserRoleFilterObjectSchema } from './EnumSpaceUserRoleFilter.schema';
-import { SpaceUserRoleSchema } from '../enums/SpaceUserRole.schema';
 
 import type { Prisma } from '@prisma/client';
 
@@ -46,20 +46,8 @@ const Schema: z.ZodType<
         z.union([z.date(), z.string().datetime().optional()]),
       ])
       .optional(),
-    space: z
-      .union([
-        z.lazy(() => SpaceRelationFilterObjectSchema),
-        z.lazy(() => SpaceWhereInputObjectSchema),
-      ])
-      .optional(),
     spaceId: z
       .union([z.lazy(() => StringFilterObjectSchema), z.string()])
-      .optional(),
-    user: z
-      .union([
-        z.lazy(() => UserRelationFilterObjectSchema),
-        z.lazy(() => UserWhereInputObjectSchema),
-      ])
       .optional(),
     userId: z
       .union([z.lazy(() => StringFilterObjectSchema), z.string()])
@@ -68,6 +56,18 @@ const Schema: z.ZodType<
       .union([
         z.lazy(() => EnumSpaceUserRoleFilterObjectSchema),
         z.lazy(() => SpaceUserRoleSchema),
+      ])
+      .optional(),
+    space: z
+      .union([
+        z.lazy(() => SpaceRelationFilterObjectSchema),
+        z.lazy(() => SpaceWhereInputObjectSchema),
+      ])
+      .optional(),
+    user: z
+      .union([
+        z.lazy(() => UserRelationFilterObjectSchema),
+        z.lazy(() => UserWhereInputObjectSchema),
       ])
       .optional(),
   })

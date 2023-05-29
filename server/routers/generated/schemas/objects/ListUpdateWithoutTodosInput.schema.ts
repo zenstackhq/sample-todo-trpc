@@ -2,9 +2,9 @@
 import { z } from 'zod';
 import { StringFieldUpdateOperationsInputObjectSchema } from './StringFieldUpdateOperationsInput.schema';
 import { DateTimeFieldUpdateOperationsInputObjectSchema } from './DateTimeFieldUpdateOperationsInput.schema';
+import { BoolFieldUpdateOperationsInputObjectSchema } from './BoolFieldUpdateOperationsInput.schema';
 import { SpaceUpdateOneRequiredWithoutListsNestedInputObjectSchema } from './SpaceUpdateOneRequiredWithoutListsNestedInput.schema';
 import { UserUpdateOneRequiredWithoutListsNestedInputObjectSchema } from './UserUpdateOneRequiredWithoutListsNestedInput.schema';
-import { BoolFieldUpdateOperationsInputObjectSchema } from './BoolFieldUpdateOperationsInput.schema';
 
 import type { Prisma } from '@prisma/client';
 
@@ -33,12 +33,6 @@ const Schema: z.ZodType<
         z.lazy(() => DateTimeFieldUpdateOperationsInputObjectSchema),
       ])
       .optional(),
-    space: z
-      .lazy(() => SpaceUpdateOneRequiredWithoutListsNestedInputObjectSchema)
-      .optional(),
-    owner: z
-      .lazy(() => UserUpdateOneRequiredWithoutListsNestedInputObjectSchema)
-      .optional(),
     title: z
       .union([
         z.string(),
@@ -50,6 +44,12 @@ const Schema: z.ZodType<
         z.boolean(),
         z.lazy(() => BoolFieldUpdateOperationsInputObjectSchema),
       ])
+      .optional(),
+    space: z
+      .lazy(() => SpaceUpdateOneRequiredWithoutListsNestedInputObjectSchema)
+      .optional(),
+    owner: z
+      .lazy(() => UserUpdateOneRequiredWithoutListsNestedInputObjectSchema)
       .optional(),
   })
   .strict();

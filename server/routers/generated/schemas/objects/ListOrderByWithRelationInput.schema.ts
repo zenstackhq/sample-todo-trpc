@@ -17,12 +17,12 @@ const Schema: z.ZodType<
     id: z.lazy(() => SortOrderSchema).optional(),
     createdAt: z.lazy(() => SortOrderSchema).optional(),
     updatedAt: z.lazy(() => SortOrderSchema).optional(),
-    space: z.lazy(() => SpaceOrderByWithRelationInputObjectSchema).optional(),
     spaceId: z.lazy(() => SortOrderSchema).optional(),
-    owner: z.lazy(() => UserOrderByWithRelationInputObjectSchema).optional(),
     ownerId: z.lazy(() => SortOrderSchema).optional(),
     title: z.lazy(() => SortOrderSchema).optional(),
     private: z.lazy(() => SortOrderSchema).optional(),
+    space: z.lazy(() => SpaceOrderByWithRelationInputObjectSchema).optional(),
+    owner: z.lazy(() => UserOrderByWithRelationInputObjectSchema).optional(),
     todos: z
       .lazy(() => TodoOrderByRelationAggregateInputObjectSchema)
       .optional(),

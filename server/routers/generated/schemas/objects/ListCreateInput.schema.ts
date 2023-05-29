@@ -13,10 +13,10 @@ const Schema: z.ZodType<
     id: z.string().optional(),
     createdAt: z.union([z.date().optional(), z.string().datetime().optional()]),
     updatedAt: z.union([z.date().optional(), z.string().datetime().optional()]),
-    space: z.lazy(() => SpaceCreateNestedOneWithoutListsInputObjectSchema),
-    owner: z.lazy(() => UserCreateNestedOneWithoutListsInputObjectSchema),
     title: z.string(),
     private: z.boolean().optional(),
+    space: z.lazy(() => SpaceCreateNestedOneWithoutListsInputObjectSchema),
+    owner: z.lazy(() => UserCreateNestedOneWithoutListsInputObjectSchema),
     todos: z
       .lazy(() => TodoCreateNestedManyWithoutListInputObjectSchema)
       .optional(),

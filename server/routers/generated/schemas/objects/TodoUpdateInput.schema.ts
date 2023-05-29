@@ -2,9 +2,9 @@
 import { z } from 'zod';
 import { StringFieldUpdateOperationsInputObjectSchema } from './StringFieldUpdateOperationsInput.schema';
 import { DateTimeFieldUpdateOperationsInputObjectSchema } from './DateTimeFieldUpdateOperationsInput.schema';
+import { NullableDateTimeFieldUpdateOperationsInputObjectSchema } from './NullableDateTimeFieldUpdateOperationsInput.schema';
 import { UserUpdateOneRequiredWithoutTodosNestedInputObjectSchema } from './UserUpdateOneRequiredWithoutTodosNestedInput.schema';
 import { ListUpdateOneRequiredWithoutTodosNestedInputObjectSchema } from './ListUpdateOneRequiredWithoutTodosNestedInput.schema';
-import { NullableDateTimeFieldUpdateOperationsInputObjectSchema } from './NullableDateTimeFieldUpdateOperationsInput.schema';
 
 import type { Prisma } from '@prisma/client';
 
@@ -30,12 +30,6 @@ const Schema: z.ZodType<
         z.lazy(() => DateTimeFieldUpdateOperationsInputObjectSchema),
       ])
       .optional(),
-    owner: z
-      .lazy(() => UserUpdateOneRequiredWithoutTodosNestedInputObjectSchema)
-      .optional(),
-    list: z
-      .lazy(() => ListUpdateOneRequiredWithoutTodosNestedInputObjectSchema)
-      .optional(),
     title: z
       .union([
         z.string(),
@@ -49,6 +43,12 @@ const Schema: z.ZodType<
       ])
       .optional()
       .nullable(),
+    owner: z
+      .lazy(() => UserUpdateOneRequiredWithoutTodosNestedInputObjectSchema)
+      .optional(),
+    list: z
+      .lazy(() => ListUpdateOneRequiredWithoutTodosNestedInputObjectSchema)
+      .optional(),
   })
   .strict();
 

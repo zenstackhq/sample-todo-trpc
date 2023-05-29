@@ -11,7 +11,10 @@ const Schema: z.ZodType<
   >
 > = z
   .object({
-    data: z.lazy(() => AccountCreateManyUserInputObjectSchema).array(),
+    data: z.union([
+      z.lazy(() => AccountCreateManyUserInputObjectSchema),
+      z.lazy(() => AccountCreateManyUserInputObjectSchema).array(),
+    ]),
     skipDuplicates: z.boolean().optional(),
   })
   .strict();

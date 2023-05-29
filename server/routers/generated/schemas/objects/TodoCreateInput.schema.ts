@@ -12,12 +12,12 @@ const Schema: z.ZodType<
     id: z.string().optional(),
     createdAt: z.union([z.date().optional(), z.string().datetime().optional()]),
     updatedAt: z.union([z.date().optional(), z.string().datetime().optional()]),
-    owner: z.lazy(() => UserCreateNestedOneWithoutTodosInputObjectSchema),
-    list: z.lazy(() => ListCreateNestedOneWithoutTodosInputObjectSchema),
     title: z.string(),
     completedAt: z
       .union([z.date().optional(), z.string().datetime().optional()])
       .nullable(),
+    owner: z.lazy(() => UserCreateNestedOneWithoutTodosInputObjectSchema),
+    list: z.lazy(() => ListCreateNestedOneWithoutTodosInputObjectSchema),
   })
   .strict();
 

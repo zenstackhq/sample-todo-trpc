@@ -16,11 +16,11 @@ const Schema: z.ZodType<
     id: z.lazy(() => SortOrderSchema).optional(),
     createdAt: z.lazy(() => SortOrderSchema).optional(),
     updatedAt: z.lazy(() => SortOrderSchema).optional(),
-    space: z.lazy(() => SpaceOrderByWithRelationInputObjectSchema).optional(),
     spaceId: z.lazy(() => SortOrderSchema).optional(),
-    user: z.lazy(() => UserOrderByWithRelationInputObjectSchema).optional(),
     userId: z.lazy(() => SortOrderSchema).optional(),
     role: z.lazy(() => SortOrderSchema).optional(),
+    space: z.lazy(() => SpaceOrderByWithRelationInputObjectSchema).optional(),
+    user: z.lazy(() => UserOrderByWithRelationInputObjectSchema).optional(),
   })
   .strict();
 

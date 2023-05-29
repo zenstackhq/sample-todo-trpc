@@ -13,15 +13,17 @@ const Schema: z.ZodType<
       .nullable(),
     in: z
       .union([
-        z.date().array().optional(),
-        z.string().datetime().array().optional(),
+        z.union([z.date().array(), z.string().datetime().array().optional()]),
+        z.union([z.date(), z.string().datetime().optional()]),
       ])
+      .optional()
       .nullable(),
     notIn: z
       .union([
-        z.date().array().optional(),
-        z.string().datetime().array().optional(),
+        z.union([z.date().array(), z.string().datetime().array().optional()]),
+        z.union([z.date(), z.string().datetime().optional()]),
       ])
+      .optional()
       .nullable(),
     lt: z.union([z.date().optional(), z.string().datetime().optional()]),
     lte: z.union([z.date().optional(), z.string().datetime().optional()]),

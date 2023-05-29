@@ -2,11 +2,11 @@
 import { z } from 'zod';
 import { StringFilterObjectSchema } from './StringFilter.schema';
 import { DateTimeFilterObjectSchema } from './DateTimeFilter.schema';
+import { DateTimeNullableFilterObjectSchema } from './DateTimeNullableFilter.schema';
 import { UserRelationFilterObjectSchema } from './UserRelationFilter.schema';
 import { UserWhereInputObjectSchema } from './UserWhereInput.schema';
 import { ListRelationFilterObjectSchema } from './ListRelationFilter.schema';
 import { ListWhereInputObjectSchema } from './ListWhereInput.schema';
-import { DateTimeNullableFilterObjectSchema } from './DateTimeNullableFilter.schema';
 
 import type { Prisma } from '@prisma/client';
 
@@ -45,20 +45,8 @@ const Schema: z.ZodType<
         z.union([z.date(), z.string().datetime().optional()]),
       ])
       .optional(),
-    owner: z
-      .union([
-        z.lazy(() => UserRelationFilterObjectSchema),
-        z.lazy(() => UserWhereInputObjectSchema),
-      ])
-      .optional(),
     ownerId: z
       .union([z.lazy(() => StringFilterObjectSchema), z.string()])
-      .optional(),
-    list: z
-      .union([
-        z.lazy(() => ListRelationFilterObjectSchema),
-        z.lazy(() => ListWhereInputObjectSchema),
-      ])
       .optional(),
     listId: z
       .union([z.lazy(() => StringFilterObjectSchema), z.string()])
@@ -73,6 +61,18 @@ const Schema: z.ZodType<
       ])
       .optional()
       .nullable(),
+    owner: z
+      .union([
+        z.lazy(() => UserRelationFilterObjectSchema),
+        z.lazy(() => UserWhereInputObjectSchema),
+      ])
+      .optional(),
+    list: z
+      .union([
+        z.lazy(() => ListRelationFilterObjectSchema),
+        z.lazy(() => ListWhereInputObjectSchema),
+      ])
+      .optional(),
   })
   .strict();
 

@@ -2,8 +2,8 @@
 import { z } from 'zod';
 import { StringFieldUpdateOperationsInputObjectSchema } from './StringFieldUpdateOperationsInput.schema';
 import { DateTimeFieldUpdateOperationsInputObjectSchema } from './DateTimeFieldUpdateOperationsInput.schema';
-import { SpaceUpdateOneRequiredWithoutListsNestedInputObjectSchema } from './SpaceUpdateOneRequiredWithoutListsNestedInput.schema';
 import { BoolFieldUpdateOperationsInputObjectSchema } from './BoolFieldUpdateOperationsInput.schema';
+import { SpaceUpdateOneRequiredWithoutListsNestedInputObjectSchema } from './SpaceUpdateOneRequiredWithoutListsNestedInput.schema';
 import { TodoUpdateManyWithoutListNestedInputObjectSchema } from './TodoUpdateManyWithoutListNestedInput.schema';
 
 import type { Prisma } from '@prisma/client';
@@ -33,9 +33,6 @@ const Schema: z.ZodType<
         z.lazy(() => DateTimeFieldUpdateOperationsInputObjectSchema),
       ])
       .optional(),
-    space: z
-      .lazy(() => SpaceUpdateOneRequiredWithoutListsNestedInputObjectSchema)
-      .optional(),
     title: z
       .union([
         z.string(),
@@ -47,6 +44,9 @@ const Schema: z.ZodType<
         z.boolean(),
         z.lazy(() => BoolFieldUpdateOperationsInputObjectSchema),
       ])
+      .optional(),
+    space: z
+      .lazy(() => SpaceUpdateOneRequiredWithoutListsNestedInputObjectSchema)
       .optional(),
     todos: z
       .lazy(() => TodoUpdateManyWithoutListNestedInputObjectSchema)

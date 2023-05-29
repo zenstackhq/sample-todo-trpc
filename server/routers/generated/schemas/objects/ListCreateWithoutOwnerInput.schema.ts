@@ -15,9 +15,9 @@ const Schema: z.ZodType<
     id: z.string().optional(),
     createdAt: z.union([z.date().optional(), z.string().datetime().optional()]),
     updatedAt: z.union([z.date().optional(), z.string().datetime().optional()]),
-    space: z.lazy(() => SpaceCreateNestedOneWithoutListsInputObjectSchema),
     title: z.string(),
     private: z.boolean().optional(),
+    space: z.lazy(() => SpaceCreateNestedOneWithoutListsInputObjectSchema),
     todos: z
       .lazy(() => TodoCreateNestedManyWithoutListInputObjectSchema)
       .optional(),

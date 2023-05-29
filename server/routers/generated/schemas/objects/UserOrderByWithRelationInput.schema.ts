@@ -22,10 +22,10 @@ const Schema: z.ZodType<
     emailVerified: z.lazy(() => SortOrderSchema).optional(),
     password: z.lazy(() => SortOrderSchema).optional(),
     name: z.lazy(() => SortOrderSchema).optional(),
+    image: z.lazy(() => SortOrderSchema).optional(),
     spaces: z
       .lazy(() => SpaceUserOrderByRelationAggregateInputObjectSchema)
       .optional(),
-    image: z.lazy(() => SortOrderSchema).optional(),
     lists: z
       .lazy(() => ListOrderByRelationAggregateInputObjectSchema)
       .optional(),

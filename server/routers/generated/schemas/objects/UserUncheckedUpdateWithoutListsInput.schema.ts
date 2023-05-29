@@ -62,11 +62,6 @@ const Schema: z.ZodType<
       ])
       .optional()
       .nullable(),
-    spaces: z
-      .lazy(
-        () => SpaceUserUncheckedUpdateManyWithoutUserNestedInputObjectSchema,
-      )
-      .optional(),
     image: z
       .union([
         z.string(),
@@ -74,6 +69,11 @@ const Schema: z.ZodType<
       ])
       .optional()
       .nullable(),
+    spaces: z
+      .lazy(
+        () => SpaceUserUncheckedUpdateManyWithoutUserNestedInputObjectSchema,
+      )
+      .optional(),
     todos: z
       .lazy(() => TodoUncheckedUpdateManyWithoutOwnerNestedInputObjectSchema)
       .optional(),

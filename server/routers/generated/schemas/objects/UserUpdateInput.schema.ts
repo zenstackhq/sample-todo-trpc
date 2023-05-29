@@ -60,9 +60,6 @@ const Schema: z.ZodType<
       ])
       .optional()
       .nullable(),
-    spaces: z
-      .lazy(() => SpaceUserUpdateManyWithoutUserNestedInputObjectSchema)
-      .optional(),
     image: z
       .union([
         z.string(),
@@ -70,6 +67,9 @@ const Schema: z.ZodType<
       ])
       .optional()
       .nullable(),
+    spaces: z
+      .lazy(() => SpaceUserUpdateManyWithoutUserNestedInputObjectSchema)
+      .optional(),
     lists: z
       .lazy(() => ListUpdateManyWithoutOwnerNestedInputObjectSchema)
       .optional(),
