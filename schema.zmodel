@@ -17,6 +17,7 @@ generator js {
 plugin trpc {
     provider = '@zenstackhq/trpc'
     output = 'server/routers/generated'
+    generateClientHelpers = 'next'
 }
 
 /*

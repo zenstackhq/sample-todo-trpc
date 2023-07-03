@@ -16,11 +16,7 @@ export default function ManageMembers({ space }: Props) {
     const [role, setRole] = useState<SpaceUserRole>(SpaceUserRole.USER);
     const user = useCurrentUser();
 
-    const { data: members } = trpc.spaceUser.findMany.useQuery<
-        inferProcedureOutput<typeof trpc.spaceUser.findMany>,
-        // a cast is needed because trpc's procedure typing is static
-        (SpaceUser & { user: User })[]
-    >({
+    const { data: members } = trpc.spaceUser.findMany.useQuery({
         where: {
             spaceId: space.id,
         },
@@ -62,7 +58,9 @@ export default function ManageMembers({ space }: Props) {
                 } else if (err.data.prismaError.code === 'P2025') {
                     toast.error('User is not found for this email');
                 } else {
-                    toast.error(`Unexpected Prisma error: ${err.data.prismaError.code}`);
+                    toast.error(
+                        `Unexpected Prisma error: ${err.data.prismaError.code}`
+                    );
                 }
             } else {
                 toast.error(`Error occurred: ${JSON.stringify(err)}`);
@@ -112,12 +110,17 @@ export default function ManageMembers({ space }: Props) {
 
             <ul className="space-y-2">
                 {members?.map((member) => (
-                    <li key={member.id} className="flex flex-wrap w-full justify-between">
+                    <li
+                        key={member.id}
+                        className="flex flex-wrap w-full justify-between"
+                    >
                         <div className="flex items-center">
                             <div className="hidden md:block mr-2">
                                 <Avatar user={member.user} size={32} />
                             </div>
-                            <p className="w-36 md:w-48 line-clamp-1 mr-2">{member.user.name || member.user.email}</p>
+                            <p className="w-36 md:w-48 line-clamp-1 mr-2">
+                                {member.user.name || member.user.email}
+                            </p>
                             <p>{member.role}</p>
                         </div>
                         <div className="flex items-center">

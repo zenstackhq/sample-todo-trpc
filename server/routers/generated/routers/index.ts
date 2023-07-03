@@ -1,7 +1,7 @@
 /* eslint-disable */
 import { AnyRootConfig } from '@trpc/server';
 import { PrismaClient } from '@prisma/client';
-import { createRouterFactory } from '@trpc/server/dist/core/router';
+import { createRouterFactory, AnyRouter } from '@trpc/server/dist/core/router';
 import { createBuilder } from '@trpc/server/dist/core/internals/procedureBuilder';
 import createSpaceRouter from './Space.router';
 import createSpaceUserRouter from './SpaceUser.router';
@@ -9,6 +9,12 @@ import createUserRouter from './User.router';
 import createListRouter from './List.router';
 import createTodoRouter from './Todo.router';
 import createAccountRouter from './Account.router';
+import { ClientType as SpaceClientType } from './Space.router';
+import { ClientType as SpaceUserClientType } from './SpaceUser.router';
+import { ClientType as UserClientType } from './User.router';
+import { ClientType as ListClientType } from './List.router';
+import { ClientType as TodoClientType } from './Todo.router';
+import { ClientType as AccountClientType } from './Account.router';
 
 export type BaseConfig = AnyRootConfig;
 
@@ -32,4 +38,13 @@ export function createRouter<Config extends BaseConfig>(router: RouterFactory<Co
         todo: createTodoRouter<Config>(router, procedure),
         account: createAccountRouter<Config>(router, procedure),
     });
+}
+
+export interface ClientType<AppRouter extends AnyRouter> {
+    space: SpaceClientType<AppRouter>;
+    spaceUser: SpaceUserClientType<AppRouter>;
+    user: UserClientType<AppRouter>;
+    list: ListClientType<AppRouter>;
+    todo: TodoClientType<AppRouter>;
+    account: AccountClientType<AppRouter>;
 }

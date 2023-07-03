@@ -20,10 +20,7 @@ export default function TodoList(props: Props) {
     const user = useCurrentUser();
     const [title, setTitle] = useState('');
 
-    const { data: todos, refetch } = trpc.todo.findMany.useQuery<
-        Props['todos'],
-        Props['todos']
-    >(
+    const { data: todos, refetch } = trpc.todo.findMany.useQuery(
         {
             where: { listId: props.list.id },
             include: {
@@ -66,7 +63,7 @@ export default function TodoList(props: Props) {
             <div className="px-8 py-2">
                 <BreadCrumb space={props.space} list={props.list} />
             </div>
-            <div className="container w-full flex flex-col items-center pt-12">
+            <div className="container w-full flex flex-col items-center pt-12 mx-auto">
                 <h1 className="text-2xl font-semibold mb-4">
                     {props.list?.title}
                 </h1>

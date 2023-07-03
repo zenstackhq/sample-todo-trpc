@@ -1,5 +1,6 @@
 import { TRPCClientError, httpBatchLink } from '@trpc/client';
-import { createTRPCNext } from '@trpc/next';
+// the generated `createTRPCNext` creates a client with typing that mimics PrismaClient
+import { createTRPCNext } from 'server/routers/generated/client/next';
 import superjson from 'superjson';
 import type { AppRouter } from '../server/routers/_app';
 
@@ -27,6 +28,8 @@ export const trpc = createTRPCNext<AppRouter>({
     ssr: false,
 });
 
-export function isTRPCClientError(error: unknown): error is TRPCClientError<AppRouter> {
+export function isTRPCClientError(
+    error: unknown
+): error is TRPCClientError<AppRouter> {
     return error instanceof TRPCClientError;
 }

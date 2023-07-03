@@ -151,10 +151,7 @@ type Props = {
 export default function SpaceHome(props: Props) {
     const router = useRouter();
 
-    const { data: lists, refetch } = trpc.list.findMany.useQuery<
-        Props['lists'],
-        Props['lists']
-    >(
+    const { data: lists, refetch } = trpc.list.findMany.useQuery(
         {
             where: {
                 space: {
