@@ -1,8 +1,4 @@
-import {
-    PrismaClientKnownRequestError,
-    PrismaClientUnknownRequestError,
-    PrismaClientValidationError,
-} from '@prisma/client/runtime';
+import { Prisma } from '@prisma/client';
 import { TRPCError, initTRPC } from '@trpc/server';
 import { isPrismaClientKnownRequestError } from '@zenstackhq/runtime';
 import superjson from 'superjson';
@@ -10,18 +6,18 @@ import { type Context } from '../context';
 import { createRouter as createCRUDRouter } from './generated/routers';
 
 function makePrismaError(error: Error | undefined) {
-    if (error instanceof PrismaClientKnownRequestError) {
+    if (error instanceof Prisma.PrismaClientKnownRequestError) {
         return {
             clientVersion: error.clientVersion,
             code: error.code,
             message: error.message,
         };
-    } else if (error instanceof PrismaClientUnknownRequestError) {
+    } else if (error instanceof Prisma.PrismaClientUnknownRequestError) {
         return {
             clientVersion: error.clientVersion,
             message: error.message,
         };
-    } else if (error instanceof PrismaClientValidationError) {
+    } else if (error instanceof Prisma.PrismaClientValidationError) {
         return {
             message: error.message,
         };
