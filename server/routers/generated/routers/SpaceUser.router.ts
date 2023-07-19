@@ -263,7 +263,7 @@ export interface ClientType<AppRouter extends AnyRouter, Context = AppRouter['_d
                 ? { orderBy: Prisma.SpaceUserGroupByArgs['orderBy'] }
                 : { orderBy?: Prisma.SpaceUserGroupByArgs['orderBy'] },
             OrderFields extends Prisma.ExcludeUnderscoreKeys<Prisma.Keys<Prisma.MaybeTupleToUnion<T['orderBy']>>>,
-            ByFields extends Prisma.TupleToUnion<T['by']>,
+            ByFields extends Prisma.MaybeTupleToUnion<T['by']>,
             ByValid extends Prisma.Has<ByFields, OrderFields>,
             HavingFields extends Prisma.GetHavingFields<T['having']>,
             HavingValid extends Prisma.Has<ByFields, HavingFields>,
@@ -328,7 +328,7 @@ export interface ClientType<AppRouter extends AnyRouter, Context = AppRouter['_d
                 ? { orderBy: Prisma.SpaceUserGroupByArgs['orderBy'] }
                 : { orderBy?: Prisma.SpaceUserGroupByArgs['orderBy'] },
             OrderFields extends Prisma.ExcludeUnderscoreKeys<Prisma.Keys<Prisma.MaybeTupleToUnion<T['orderBy']>>>,
-            ByFields extends Prisma.TupleToUnion<T['by']>,
+            ByFields extends Prisma.MaybeTupleToUnion<T['by']>,
             ByValid extends Prisma.Has<ByFields, OrderFields>,
             HavingFields extends Prisma.GetHavingFields<T['having']>,
             HavingValid extends Prisma.Has<ByFields, HavingFields>,
