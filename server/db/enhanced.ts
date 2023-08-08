@@ -1,4 +1,4 @@
-import { withPresets } from '@zenstackhq/runtime';
+import { enhance } from '@zenstackhq/runtime';
 import { GetServerSidePropsContext } from 'next';
 import { getServerAuthSession } from 'server/auth';
 import { prisma } from './client';
@@ -12,5 +12,5 @@ export async function getEnhancedPrisma(ctx: {
     res: GetServerSidePropsContext['res'];
 }) {
     const session = await getServerAuthSession(ctx);
-    return withPresets(prisma, { user: session?.user });
+    return enhance(prisma, { user: session?.user });
 }
