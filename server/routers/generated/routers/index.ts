@@ -1,6 +1,6 @@
 /* eslint-disable */
 import { AnyRootConfig } from '@trpc/server';
-import { PrismaClient } from '@prisma/client';
+import type { PrismaClient } from '@prisma/client';
 import { createRouterFactory, AnyRouter } from '@trpc/server/dist/core/router';
 import { createBuilder } from '@trpc/server/dist/core/internals/procedureBuilder';
 import createSpaceRouter from './Space.router';
