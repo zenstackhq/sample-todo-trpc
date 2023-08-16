@@ -10,7 +10,7 @@ datasource db {
 
 generator js {
     provider = "prisma-client-js"
-    previewFeatures = ["extendedWhereUnique"]
+    previewFeatures = ["extendedWhereUnique","fieldReference"]
 }
 
 enum SpaceUserRole {
