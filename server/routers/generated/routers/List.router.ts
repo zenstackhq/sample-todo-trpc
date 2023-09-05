@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { type RouterFactory, type ProcBuilder, type BaseConfig, db } from '.';
+import { type RouterFactory, type ProcBuilder, type BaseConfig, type ProcReturns, type PrismaClient, db } from '.';
 import { ListInputSchema } from '@zenstackhq/runtime/zod/input';
 import { checkRead, checkMutate } from '../helper';
 import type { Prisma } from '@prisma/client';
@@ -14,66 +14,145 @@ import type {
 import type { TRPCClientErrorLike } from '@trpc/client';
 import type { AnyRouter } from '@trpc/server';
 
-export default function createRouter<Config extends BaseConfig>(
-    router: RouterFactory<Config>,
-    procedure: ProcBuilder<Config>,
+export default function createRouter<Router extends RouterFactory<BaseConfig>, Proc extends ProcBuilder<BaseConfig>>(
+    router: Router,
+    procedure: Proc,
 ) {
     return router({
         aggregate: procedure
             .input(ListInputSchema.aggregate)
-            .query(({ ctx, input }) => checkRead(db(ctx).list.aggregate(input as any))),
+            .query(({ ctx, input }) => checkRead(db(ctx).list.aggregate(input as any))) as ProcReturns<
+            'query',
+            Proc,
+            (typeof ListInputSchema)['aggregate'],
+            ReturnType<PrismaClient['list']['aggregate']>
+        >,
 
         createMany: procedure
             .input(ListInputSchema.createMany)
-            .mutation(async ({ ctx, input }) => checkMutate(db(ctx).list.createMany(input as any))),
+            .mutation(async ({ ctx, input }) => checkMutate(db(ctx).list.createMany(input as any))) as ProcReturns<
+            'mutation',
+            Proc,
+            (typeof ListInputSchema)['createMany'],
+            ReturnType<PrismaClient['list']['createMany']>
+        >,
 
         create: procedure
             .input(ListInputSchema.create)
-            .mutation(async ({ ctx, input }) => checkMutate(db(ctx).list.create(input as any))),
+            .mutation(async ({ ctx, input }) => checkMutate(db(ctx).list.create(input as any))) as ProcReturns<
+            'mutation',
+            Proc,
+            (typeof ListInputSchema)['create'],
+            ReturnType<PrismaClient['list']['create']>
+        >,
 
         deleteMany: procedure
             .input(ListInputSchema.deleteMany)
-            .mutation(async ({ ctx, input }) => checkMutate(db(ctx).list.deleteMany(input as any))),
+            .mutation(async ({ ctx, input }) => checkMutate(db(ctx).list.deleteMany(input as any))) as ProcReturns<
+            'mutation',
+            Proc,
+            (typeof ListInputSchema)['deleteMany'],
+            ReturnType<PrismaClient['list']['deleteMany']>
+        >,
 
         delete: procedure
             .input(ListInputSchema.delete)
-            .mutation(async ({ ctx, input }) => checkMutate(db(ctx).list.delete(input as any))),
+            .mutation(async ({ ctx, input }) => checkMutate(db(ctx).list.delete(input as any))) as ProcReturns<
+            'mutation',
+            Proc,
+            (typeof ListInputSchema)['delete'],
+            ReturnType<PrismaClient['list']['delete']>
+        >,
 
         findFirst: procedure
             .input(ListInputSchema.findFirst)
-            .query(({ ctx, input }) => checkRead(db(ctx).list.findFirst(input as any))),
+            .query(({ ctx, input }) => checkRead(db(ctx).list.findFirst(input as any))) as ProcReturns<
+            'query',
+            Proc,
+            (typeof ListInputSchema)['findFirst'],
+            ReturnType<PrismaClient['list']['findFirst']>
+        >,
 
         findFirstOrThrow: procedure
             .input(ListInputSchema.findFirst)
-            .query(({ ctx, input }) => checkRead(db(ctx).list.findFirstOrThrow(input as any))),
+            .query(({ ctx, input }) => checkRead(db(ctx).list.findFirstOrThrow(input as any))) as ProcReturns<
+            'query',
+            Proc,
+            (typeof ListInputSchema)['findFirst'],
+            ReturnType<PrismaClient['list']['findFirstOrThrow']>
+        >,
 
         findMany: procedure
             .input(ListInputSchema.findMany)
-            .query(({ ctx, input }) => checkRead(db(ctx).list.findMany(input as any))),
+            .query(({ ctx, input }) => checkRead(db(ctx).list.findMany(input as any))) as ProcReturns<
+            'query',
+            Proc,
+            (typeof ListInputSchema)['findMany'],
+            ReturnType<PrismaClient['list']['findMany']>
+        >,
 
         findUnique: procedure
             .input(ListInputSchema.findUnique)
-            .query(({ ctx, input }) => checkRead(db(ctx).list.findUnique(input as any))),
+            .query(({ ctx, input }) => checkRead(db(ctx).list.findUnique(input as any))) as ProcReturns<
+            'query',
+            Proc,
+            (typeof ListInputSchema)['findUnique'],
+            ReturnType<PrismaClient['list']['findUnique']>
+        >,
 
         findUniqueOrThrow: procedure
             .input(ListInputSchema.findUnique)
-            .query(({ ctx, input }) => checkRead(db(ctx).list.findUniqueOrThrow(input as any))),
+            .query(({ ctx, input }) => checkRead(db(ctx).list.findUniqueOrThrow(input as any))) as ProcReturns<
+            'query',
+            Proc,
+            (typeof ListInputSchema)['findUnique'],
+            ReturnType<PrismaClient['list']['findUniqueOrThrow']>
+        >,
 
         groupBy: procedure
             .input(ListInputSchema.groupBy)
-            .query(({ ctx, input }) => checkRead(db(ctx).list.groupBy(input as any))),
+            .query(({ ctx, input }) => checkRead(db(ctx).list.groupBy(input as any))) as ProcReturns<
+            'query',
+            Proc,
+            (typeof ListInputSchema)['groupBy'],
+            ReturnType<PrismaClient['list']['groupBy']>
+        >,
 
         updateMany: procedure
             .input(ListInputSchema.updateMany)
-            .mutation(async ({ ctx, input }) => checkMutate(db(ctx).list.updateMany(input as any))),
+            .mutation(async ({ ctx, input }) => checkMutate(db(ctx).list.updateMany(input as any))) as ProcReturns<
+            'mutation',
+            Proc,
+            (typeof ListInputSchema)['updateMany'],
+            ReturnType<PrismaClient['list']['updateMany']>
+        >,
 
         update: procedure
             .input(ListInputSchema.update)
-            .mutation(async ({ ctx, input }) => checkMutate(db(ctx).list.update(input as any))),
+            .mutation(async ({ ctx, input }) => checkMutate(db(ctx).list.update(input as any))) as ProcReturns<
+            'mutation',
+            Proc,
+            (typeof ListInputSchema)['update'],
+            ReturnType<PrismaClient['list']['update']>
+        >,
 
         upsert: procedure
             .input(ListInputSchema.upsert)
-            .mutation(async ({ ctx, input }) => checkMutate(db(ctx).list.upsert(input as any))),
+            .mutation(async ({ ctx, input }) => checkMutate(db(ctx).list.upsert(input as any))) as ProcReturns<
+            'mutation',
+            Proc,
+            (typeof ListInputSchema)['upsert'],
+            ReturnType<PrismaClient['list']['upsert']>
+        >,
+
+        count: procedure
+            .input(ListInputSchema.count)
+            .query(({ ctx, input }) => checkRead(db(ctx).list.count(input as any))) as ProcReturns<
+            'query',
+            Proc,
+            (typeof ListInputSchema)['count'],
+            ReturnType<PrismaClient['list']['count']>
+        >,
     });
 }
 
@@ -441,5 +520,52 @@ export interface ClientType<AppRouter extends AnyRouter, Context = AppRouter['_d
                 opts?: UseTRPCMutationOptions<T, TRPCClientErrorLike<AppRouter>, Prisma.ListGetPayload<T>, Context>,
             ) => Promise<Prisma.ListGetPayload<T>>;
         };
+    };
+    count: {
+        useQuery: <T extends Prisma.ListCountArgs>(
+            input: Prisma.Subset<T, Prisma.ListCountArgs>,
+            opts?: UseTRPCQueryOptions<
+                string,
+                T,
+                'select' extends keyof T
+                    ? T['select'] extends true
+                        ? number
+                        : Prisma.GetScalarType<T['select'], Prisma.ListCountAggregateOutputType>
+                    : number,
+                'select' extends keyof T
+                    ? T['select'] extends true
+                        ? number
+                        : Prisma.GetScalarType<T['select'], Prisma.ListCountAggregateOutputType>
+                    : number,
+                Error
+            >,
+        ) => UseTRPCQueryResult<
+            'select' extends keyof T
+                ? T['select'] extends true
+                    ? number
+                    : Prisma.GetScalarType<T['select'], Prisma.ListCountAggregateOutputType>
+                : number,
+            TRPCClientErrorLike<AppRouter>
+        >;
+        useInfiniteQuery: <T extends Prisma.ListCountArgs>(
+            input: Omit<Prisma.Subset<T, Prisma.ListCountArgs>, 'cursor'>,
+            opts?: UseTRPCInfiniteQueryOptions<
+                string,
+                T,
+                'select' extends keyof T
+                    ? T['select'] extends true
+                        ? number
+                        : Prisma.GetScalarType<T['select'], Prisma.ListCountAggregateOutputType>
+                    : number,
+                Error
+            >,
+        ) => UseTRPCInfiniteQueryResult<
+            'select' extends keyof T
+                ? T['select'] extends true
+                    ? number
+                    : Prisma.GetScalarType<T['select'], Prisma.ListCountAggregateOutputType>
+                : number,
+            TRPCClientErrorLike<AppRouter>
+        >;
     };
 }

@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { type RouterFactory, type ProcBuilder, type BaseConfig, db } from '.';
+import { type RouterFactory, type ProcBuilder, type BaseConfig, type ProcReturns, type PrismaClient, db } from '.';
 import { SpaceInputSchema } from '@zenstackhq/runtime/zod/input';
 import { checkRead, checkMutate } from '../helper';
 import type { Prisma } from '@prisma/client';
@@ -14,66 +14,145 @@ import type {
 import type { TRPCClientErrorLike } from '@trpc/client';
 import type { AnyRouter } from '@trpc/server';
 
-export default function createRouter<Config extends BaseConfig>(
-    router: RouterFactory<Config>,
-    procedure: ProcBuilder<Config>,
+export default function createRouter<Router extends RouterFactory<BaseConfig>, Proc extends ProcBuilder<BaseConfig>>(
+    router: Router,
+    procedure: Proc,
 ) {
     return router({
         aggregate: procedure
             .input(SpaceInputSchema.aggregate)
-            .query(({ ctx, input }) => checkRead(db(ctx).space.aggregate(input as any))),
+            .query(({ ctx, input }) => checkRead(db(ctx).space.aggregate(input as any))) as ProcReturns<
+            'query',
+            Proc,
+            (typeof SpaceInputSchema)['aggregate'],
+            ReturnType<PrismaClient['space']['aggregate']>
+        >,
 
         createMany: procedure
             .input(SpaceInputSchema.createMany)
-            .mutation(async ({ ctx, input }) => checkMutate(db(ctx).space.createMany(input as any))),
+            .mutation(async ({ ctx, input }) => checkMutate(db(ctx).space.createMany(input as any))) as ProcReturns<
+            'mutation',
+            Proc,
+            (typeof SpaceInputSchema)['createMany'],
+            ReturnType<PrismaClient['space']['createMany']>
+        >,
 
         create: procedure
             .input(SpaceInputSchema.create)
-            .mutation(async ({ ctx, input }) => checkMutate(db(ctx).space.create(input as any))),
+            .mutation(async ({ ctx, input }) => checkMutate(db(ctx).space.create(input as any))) as ProcReturns<
+            'mutation',
+            Proc,
+            (typeof SpaceInputSchema)['create'],
+            ReturnType<PrismaClient['space']['create']>
+        >,
 
         deleteMany: procedure
             .input(SpaceInputSchema.deleteMany)
-            .mutation(async ({ ctx, input }) => checkMutate(db(ctx).space.deleteMany(input as any))),
+            .mutation(async ({ ctx, input }) => checkMutate(db(ctx).space.deleteMany(input as any))) as ProcReturns<
+            'mutation',
+            Proc,
+            (typeof SpaceInputSchema)['deleteMany'],
+            ReturnType<PrismaClient['space']['deleteMany']>
+        >,
 
         delete: procedure
             .input(SpaceInputSchema.delete)
-            .mutation(async ({ ctx, input }) => checkMutate(db(ctx).space.delete(input as any))),
+            .mutation(async ({ ctx, input }) => checkMutate(db(ctx).space.delete(input as any))) as ProcReturns<
+            'mutation',
+            Proc,
+            (typeof SpaceInputSchema)['delete'],
+            ReturnType<PrismaClient['space']['delete']>
+        >,
 
         findFirst: procedure
             .input(SpaceInputSchema.findFirst)
-            .query(({ ctx, input }) => checkRead(db(ctx).space.findFirst(input as any))),
+            .query(({ ctx, input }) => checkRead(db(ctx).space.findFirst(input as any))) as ProcReturns<
+            'query',
+            Proc,
+            (typeof SpaceInputSchema)['findFirst'],
+            ReturnType<PrismaClient['space']['findFirst']>
+        >,
 
         findFirstOrThrow: procedure
             .input(SpaceInputSchema.findFirst)
-            .query(({ ctx, input }) => checkRead(db(ctx).space.findFirstOrThrow(input as any))),
+            .query(({ ctx, input }) => checkRead(db(ctx).space.findFirstOrThrow(input as any))) as ProcReturns<
+            'query',
+            Proc,
+            (typeof SpaceInputSchema)['findFirst'],
+            ReturnType<PrismaClient['space']['findFirstOrThrow']>
+        >,
 
         findMany: procedure
             .input(SpaceInputSchema.findMany)
-            .query(({ ctx, input }) => checkRead(db(ctx).space.findMany(input as any))),
+            .query(({ ctx, input }) => checkRead(db(ctx).space.findMany(input as any))) as ProcReturns<
+            'query',
+            Proc,
+            (typeof SpaceInputSchema)['findMany'],
+            ReturnType<PrismaClient['space']['findMany']>
+        >,
 
         findUnique: procedure
             .input(SpaceInputSchema.findUnique)
-            .query(({ ctx, input }) => checkRead(db(ctx).space.findUnique(input as any))),
+            .query(({ ctx, input }) => checkRead(db(ctx).space.findUnique(input as any))) as ProcReturns<
+            'query',
+            Proc,
+            (typeof SpaceInputSchema)['findUnique'],
+            ReturnType<PrismaClient['space']['findUnique']>
+        >,
 
         findUniqueOrThrow: procedure
             .input(SpaceInputSchema.findUnique)
-            .query(({ ctx, input }) => checkRead(db(ctx).space.findUniqueOrThrow(input as any))),
+            .query(({ ctx, input }) => checkRead(db(ctx).space.findUniqueOrThrow(input as any))) as ProcReturns<
+            'query',
+            Proc,
+            (typeof SpaceInputSchema)['findUnique'],
+            ReturnType<PrismaClient['space']['findUniqueOrThrow']>
+        >,
 
         groupBy: procedure
             .input(SpaceInputSchema.groupBy)
-            .query(({ ctx, input }) => checkRead(db(ctx).space.groupBy(input as any))),
+            .query(({ ctx, input }) => checkRead(db(ctx).space.groupBy(input as any))) as ProcReturns<
+            'query',
+            Proc,
+            (typeof SpaceInputSchema)['groupBy'],
+            ReturnType<PrismaClient['space']['groupBy']>
+        >,
 
         updateMany: procedure
             .input(SpaceInputSchema.updateMany)
-            .mutation(async ({ ctx, input }) => checkMutate(db(ctx).space.updateMany(input as any))),
+            .mutation(async ({ ctx, input }) => checkMutate(db(ctx).space.updateMany(input as any))) as ProcReturns<
+            'mutation',
+            Proc,
+            (typeof SpaceInputSchema)['updateMany'],
+            ReturnType<PrismaClient['space']['updateMany']>
+        >,
 
         update: procedure
             .input(SpaceInputSchema.update)
-            .mutation(async ({ ctx, input }) => checkMutate(db(ctx).space.update(input as any))),
+            .mutation(async ({ ctx, input }) => checkMutate(db(ctx).space.update(input as any))) as ProcReturns<
+            'mutation',
+            Proc,
+            (typeof SpaceInputSchema)['update'],
+            ReturnType<PrismaClient['space']['update']>
+        >,
 
         upsert: procedure
             .input(SpaceInputSchema.upsert)
-            .mutation(async ({ ctx, input }) => checkMutate(db(ctx).space.upsert(input as any))),
+            .mutation(async ({ ctx, input }) => checkMutate(db(ctx).space.upsert(input as any))) as ProcReturns<
+            'mutation',
+            Proc,
+            (typeof SpaceInputSchema)['upsert'],
+            ReturnType<PrismaClient['space']['upsert']>
+        >,
+
+        count: procedure
+            .input(SpaceInputSchema.count)
+            .query(({ ctx, input }) => checkRead(db(ctx).space.count(input as any))) as ProcReturns<
+            'query',
+            Proc,
+            (typeof SpaceInputSchema)['count'],
+            ReturnType<PrismaClient['space']['count']>
+        >,
     });
 }
 
@@ -441,5 +520,52 @@ export interface ClientType<AppRouter extends AnyRouter, Context = AppRouter['_d
                 opts?: UseTRPCMutationOptions<T, TRPCClientErrorLike<AppRouter>, Prisma.SpaceGetPayload<T>, Context>,
             ) => Promise<Prisma.SpaceGetPayload<T>>;
         };
+    };
+    count: {
+        useQuery: <T extends Prisma.SpaceCountArgs>(
+            input: Prisma.Subset<T, Prisma.SpaceCountArgs>,
+            opts?: UseTRPCQueryOptions<
+                string,
+                T,
+                'select' extends keyof T
+                    ? T['select'] extends true
+                        ? number
+                        : Prisma.GetScalarType<T['select'], Prisma.SpaceCountAggregateOutputType>
+                    : number,
+                'select' extends keyof T
+                    ? T['select'] extends true
+                        ? number
+                        : Prisma.GetScalarType<T['select'], Prisma.SpaceCountAggregateOutputType>
+                    : number,
+                Error
+            >,
+        ) => UseTRPCQueryResult<
+            'select' extends keyof T
+                ? T['select'] extends true
+                    ? number
+                    : Prisma.GetScalarType<T['select'], Prisma.SpaceCountAggregateOutputType>
+                : number,
+            TRPCClientErrorLike<AppRouter>
+        >;
+        useInfiniteQuery: <T extends Prisma.SpaceCountArgs>(
+            input: Omit<Prisma.Subset<T, Prisma.SpaceCountArgs>, 'cursor'>,
+            opts?: UseTRPCInfiniteQueryOptions<
+                string,
+                T,
+                'select' extends keyof T
+                    ? T['select'] extends true
+                        ? number
+                        : Prisma.GetScalarType<T['select'], Prisma.SpaceCountAggregateOutputType>
+                    : number,
+                Error
+            >,
+        ) => UseTRPCInfiniteQueryResult<
+            'select' extends keyof T
+                ? T['select'] extends true
+                    ? number
+                    : Prisma.GetScalarType<T['select'], Prisma.SpaceCountAggregateOutputType>
+                : number,
+            TRPCClientErrorLike<AppRouter>
+        >;
     };
 }

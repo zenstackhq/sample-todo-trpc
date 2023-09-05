@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { type RouterFactory, type ProcBuilder, type BaseConfig, db } from '.';
+import { type RouterFactory, type ProcBuilder, type BaseConfig, type ProcReturns, type PrismaClient, db } from '.';
 import { TodoInputSchema } from '@zenstackhq/runtime/zod/input';
 import { checkRead, checkMutate } from '../helper';
 import type { Prisma } from '@prisma/client';
@@ -14,66 +14,145 @@ import type {
 import type { TRPCClientErrorLike } from '@trpc/client';
 import type { AnyRouter } from '@trpc/server';
 
-export default function createRouter<Config extends BaseConfig>(
-    router: RouterFactory<Config>,
-    procedure: ProcBuilder<Config>,
+export default function createRouter<Router extends RouterFactory<BaseConfig>, Proc extends ProcBuilder<BaseConfig>>(
+    router: Router,
+    procedure: Proc,
 ) {
     return router({
         aggregate: procedure
             .input(TodoInputSchema.aggregate)
-            .query(({ ctx, input }) => checkRead(db(ctx).todo.aggregate(input as any))),
+            .query(({ ctx, input }) => checkRead(db(ctx).todo.aggregate(input as any))) as ProcReturns<
+            'query',
+            Proc,
+            (typeof TodoInputSchema)['aggregate'],
+            ReturnType<PrismaClient['todo']['aggregate']>
+        >,
 
         createMany: procedure
             .input(TodoInputSchema.createMany)
-            .mutation(async ({ ctx, input }) => checkMutate(db(ctx).todo.createMany(input as any))),
+            .mutation(async ({ ctx, input }) => checkMutate(db(ctx).todo.createMany(input as any))) as ProcReturns<
+            'mutation',
+            Proc,
+            (typeof TodoInputSchema)['createMany'],
+            ReturnType<PrismaClient['todo']['createMany']>
+        >,
 
         create: procedure
             .input(TodoInputSchema.create)
-            .mutation(async ({ ctx, input }) => checkMutate(db(ctx).todo.create(input as any))),
+            .mutation(async ({ ctx, input }) => checkMutate(db(ctx).todo.create(input as any))) as ProcReturns<
+            'mutation',
+            Proc,
+            (typeof TodoInputSchema)['create'],
+            ReturnType<PrismaClient['todo']['create']>
+        >,
 
         deleteMany: procedure
             .input(TodoInputSchema.deleteMany)
-            .mutation(async ({ ctx, input }) => checkMutate(db(ctx).todo.deleteMany(input as any))),
+            .mutation(async ({ ctx, input }) => checkMutate(db(ctx).todo.deleteMany(input as any))) as ProcReturns<
+            'mutation',
+            Proc,
+            (typeof TodoInputSchema)['deleteMany'],
+            ReturnType<PrismaClient['todo']['deleteMany']>
+        >,
 
         delete: procedure
             .input(TodoInputSchema.delete)
-            .mutation(async ({ ctx, input }) => checkMutate(db(ctx).todo.delete(input as any))),
+            .mutation(async ({ ctx, input }) => checkMutate(db(ctx).todo.delete(input as any))) as ProcReturns<
+            'mutation',
+            Proc,
+            (typeof TodoInputSchema)['delete'],
+            ReturnType<PrismaClient['todo']['delete']>
+        >,
 
         findFirst: procedure
             .input(TodoInputSchema.findFirst)
-            .query(({ ctx, input }) => checkRead(db(ctx).todo.findFirst(input as any))),
+            .query(({ ctx, input }) => checkRead(db(ctx).todo.findFirst(input as any))) as ProcReturns<
+            'query',
+            Proc,
+            (typeof TodoInputSchema)['findFirst'],
+            ReturnType<PrismaClient['todo']['findFirst']>
+        >,
 
         findFirstOrThrow: procedure
             .input(TodoInputSchema.findFirst)
-            .query(({ ctx, input }) => checkRead(db(ctx).todo.findFirstOrThrow(input as any))),
+            .query(({ ctx, input }) => checkRead(db(ctx).todo.findFirstOrThrow(input as any))) as ProcReturns<
+            'query',
+            Proc,
+            (typeof TodoInputSchema)['findFirst'],
+            ReturnType<PrismaClient['todo']['findFirstOrThrow']>
+        >,
 
         findMany: procedure
             .input(TodoInputSchema.findMany)
-            .query(({ ctx, input }) => checkRead(db(ctx).todo.findMany(input as any))),
+            .query(({ ctx, input }) => checkRead(db(ctx).todo.findMany(input as any))) as ProcReturns<
+            'query',
+            Proc,
+            (typeof TodoInputSchema)['findMany'],
+            ReturnType<PrismaClient['todo']['findMany']>
+        >,
 
         findUnique: procedure
             .input(TodoInputSchema.findUnique)
-            .query(({ ctx, input }) => checkRead(db(ctx).todo.findUnique(input as any))),
+            .query(({ ctx, input }) => checkRead(db(ctx).todo.findUnique(input as any))) as ProcReturns<
+            'query',
+            Proc,
+            (typeof TodoInputSchema)['findUnique'],
+            ReturnType<PrismaClient['todo']['findUnique']>
+        >,
 
         findUniqueOrThrow: procedure
             .input(TodoInputSchema.findUnique)
-            .query(({ ctx, input }) => checkRead(db(ctx).todo.findUniqueOrThrow(input as any))),
+            .query(({ ctx, input }) => checkRead(db(ctx).todo.findUniqueOrThrow(input as any))) as ProcReturns<
+            'query',
+            Proc,
+            (typeof TodoInputSchema)['findUnique'],
+            ReturnType<PrismaClient['todo']['findUniqueOrThrow']>
+        >,
 
         groupBy: procedure
             .input(TodoInputSchema.groupBy)
-            .query(({ ctx, input }) => checkRead(db(ctx).todo.groupBy(input as any))),
+            .query(({ ctx, input }) => checkRead(db(ctx).todo.groupBy(input as any))) as ProcReturns<
+            'query',
+            Proc,
+            (typeof TodoInputSchema)['groupBy'],
+            ReturnType<PrismaClient['todo']['groupBy']>
+        >,
 
         updateMany: procedure
             .input(TodoInputSchema.updateMany)
-            .mutation(async ({ ctx, input }) => checkMutate(db(ctx).todo.updateMany(input as any))),
+            .mutation(async ({ ctx, input }) => checkMutate(db(ctx).todo.updateMany(input as any))) as ProcReturns<
+            'mutation',
+            Proc,
+            (typeof TodoInputSchema)['updateMany'],
+            ReturnType<PrismaClient['todo']['updateMany']>
+        >,
 
         update: procedure
             .input(TodoInputSchema.update)
-            .mutation(async ({ ctx, input }) => checkMutate(db(ctx).todo.update(input as any))),
+            .mutation(async ({ ctx, input }) => checkMutate(db(ctx).todo.update(input as any))) as ProcReturns<
+            'mutation',
+            Proc,
+            (typeof TodoInputSchema)['update'],
+            ReturnType<PrismaClient['todo']['update']>
+        >,
 
         upsert: procedure
             .input(TodoInputSchema.upsert)
-            .mutation(async ({ ctx, input }) => checkMutate(db(ctx).todo.upsert(input as any))),
+            .mutation(async ({ ctx, input }) => checkMutate(db(ctx).todo.upsert(input as any))) as ProcReturns<
+            'mutation',
+            Proc,
+            (typeof TodoInputSchema)['upsert'],
+            ReturnType<PrismaClient['todo']['upsert']>
+        >,
+
+        count: procedure
+            .input(TodoInputSchema.count)
+            .query(({ ctx, input }) => checkRead(db(ctx).todo.count(input as any))) as ProcReturns<
+            'query',
+            Proc,
+            (typeof TodoInputSchema)['count'],
+            ReturnType<PrismaClient['todo']['count']>
+        >,
     });
 }
 
@@ -441,5 +520,52 @@ export interface ClientType<AppRouter extends AnyRouter, Context = AppRouter['_d
                 opts?: UseTRPCMutationOptions<T, TRPCClientErrorLike<AppRouter>, Prisma.TodoGetPayload<T>, Context>,
             ) => Promise<Prisma.TodoGetPayload<T>>;
         };
+    };
+    count: {
+        useQuery: <T extends Prisma.TodoCountArgs>(
+            input: Prisma.Subset<T, Prisma.TodoCountArgs>,
+            opts?: UseTRPCQueryOptions<
+                string,
+                T,
+                'select' extends keyof T
+                    ? T['select'] extends true
+                        ? number
+                        : Prisma.GetScalarType<T['select'], Prisma.TodoCountAggregateOutputType>
+                    : number,
+                'select' extends keyof T
+                    ? T['select'] extends true
+                        ? number
+                        : Prisma.GetScalarType<T['select'], Prisma.TodoCountAggregateOutputType>
+                    : number,
+                Error
+            >,
+        ) => UseTRPCQueryResult<
+            'select' extends keyof T
+                ? T['select'] extends true
+                    ? number
+                    : Prisma.GetScalarType<T['select'], Prisma.TodoCountAggregateOutputType>
+                : number,
+            TRPCClientErrorLike<AppRouter>
+        >;
+        useInfiniteQuery: <T extends Prisma.TodoCountArgs>(
+            input: Omit<Prisma.Subset<T, Prisma.TodoCountArgs>, 'cursor'>,
+            opts?: UseTRPCInfiniteQueryOptions<
+                string,
+                T,
+                'select' extends keyof T
+                    ? T['select'] extends true
+                        ? number
+                        : Prisma.GetScalarType<T['select'], Prisma.TodoCountAggregateOutputType>
+                    : number,
+                Error
+            >,
+        ) => UseTRPCInfiniteQueryResult<
+            'select' extends keyof T
+                ? T['select'] extends true
+                    ? number
+                    : Prisma.GetScalarType<T['select'], Prisma.TodoCountAggregateOutputType>
+                : number,
+            TRPCClientErrorLike<AppRouter>
+        >;
     };
 }
