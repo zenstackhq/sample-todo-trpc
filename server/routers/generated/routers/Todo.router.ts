@@ -1,6 +1,6 @@
 /* eslint-disable */
 import { type RouterFactory, type ProcBuilder, type BaseConfig, type ProcReturns, type PrismaClient, db } from '.';
-import { TodoInputSchema } from '@zenstackhq/runtime/zod/input';
+import $Schema from '@zenstackhq/runtime/zod/input';
 import { checkRead, checkMutate } from '../helper';
 import type { Prisma } from '@prisma/client';
 import type {
@@ -20,137 +20,137 @@ export default function createRouter<Router extends RouterFactory<BaseConfig>, P
 ) {
     return router({
         aggregate: procedure
-            .input(TodoInputSchema.aggregate)
+            .input($Schema.TodoInputSchema.aggregate)
             .query(({ ctx, input }) => checkRead(db(ctx).todo.aggregate(input as any))) as ProcReturns<
             'query',
             Proc,
-            (typeof TodoInputSchema)['aggregate'],
+            (typeof $Schema.TodoInputSchema)['aggregate'],
             ReturnType<PrismaClient['todo']['aggregate']>
         >,
 
         createMany: procedure
-            .input(TodoInputSchema.createMany)
+            .input($Schema.TodoInputSchema.createMany)
             .mutation(async ({ ctx, input }) => checkMutate(db(ctx).todo.createMany(input as any))) as ProcReturns<
             'mutation',
             Proc,
-            (typeof TodoInputSchema)['createMany'],
+            (typeof $Schema.TodoInputSchema)['createMany'],
             ReturnType<PrismaClient['todo']['createMany']>
         >,
 
         create: procedure
-            .input(TodoInputSchema.create)
+            .input($Schema.TodoInputSchema.create)
             .mutation(async ({ ctx, input }) => checkMutate(db(ctx).todo.create(input as any))) as ProcReturns<
             'mutation',
             Proc,
-            (typeof TodoInputSchema)['create'],
+            (typeof $Schema.TodoInputSchema)['create'],
             ReturnType<PrismaClient['todo']['create']>
         >,
 
         deleteMany: procedure
-            .input(TodoInputSchema.deleteMany)
+            .input($Schema.TodoInputSchema.deleteMany)
             .mutation(async ({ ctx, input }) => checkMutate(db(ctx).todo.deleteMany(input as any))) as ProcReturns<
             'mutation',
             Proc,
-            (typeof TodoInputSchema)['deleteMany'],
+            (typeof $Schema.TodoInputSchema)['deleteMany'],
             ReturnType<PrismaClient['todo']['deleteMany']>
         >,
 
         delete: procedure
-            .input(TodoInputSchema.delete)
+            .input($Schema.TodoInputSchema.delete)
             .mutation(async ({ ctx, input }) => checkMutate(db(ctx).todo.delete(input as any))) as ProcReturns<
             'mutation',
             Proc,
-            (typeof TodoInputSchema)['delete'],
+            (typeof $Schema.TodoInputSchema)['delete'],
             ReturnType<PrismaClient['todo']['delete']>
         >,
 
         findFirst: procedure
-            .input(TodoInputSchema.findFirst)
+            .input($Schema.TodoInputSchema.findFirst)
             .query(({ ctx, input }) => checkRead(db(ctx).todo.findFirst(input as any))) as ProcReturns<
             'query',
             Proc,
-            (typeof TodoInputSchema)['findFirst'],
+            (typeof $Schema.TodoInputSchema)['findFirst'],
             ReturnType<PrismaClient['todo']['findFirst']>
         >,
 
         findFirstOrThrow: procedure
-            .input(TodoInputSchema.findFirst)
+            .input($Schema.TodoInputSchema.findFirst)
             .query(({ ctx, input }) => checkRead(db(ctx).todo.findFirstOrThrow(input as any))) as ProcReturns<
             'query',
             Proc,
-            (typeof TodoInputSchema)['findFirst'],
+            (typeof $Schema.TodoInputSchema)['findFirst'],
             ReturnType<PrismaClient['todo']['findFirstOrThrow']>
         >,
 
         findMany: procedure
-            .input(TodoInputSchema.findMany)
+            .input($Schema.TodoInputSchema.findMany)
             .query(({ ctx, input }) => checkRead(db(ctx).todo.findMany(input as any))) as ProcReturns<
             'query',
             Proc,
-            (typeof TodoInputSchema)['findMany'],
+            (typeof $Schema.TodoInputSchema)['findMany'],
             ReturnType<PrismaClient['todo']['findMany']>
         >,
 
         findUnique: procedure
-            .input(TodoInputSchema.findUnique)
+            .input($Schema.TodoInputSchema.findUnique)
             .query(({ ctx, input }) => checkRead(db(ctx).todo.findUnique(input as any))) as ProcReturns<
             'query',
             Proc,
-            (typeof TodoInputSchema)['findUnique'],
+            (typeof $Schema.TodoInputSchema)['findUnique'],
             ReturnType<PrismaClient['todo']['findUnique']>
         >,
 
         findUniqueOrThrow: procedure
-            .input(TodoInputSchema.findUnique)
+            .input($Schema.TodoInputSchema.findUnique)
             .query(({ ctx, input }) => checkRead(db(ctx).todo.findUniqueOrThrow(input as any))) as ProcReturns<
             'query',
             Proc,
-            (typeof TodoInputSchema)['findUnique'],
+            (typeof $Schema.TodoInputSchema)['findUnique'],
             ReturnType<PrismaClient['todo']['findUniqueOrThrow']>
         >,
 
         groupBy: procedure
-            .input(TodoInputSchema.groupBy)
+            .input($Schema.TodoInputSchema.groupBy)
             .query(({ ctx, input }) => checkRead(db(ctx).todo.groupBy(input as any))) as ProcReturns<
             'query',
             Proc,
-            (typeof TodoInputSchema)['groupBy'],
+            (typeof $Schema.TodoInputSchema)['groupBy'],
             ReturnType<PrismaClient['todo']['groupBy']>
         >,
 
         updateMany: procedure
-            .input(TodoInputSchema.updateMany)
+            .input($Schema.TodoInputSchema.updateMany)
             .mutation(async ({ ctx, input }) => checkMutate(db(ctx).todo.updateMany(input as any))) as ProcReturns<
             'mutation',
             Proc,
-            (typeof TodoInputSchema)['updateMany'],
+            (typeof $Schema.TodoInputSchema)['updateMany'],
             ReturnType<PrismaClient['todo']['updateMany']>
         >,
 
         update: procedure
-            .input(TodoInputSchema.update)
+            .input($Schema.TodoInputSchema.update)
             .mutation(async ({ ctx, input }) => checkMutate(db(ctx).todo.update(input as any))) as ProcReturns<
             'mutation',
             Proc,
-            (typeof TodoInputSchema)['update'],
+            (typeof $Schema.TodoInputSchema)['update'],
             ReturnType<PrismaClient['todo']['update']>
         >,
 
         upsert: procedure
-            .input(TodoInputSchema.upsert)
+            .input($Schema.TodoInputSchema.upsert)
             .mutation(async ({ ctx, input }) => checkMutate(db(ctx).todo.upsert(input as any))) as ProcReturns<
             'mutation',
             Proc,
-            (typeof TodoInputSchema)['upsert'],
+            (typeof $Schema.TodoInputSchema)['upsert'],
             ReturnType<PrismaClient['todo']['upsert']>
         >,
 
         count: procedure
-            .input(TodoInputSchema.count)
+            .input($Schema.TodoInputSchema.count)
             .query(({ ctx, input }) => checkRead(db(ctx).todo.count(input as any))) as ProcReturns<
             'query',
             Proc,
-            (typeof TodoInputSchema)['count'],
+            (typeof $Schema.TodoInputSchema)['count'],
             ReturnType<PrismaClient['todo']['count']>
         >,
     });

@@ -1,8 +1,15 @@
 /* eslint-disable */
-import { type AnyRootConfig, type Procedure, type ProcedureParams, type ProcedureType } from '@trpc/server';
+import {
+    type AnyRouter,
+    type AnyRootConfig,
+    type CreateRouterInner,
+    type Procedure,
+    type ProcedureBuilder,
+    type ProcedureParams,
+    type ProcedureRouterRecord,
+    type ProcedureType,
+} from '@trpc/server';
 import { type PrismaClient, type Prisma } from '@prisma/client';
-import { type createRouterFactory, AnyRouter } from '@trpc/server/dist/core/router';
-import { type ProcedureBuilder } from '@trpc/server/dist/core/internals/procedureBuilder';
 import type z from 'zod';
 import createSpaceRouter from './Space.router';
 import createSpaceUserRouter from './SpaceUser.router';
@@ -21,7 +28,9 @@ export { PrismaClient } from '@prisma/client';
 
 export type BaseConfig = AnyRootConfig;
 
-export type RouterFactory<Config extends BaseConfig> = ReturnType<typeof createRouterFactory<Config>>;
+export type RouterFactory<Config extends BaseConfig> = <ProcRouterRecord extends ProcedureRouterRecord>(
+    procedures: ProcRouterRecord,
+) => CreateRouterInner<Config, ProcRouterRecord>;
 
 export type ProcBuilder<Config extends BaseConfig> = ProcedureBuilder<{
     _config: Config;

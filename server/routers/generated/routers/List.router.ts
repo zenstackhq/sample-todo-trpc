@@ -1,6 +1,6 @@
 /* eslint-disable */
 import { type RouterFactory, type ProcBuilder, type BaseConfig, type ProcReturns, type PrismaClient, db } from '.';
-import { ListInputSchema } from '@zenstackhq/runtime/zod/input';
+import $Schema from '@zenstackhq/runtime/zod/input';
 import { checkRead, checkMutate } from '../helper';
 import type { Prisma } from '@prisma/client';
 import type {
@@ -20,137 +20,137 @@ export default function createRouter<Router extends RouterFactory<BaseConfig>, P
 ) {
     return router({
         aggregate: procedure
-            .input(ListInputSchema.aggregate)
+            .input($Schema.ListInputSchema.aggregate)
             .query(({ ctx, input }) => checkRead(db(ctx).list.aggregate(input as any))) as ProcReturns<
             'query',
             Proc,
-            (typeof ListInputSchema)['aggregate'],
+            (typeof $Schema.ListInputSchema)['aggregate'],
             ReturnType<PrismaClient['list']['aggregate']>
         >,
 
         createMany: procedure
-            .input(ListInputSchema.createMany)
+            .input($Schema.ListInputSchema.createMany)
             .mutation(async ({ ctx, input }) => checkMutate(db(ctx).list.createMany(input as any))) as ProcReturns<
             'mutation',
             Proc,
-            (typeof ListInputSchema)['createMany'],
+            (typeof $Schema.ListInputSchema)['createMany'],
             ReturnType<PrismaClient['list']['createMany']>
         >,
 
         create: procedure
-            .input(ListInputSchema.create)
+            .input($Schema.ListInputSchema.create)
             .mutation(async ({ ctx, input }) => checkMutate(db(ctx).list.create(input as any))) as ProcReturns<
             'mutation',
             Proc,
-            (typeof ListInputSchema)['create'],
+            (typeof $Schema.ListInputSchema)['create'],
             ReturnType<PrismaClient['list']['create']>
         >,
 
         deleteMany: procedure
-            .input(ListInputSchema.deleteMany)
+            .input($Schema.ListInputSchema.deleteMany)
             .mutation(async ({ ctx, input }) => checkMutate(db(ctx).list.deleteMany(input as any))) as ProcReturns<
             'mutation',
             Proc,
-            (typeof ListInputSchema)['deleteMany'],
+            (typeof $Schema.ListInputSchema)['deleteMany'],
             ReturnType<PrismaClient['list']['deleteMany']>
         >,
 
         delete: procedure
-            .input(ListInputSchema.delete)
+            .input($Schema.ListInputSchema.delete)
             .mutation(async ({ ctx, input }) => checkMutate(db(ctx).list.delete(input as any))) as ProcReturns<
             'mutation',
             Proc,
-            (typeof ListInputSchema)['delete'],
+            (typeof $Schema.ListInputSchema)['delete'],
             ReturnType<PrismaClient['list']['delete']>
         >,
 
         findFirst: procedure
-            .input(ListInputSchema.findFirst)
+            .input($Schema.ListInputSchema.findFirst)
             .query(({ ctx, input }) => checkRead(db(ctx).list.findFirst(input as any))) as ProcReturns<
             'query',
             Proc,
-            (typeof ListInputSchema)['findFirst'],
+            (typeof $Schema.ListInputSchema)['findFirst'],
             ReturnType<PrismaClient['list']['findFirst']>
         >,
 
         findFirstOrThrow: procedure
-            .input(ListInputSchema.findFirst)
+            .input($Schema.ListInputSchema.findFirst)
             .query(({ ctx, input }) => checkRead(db(ctx).list.findFirstOrThrow(input as any))) as ProcReturns<
             'query',
             Proc,
-            (typeof ListInputSchema)['findFirst'],
+            (typeof $Schema.ListInputSchema)['findFirst'],
             ReturnType<PrismaClient['list']['findFirstOrThrow']>
         >,
 
         findMany: procedure
-            .input(ListInputSchema.findMany)
+            .input($Schema.ListInputSchema.findMany)
             .query(({ ctx, input }) => checkRead(db(ctx).list.findMany(input as any))) as ProcReturns<
             'query',
             Proc,
-            (typeof ListInputSchema)['findMany'],
+            (typeof $Schema.ListInputSchema)['findMany'],
             ReturnType<PrismaClient['list']['findMany']>
         >,
 
         findUnique: procedure
-            .input(ListInputSchema.findUnique)
+            .input($Schema.ListInputSchema.findUnique)
             .query(({ ctx, input }) => checkRead(db(ctx).list.findUnique(input as any))) as ProcReturns<
             'query',
             Proc,
-            (typeof ListInputSchema)['findUnique'],
+            (typeof $Schema.ListInputSchema)['findUnique'],
             ReturnType<PrismaClient['list']['findUnique']>
         >,
 
         findUniqueOrThrow: procedure
-            .input(ListInputSchema.findUnique)
+            .input($Schema.ListInputSchema.findUnique)
             .query(({ ctx, input }) => checkRead(db(ctx).list.findUniqueOrThrow(input as any))) as ProcReturns<
             'query',
             Proc,
-            (typeof ListInputSchema)['findUnique'],
+            (typeof $Schema.ListInputSchema)['findUnique'],
             ReturnType<PrismaClient['list']['findUniqueOrThrow']>
         >,
 
         groupBy: procedure
-            .input(ListInputSchema.groupBy)
+            .input($Schema.ListInputSchema.groupBy)
             .query(({ ctx, input }) => checkRead(db(ctx).list.groupBy(input as any))) as ProcReturns<
             'query',
             Proc,
-            (typeof ListInputSchema)['groupBy'],
+            (typeof $Schema.ListInputSchema)['groupBy'],
             ReturnType<PrismaClient['list']['groupBy']>
         >,
 
         updateMany: procedure
-            .input(ListInputSchema.updateMany)
+            .input($Schema.ListInputSchema.updateMany)
             .mutation(async ({ ctx, input }) => checkMutate(db(ctx).list.updateMany(input as any))) as ProcReturns<
             'mutation',
             Proc,
-            (typeof ListInputSchema)['updateMany'],
+            (typeof $Schema.ListInputSchema)['updateMany'],
             ReturnType<PrismaClient['list']['updateMany']>
         >,
 
         update: procedure
-            .input(ListInputSchema.update)
+            .input($Schema.ListInputSchema.update)
             .mutation(async ({ ctx, input }) => checkMutate(db(ctx).list.update(input as any))) as ProcReturns<
             'mutation',
             Proc,
-            (typeof ListInputSchema)['update'],
+            (typeof $Schema.ListInputSchema)['update'],
             ReturnType<PrismaClient['list']['update']>
         >,
 
         upsert: procedure
-            .input(ListInputSchema.upsert)
+            .input($Schema.ListInputSchema.upsert)
             .mutation(async ({ ctx, input }) => checkMutate(db(ctx).list.upsert(input as any))) as ProcReturns<
             'mutation',
             Proc,
-            (typeof ListInputSchema)['upsert'],
+            (typeof $Schema.ListInputSchema)['upsert'],
             ReturnType<PrismaClient['list']['upsert']>
         >,
 
         count: procedure
-            .input(ListInputSchema.count)
+            .input($Schema.ListInputSchema.count)
             .query(({ ctx, input }) => checkRead(db(ctx).list.count(input as any))) as ProcReturns<
             'query',
             Proc,
-            (typeof ListInputSchema)['count'],
+            (typeof $Schema.ListInputSchema)['count'],
             ReturnType<PrismaClient['list']['count']>
         >,
     });
