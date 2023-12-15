@@ -340,40 +340,40 @@ export interface ClientType<AppRouter extends AnyRouter, Context = AppRouter['_d
             InputErrors extends ByEmpty extends Prisma.True
                 ? `Error: "by" must not be empty.`
                 : HavingValid extends Prisma.False
-                ? {
-                      [P in HavingFields]: P extends ByFields
-                          ? never
-                          : P extends string
-                          ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-                          : [Error, 'Field ', P, ` in "having" needs to be provided in "by"`];
-                  }[HavingFields]
-                : 'take' extends Prisma.Keys<T>
-                ? 'orderBy' extends Prisma.Keys<T>
-                    ? ByValid extends Prisma.True
+                  ? {
+                        [P in HavingFields]: P extends ByFields
+                            ? never
+                            : P extends string
+                              ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+                              : [Error, 'Field ', P, ` in "having" needs to be provided in "by"`];
+                    }[HavingFields]
+                  : 'take' extends Prisma.Keys<T>
+                    ? 'orderBy' extends Prisma.Keys<T>
+                        ? ByValid extends Prisma.True
+                            ? {}
+                            : {
+                                  [P in OrderFields]: P extends ByFields
+                                      ? never
+                                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                              }[OrderFields]
+                        : 'Error: If you provide "take", you also need to provide "orderBy"'
+                    : 'skip' extends Prisma.Keys<T>
+                      ? 'orderBy' extends Prisma.Keys<T>
+                          ? ByValid extends Prisma.True
+                              ? {}
+                              : {
+                                    [P in OrderFields]: P extends ByFields
+                                        ? never
+                                        : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                                }[OrderFields]
+                          : 'Error: If you provide "skip", you also need to provide "orderBy"'
+                      : ByValid extends Prisma.True
                         ? {}
                         : {
                               [P in OrderFields]: P extends ByFields
                                   ? never
                                   : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
-                          }[OrderFields]
-                    : 'Error: If you provide "take", you also need to provide "orderBy"'
-                : 'skip' extends Prisma.Keys<T>
-                ? 'orderBy' extends Prisma.Keys<T>
-                    ? ByValid extends Prisma.True
-                        ? {}
-                        : {
-                              [P in OrderFields]: P extends ByFields
-                                  ? never
-                                  : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
-                          }[OrderFields]
-                    : 'Error: If you provide "skip", you also need to provide "orderBy"'
-                : ByValid extends Prisma.True
-                ? {}
-                : {
-                      [P in OrderFields]: P extends ByFields
-                          ? never
-                          : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
-                  }[OrderFields],
+                          }[OrderFields],
         >(
             input: Prisma.SubsetIntersection<T, Prisma.UserGroupByArgs, OrderByArg> & InputErrors,
             opts?: UseTRPCQueryOptions<
@@ -405,40 +405,40 @@ export interface ClientType<AppRouter extends AnyRouter, Context = AppRouter['_d
             InputErrors extends ByEmpty extends Prisma.True
                 ? `Error: "by" must not be empty.`
                 : HavingValid extends Prisma.False
-                ? {
-                      [P in HavingFields]: P extends ByFields
-                          ? never
-                          : P extends string
-                          ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-                          : [Error, 'Field ', P, ` in "having" needs to be provided in "by"`];
-                  }[HavingFields]
-                : 'take' extends Prisma.Keys<T>
-                ? 'orderBy' extends Prisma.Keys<T>
-                    ? ByValid extends Prisma.True
+                  ? {
+                        [P in HavingFields]: P extends ByFields
+                            ? never
+                            : P extends string
+                              ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+                              : [Error, 'Field ', P, ` in "having" needs to be provided in "by"`];
+                    }[HavingFields]
+                  : 'take' extends Prisma.Keys<T>
+                    ? 'orderBy' extends Prisma.Keys<T>
+                        ? ByValid extends Prisma.True
+                            ? {}
+                            : {
+                                  [P in OrderFields]: P extends ByFields
+                                      ? never
+                                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                              }[OrderFields]
+                        : 'Error: If you provide "take", you also need to provide "orderBy"'
+                    : 'skip' extends Prisma.Keys<T>
+                      ? 'orderBy' extends Prisma.Keys<T>
+                          ? ByValid extends Prisma.True
+                              ? {}
+                              : {
+                                    [P in OrderFields]: P extends ByFields
+                                        ? never
+                                        : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                                }[OrderFields]
+                          : 'Error: If you provide "skip", you also need to provide "orderBy"'
+                      : ByValid extends Prisma.True
                         ? {}
                         : {
                               [P in OrderFields]: P extends ByFields
                                   ? never
                                   : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
-                          }[OrderFields]
-                    : 'Error: If you provide "take", you also need to provide "orderBy"'
-                : 'skip' extends Prisma.Keys<T>
-                ? 'orderBy' extends Prisma.Keys<T>
-                    ? ByValid extends Prisma.True
-                        ? {}
-                        : {
-                              [P in OrderFields]: P extends ByFields
-                                  ? never
-                                  : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
-                          }[OrderFields]
-                    : 'Error: If you provide "skip", you also need to provide "orderBy"'
-                : ByValid extends Prisma.True
-                ? {}
-                : {
-                      [P in OrderFields]: P extends ByFields
-                          ? never
-                          : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
-                  }[OrderFields],
+                          }[OrderFields],
         >(
             input: Omit<Prisma.SubsetIntersection<T, Prisma.UserGroupByArgs, OrderByArg> & InputErrors, 'cursor'>,
             opts?: UseTRPCInfiniteQueryOptions<
