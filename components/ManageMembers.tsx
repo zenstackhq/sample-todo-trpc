@@ -1,8 +1,7 @@
 import { PlusIcon, TrashIcon } from '@heroicons/react/24/outline';
 import { useCurrentUser } from '@lib/context';
 import { isTRPCClientError, trpc } from '@lib/trpc';
-import { Space, SpaceUser, SpaceUserRole, User } from '@prisma/client';
-import { inferProcedureOutput } from '@trpc/server';
+import { type Space, SpaceUserRole } from '@prisma/client';
 import { ChangeEvent, KeyboardEvent, useState } from 'react';
 import { toast } from 'react-toastify';
 import Avatar from './Avatar';

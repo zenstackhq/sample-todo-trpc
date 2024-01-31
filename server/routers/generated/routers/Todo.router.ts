@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { type RouterFactory, type ProcBuilder, type BaseConfig, type ProcReturns, type PrismaClient, db } from '.';
+import { type RouterFactory, type ProcBuilder, type BaseConfig, db } from '.';
 import $Schema from '@zenstackhq/runtime/zod/input';
 import { checkRead, checkMutate } from '../helper';
 import type { Prisma } from '@prisma/client';
@@ -14,160 +14,79 @@ import type {
 import type { TRPCClientErrorLike } from '@trpc/client';
 import type { AnyRouter } from '@trpc/server';
 
-export default function createRouter<Router extends RouterFactory<BaseConfig>, Proc extends ProcBuilder<BaseConfig>>(
-    router: Router,
-    procedure: Proc,
+export default function createRouter<Config extends BaseConfig>(
+    router: RouterFactory<Config>,
+    procedure: ProcBuilder<Config>,
 ) {
     return router({
         aggregate: procedure
             .input($Schema.TodoInputSchema.aggregate)
-            .query(({ ctx, input }) => checkRead(db(ctx).todo.aggregate(input as any))) as ProcReturns<
-            'query',
-            Proc,
-            (typeof $Schema.TodoInputSchema)['aggregate'],
-            ReturnType<PrismaClient['todo']['aggregate']>
-        >,
+            .query(({ ctx, input }) => checkRead(db(ctx).todo.aggregate(input as any))),
 
         createMany: procedure
             .input($Schema.TodoInputSchema.createMany)
-            .mutation(async ({ ctx, input }) => checkMutate(db(ctx).todo.createMany(input as any))) as ProcReturns<
-            'mutation',
-            Proc,
-            (typeof $Schema.TodoInputSchema)['createMany'],
-            ReturnType<PrismaClient['todo']['createMany']>
-        >,
+            .mutation(async ({ ctx, input }) => checkMutate(db(ctx).todo.createMany(input as any))),
 
         create: procedure
             .input($Schema.TodoInputSchema.create)
-            .mutation(async ({ ctx, input }) => checkMutate(db(ctx).todo.create(input as any))) as ProcReturns<
-            'mutation',
-            Proc,
-            (typeof $Schema.TodoInputSchema)['create'],
-            ReturnType<PrismaClient['todo']['create']>
-        >,
+            .mutation(async ({ ctx, input }) => checkMutate(db(ctx).todo.create(input as any))),
 
         deleteMany: procedure
             .input($Schema.TodoInputSchema.deleteMany)
-            .mutation(async ({ ctx, input }) => checkMutate(db(ctx).todo.deleteMany(input as any))) as ProcReturns<
-            'mutation',
-            Proc,
-            (typeof $Schema.TodoInputSchema)['deleteMany'],
-            ReturnType<PrismaClient['todo']['deleteMany']>
-        >,
+            .mutation(async ({ ctx, input }) => checkMutate(db(ctx).todo.deleteMany(input as any))),
 
         delete: procedure
             .input($Schema.TodoInputSchema.delete)
-            .mutation(async ({ ctx, input }) => checkMutate(db(ctx).todo.delete(input as any))) as ProcReturns<
-            'mutation',
-            Proc,
-            (typeof $Schema.TodoInputSchema)['delete'],
-            ReturnType<PrismaClient['todo']['delete']>
-        >,
+            .mutation(async ({ ctx, input }) => checkMutate(db(ctx).todo.delete(input as any))),
 
         findFirst: procedure
             .input($Schema.TodoInputSchema.findFirst)
-            .query(({ ctx, input }) => checkRead(db(ctx).todo.findFirst(input as any))) as ProcReturns<
-            'query',
-            Proc,
-            (typeof $Schema.TodoInputSchema)['findFirst'],
-            ReturnType<PrismaClient['todo']['findFirst']>
-        >,
+            .query(({ ctx, input }) => checkRead(db(ctx).todo.findFirst(input as any))),
 
         findFirstOrThrow: procedure
             .input($Schema.TodoInputSchema.findFirst)
-            .query(({ ctx, input }) => checkRead(db(ctx).todo.findFirstOrThrow(input as any))) as ProcReturns<
-            'query',
-            Proc,
-            (typeof $Schema.TodoInputSchema)['findFirst'],
-            ReturnType<PrismaClient['todo']['findFirstOrThrow']>
-        >,
+            .query(({ ctx, input }) => checkRead(db(ctx).todo.findFirstOrThrow(input as any))),
 
         findMany: procedure
             .input($Schema.TodoInputSchema.findMany)
-            .query(({ ctx, input }) => checkRead(db(ctx).todo.findMany(input as any))) as ProcReturns<
-            'query',
-            Proc,
-            (typeof $Schema.TodoInputSchema)['findMany'],
-            ReturnType<PrismaClient['todo']['findMany']>
-        >,
+            .query(({ ctx, input }) => checkRead(db(ctx).todo.findMany(input as any))),
 
         findUnique: procedure
             .input($Schema.TodoInputSchema.findUnique)
-            .query(({ ctx, input }) => checkRead(db(ctx).todo.findUnique(input as any))) as ProcReturns<
-            'query',
-            Proc,
-            (typeof $Schema.TodoInputSchema)['findUnique'],
-            ReturnType<PrismaClient['todo']['findUnique']>
-        >,
+            .query(({ ctx, input }) => checkRead(db(ctx).todo.findUnique(input as any))),
 
         findUniqueOrThrow: procedure
             .input($Schema.TodoInputSchema.findUnique)
-            .query(({ ctx, input }) => checkRead(db(ctx).todo.findUniqueOrThrow(input as any))) as ProcReturns<
-            'query',
-            Proc,
-            (typeof $Schema.TodoInputSchema)['findUnique'],
-            ReturnType<PrismaClient['todo']['findUniqueOrThrow']>
-        >,
+            .query(({ ctx, input }) => checkRead(db(ctx).todo.findUniqueOrThrow(input as any))),
 
         groupBy: procedure
             .input($Schema.TodoInputSchema.groupBy)
-            .query(({ ctx, input }) => checkRead(db(ctx).todo.groupBy(input as any))) as ProcReturns<
-            'query',
-            Proc,
-            (typeof $Schema.TodoInputSchema)['groupBy'],
-            ReturnType<PrismaClient['todo']['groupBy']>
-        >,
+            .query(({ ctx, input }) => checkRead(db(ctx).todo.groupBy(input as any))),
 
         updateMany: procedure
             .input($Schema.TodoInputSchema.updateMany)
-            .mutation(async ({ ctx, input }) => checkMutate(db(ctx).todo.updateMany(input as any))) as ProcReturns<
-            'mutation',
-            Proc,
-            (typeof $Schema.TodoInputSchema)['updateMany'],
-            ReturnType<PrismaClient['todo']['updateMany']>
-        >,
+            .mutation(async ({ ctx, input }) => checkMutate(db(ctx).todo.updateMany(input as any))),
 
         update: procedure
             .input($Schema.TodoInputSchema.update)
-            .mutation(async ({ ctx, input }) => checkMutate(db(ctx).todo.update(input as any))) as ProcReturns<
-            'mutation',
-            Proc,
-            (typeof $Schema.TodoInputSchema)['update'],
-            ReturnType<PrismaClient['todo']['update']>
-        >,
+            .mutation(async ({ ctx, input }) => checkMutate(db(ctx).todo.update(input as any))),
 
         upsert: procedure
             .input($Schema.TodoInputSchema.upsert)
-            .mutation(async ({ ctx, input }) => checkMutate(db(ctx).todo.upsert(input as any))) as ProcReturns<
-            'mutation',
-            Proc,
-            (typeof $Schema.TodoInputSchema)['upsert'],
-            ReturnType<PrismaClient['todo']['upsert']>
-        >,
+            .mutation(async ({ ctx, input }) => checkMutate(db(ctx).todo.upsert(input as any))),
 
         count: procedure
             .input($Schema.TodoInputSchema.count)
-            .query(({ ctx, input }) => checkRead(db(ctx).todo.count(input as any))) as ProcReturns<
-            'query',
-            Proc,
-            (typeof $Schema.TodoInputSchema)['count'],
-            ReturnType<PrismaClient['todo']['count']>
-        >,
+            .query(({ ctx, input }) => checkRead(db(ctx).todo.count(input as any))),
     });
 }
 
 export interface ClientType<AppRouter extends AnyRouter, Context = AppRouter['_def']['_config']['$types']['ctx']> {
     aggregate: {
-        useQuery: <T extends Prisma.TodoAggregateArgs>(
+        useQuery: <T extends Prisma.TodoAggregateArgs, TData = Prisma.GetTodoAggregateType<T>>(
             input: Prisma.Subset<T, Prisma.TodoAggregateArgs>,
-            opts?: UseTRPCQueryOptions<
-                string,
-                T,
-                Prisma.GetTodoAggregateType<T>,
-                Prisma.GetTodoAggregateType<T>,
-                Error
-            >,
-        ) => UseTRPCQueryResult<Prisma.GetTodoAggregateType<T>, TRPCClientErrorLike<AppRouter>>;
+            opts?: UseTRPCQueryOptions<string, T, Prisma.GetTodoAggregateType<T>, TData, Error>,
+        ) => UseTRPCQueryResult<TData, TRPCClientErrorLike<AppRouter>>;
         useInfiniteQuery: <T extends Prisma.TodoAggregateArgs>(
             input: Omit<Prisma.Subset<T, Prisma.TodoAggregateArgs>, 'cursor'>,
             opts?: UseTRPCInfiniteQueryOptions<string, T, Prisma.GetTodoAggregateType<T>, Error>,
@@ -178,7 +97,7 @@ export interface ClientType<AppRouter extends AnyRouter, Context = AppRouter['_d
             opts?: UseTRPCMutationOptions<
                 Prisma.TodoCreateManyArgs,
                 TRPCClientErrorLike<AppRouter>,
-                Prisma.TodoGetPayload<null>,
+                Prisma.BatchPayload,
                 Context
             >,
         ) => Omit<
@@ -201,7 +120,7 @@ export interface ClientType<AppRouter extends AnyRouter, Context = AppRouter['_d
             opts?: UseTRPCMutationOptions<
                 Prisma.TodoCreateArgs,
                 TRPCClientErrorLike<AppRouter>,
-                Prisma.TodoGetPayload<null>,
+                Prisma.TodoGetPayload<T>,
                 Context
             >,
         ) => Omit<
@@ -224,7 +143,7 @@ export interface ClientType<AppRouter extends AnyRouter, Context = AppRouter['_d
             opts?: UseTRPCMutationOptions<
                 Prisma.TodoDeleteManyArgs,
                 TRPCClientErrorLike<AppRouter>,
-                Prisma.TodoGetPayload<null>,
+                Prisma.BatchPayload,
                 Context
             >,
         ) => Omit<
@@ -247,7 +166,7 @@ export interface ClientType<AppRouter extends AnyRouter, Context = AppRouter['_d
             opts?: UseTRPCMutationOptions<
                 Prisma.TodoDeleteArgs,
                 TRPCClientErrorLike<AppRouter>,
-                Prisma.TodoGetPayload<null>,
+                Prisma.TodoGetPayload<T>,
                 Context
             >,
         ) => Omit<
@@ -266,56 +185,50 @@ export interface ClientType<AppRouter extends AnyRouter, Context = AppRouter['_d
         };
     };
     findFirst: {
-        useQuery: <T extends Prisma.TodoFindFirstArgs>(
+        useQuery: <T extends Prisma.TodoFindFirstArgs, TData = Prisma.TodoGetPayload<T>>(
             input: Prisma.SelectSubset<T, Prisma.TodoFindFirstArgs>,
-            opts?: UseTRPCQueryOptions<string, T, Prisma.TodoGetPayload<T>, Prisma.TodoGetPayload<T>, Error>,
-        ) => UseTRPCQueryResult<Prisma.TodoGetPayload<T>, TRPCClientErrorLike<AppRouter>>;
+            opts?: UseTRPCQueryOptions<string, T, Prisma.TodoGetPayload<T>, TData, Error>,
+        ) => UseTRPCQueryResult<TData, TRPCClientErrorLike<AppRouter>>;
         useInfiniteQuery: <T extends Prisma.TodoFindFirstArgs>(
             input: Omit<Prisma.SelectSubset<T, Prisma.TodoFindFirstArgs>, 'cursor'>,
             opts?: UseTRPCInfiniteQueryOptions<string, T, Prisma.TodoGetPayload<T>, Error>,
         ) => UseTRPCInfiniteQueryResult<Prisma.TodoGetPayload<T>, TRPCClientErrorLike<AppRouter>>;
     };
     findFirstOrThrow: {
-        useQuery: <T extends Prisma.TodoFindFirstOrThrowArgs>(
+        useQuery: <T extends Prisma.TodoFindFirstOrThrowArgs, TData = Prisma.TodoGetPayload<T>>(
             input: Prisma.SelectSubset<T, Prisma.TodoFindFirstOrThrowArgs>,
-            opts?: UseTRPCQueryOptions<string, T, Prisma.TodoGetPayload<T>, Prisma.TodoGetPayload<T>, Error>,
-        ) => UseTRPCQueryResult<Prisma.TodoGetPayload<T>, TRPCClientErrorLike<AppRouter>>;
+            opts?: UseTRPCQueryOptions<string, T, Prisma.TodoGetPayload<T>, TData, Error>,
+        ) => UseTRPCQueryResult<TData, TRPCClientErrorLike<AppRouter>>;
         useInfiniteQuery: <T extends Prisma.TodoFindFirstOrThrowArgs>(
             input: Omit<Prisma.SelectSubset<T, Prisma.TodoFindFirstOrThrowArgs>, 'cursor'>,
             opts?: UseTRPCInfiniteQueryOptions<string, T, Prisma.TodoGetPayload<T>, Error>,
         ) => UseTRPCInfiniteQueryResult<Prisma.TodoGetPayload<T>, TRPCClientErrorLike<AppRouter>>;
     };
     findMany: {
-        useQuery: <T extends Prisma.TodoFindManyArgs>(
+        useQuery: <T extends Prisma.TodoFindManyArgs, TData = Array<Prisma.TodoGetPayload<T>>>(
             input: Prisma.SelectSubset<T, Prisma.TodoFindManyArgs>,
-            opts?: UseTRPCQueryOptions<
-                string,
-                T,
-                Array<Prisma.TodoGetPayload<T>>,
-                Array<Prisma.TodoGetPayload<T>>,
-                Error
-            >,
-        ) => UseTRPCQueryResult<Array<Prisma.TodoGetPayload<T>>, TRPCClientErrorLike<AppRouter>>;
+            opts?: UseTRPCQueryOptions<string, T, Array<Prisma.TodoGetPayload<T>>, TData, Error>,
+        ) => UseTRPCQueryResult<TData, TRPCClientErrorLike<AppRouter>>;
         useInfiniteQuery: <T extends Prisma.TodoFindManyArgs>(
             input: Omit<Prisma.SelectSubset<T, Prisma.TodoFindManyArgs>, 'cursor'>,
             opts?: UseTRPCInfiniteQueryOptions<string, T, Array<Prisma.TodoGetPayload<T>>, Error>,
         ) => UseTRPCInfiniteQueryResult<Array<Prisma.TodoGetPayload<T>>, TRPCClientErrorLike<AppRouter>>;
     };
     findUnique: {
-        useQuery: <T extends Prisma.TodoFindUniqueArgs>(
+        useQuery: <T extends Prisma.TodoFindUniqueArgs, TData = Prisma.TodoGetPayload<T>>(
             input: Prisma.SelectSubset<T, Prisma.TodoFindUniqueArgs>,
-            opts?: UseTRPCQueryOptions<string, T, Prisma.TodoGetPayload<T>, Prisma.TodoGetPayload<T>, Error>,
-        ) => UseTRPCQueryResult<Prisma.TodoGetPayload<T>, TRPCClientErrorLike<AppRouter>>;
+            opts?: UseTRPCQueryOptions<string, T, Prisma.TodoGetPayload<T>, TData, Error>,
+        ) => UseTRPCQueryResult<TData, TRPCClientErrorLike<AppRouter>>;
         useInfiniteQuery: <T extends Prisma.TodoFindUniqueArgs>(
             input: Omit<Prisma.SelectSubset<T, Prisma.TodoFindUniqueArgs>, 'cursor'>,
             opts?: UseTRPCInfiniteQueryOptions<string, T, Prisma.TodoGetPayload<T>, Error>,
         ) => UseTRPCInfiniteQueryResult<Prisma.TodoGetPayload<T>, TRPCClientErrorLike<AppRouter>>;
     };
     findUniqueOrThrow: {
-        useQuery: <T extends Prisma.TodoFindUniqueOrThrowArgs>(
+        useQuery: <T extends Prisma.TodoFindUniqueOrThrowArgs, TData = Prisma.TodoGetPayload<T>>(
             input: Prisma.SelectSubset<T, Prisma.TodoFindUniqueOrThrowArgs>,
-            opts?: UseTRPCQueryOptions<string, T, Prisma.TodoGetPayload<T>, Prisma.TodoGetPayload<T>, Error>,
-        ) => UseTRPCQueryResult<Prisma.TodoGetPayload<T>, TRPCClientErrorLike<AppRouter>>;
+            opts?: UseTRPCQueryOptions<string, T, Prisma.TodoGetPayload<T>, TData, Error>,
+        ) => UseTRPCQueryResult<TData, TRPCClientErrorLike<AppRouter>>;
         useInfiniteQuery: <T extends Prisma.TodoFindUniqueOrThrowArgs>(
             input: Omit<Prisma.SelectSubset<T, Prisma.TodoFindUniqueOrThrowArgs>, 'cursor'>,
             opts?: UseTRPCInfiniteQueryOptions<string, T, Prisma.TodoGetPayload<T>, Error>,
@@ -374,19 +287,17 @@ export interface ClientType<AppRouter extends AnyRouter, Context = AppRouter['_d
                                   ? never
                                   : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
                           }[OrderFields],
+            TData = {} extends InputErrors ? Prisma.GetTodoGroupByPayload<T> : InputErrors,
         >(
             input: Prisma.SubsetIntersection<T, Prisma.TodoGroupByArgs, OrderByArg> & InputErrors,
             opts?: UseTRPCQueryOptions<
                 string,
                 T,
                 {} extends InputErrors ? Prisma.GetTodoGroupByPayload<T> : InputErrors,
-                {} extends InputErrors ? Prisma.GetTodoGroupByPayload<T> : InputErrors,
+                TData,
                 Error
             >,
-        ) => UseTRPCQueryResult<
-            {} extends InputErrors ? Prisma.GetTodoGroupByPayload<T> : InputErrors,
-            TRPCClientErrorLike<AppRouter>
-        >;
+        ) => UseTRPCQueryResult<TData, TRPCClientErrorLike<AppRouter>>;
         useInfiniteQuery: <
             T extends Prisma.TodoGroupByArgs,
             HasSelectOrTake extends Prisma.Or<
@@ -457,7 +368,7 @@ export interface ClientType<AppRouter extends AnyRouter, Context = AppRouter['_d
             opts?: UseTRPCMutationOptions<
                 Prisma.TodoUpdateManyArgs,
                 TRPCClientErrorLike<AppRouter>,
-                Prisma.TodoGetPayload<null>,
+                Prisma.BatchPayload,
                 Context
             >,
         ) => Omit<
@@ -480,7 +391,7 @@ export interface ClientType<AppRouter extends AnyRouter, Context = AppRouter['_d
             opts?: UseTRPCMutationOptions<
                 Prisma.TodoUpdateArgs,
                 TRPCClientErrorLike<AppRouter>,
-                Prisma.TodoGetPayload<null>,
+                Prisma.TodoGetPayload<T>,
                 Context
             >,
         ) => Omit<
@@ -503,7 +414,7 @@ export interface ClientType<AppRouter extends AnyRouter, Context = AppRouter['_d
             opts?: UseTRPCMutationOptions<
                 Prisma.TodoUpsertArgs,
                 TRPCClientErrorLike<AppRouter>,
-                Prisma.TodoGetPayload<null>,
+                Prisma.TodoGetPayload<T>,
                 Context
             >,
         ) => Omit<
@@ -522,7 +433,14 @@ export interface ClientType<AppRouter extends AnyRouter, Context = AppRouter['_d
         };
     };
     count: {
-        useQuery: <T extends Prisma.TodoCountArgs>(
+        useQuery: <
+            T extends Prisma.TodoCountArgs,
+            TData = 'select' extends keyof T
+                ? T['select'] extends true
+                    ? number
+                    : Prisma.GetScalarType<T['select'], Prisma.TodoCountAggregateOutputType>
+                : number,
+        >(
             input: Prisma.Subset<T, Prisma.TodoCountArgs>,
             opts?: UseTRPCQueryOptions<
                 string,
@@ -532,21 +450,10 @@ export interface ClientType<AppRouter extends AnyRouter, Context = AppRouter['_d
                         ? number
                         : Prisma.GetScalarType<T['select'], Prisma.TodoCountAggregateOutputType>
                     : number,
-                'select' extends keyof T
-                    ? T['select'] extends true
-                        ? number
-                        : Prisma.GetScalarType<T['select'], Prisma.TodoCountAggregateOutputType>
-                    : number,
+                TData,
                 Error
             >,
-        ) => UseTRPCQueryResult<
-            'select' extends keyof T
-                ? T['select'] extends true
-                    ? number
-                    : Prisma.GetScalarType<T['select'], Prisma.TodoCountAggregateOutputType>
-                : number,
-            TRPCClientErrorLike<AppRouter>
-        >;
+        ) => UseTRPCQueryResult<TData, TRPCClientErrorLike<AppRouter>>;
         useInfiniteQuery: <T extends Prisma.TodoCountArgs>(
             input: Omit<Prisma.Subset<T, Prisma.TodoCountArgs>, 'cursor'>,
             opts?: UseTRPCInfiniteQueryOptions<
