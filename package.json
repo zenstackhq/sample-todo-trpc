@@ -27,8 +27,8 @@
         "@trpc/next": "^10.44.1",
         "@trpc/react-query": "^10.5.0",
         "@trpc/server": "^10.5.0",
-        "@zenstackhq/runtime": "^1.12.1",
-        "@zenstackhq/trpc": "^1.12.1",
+        "@zenstackhq/runtime": "^1.12.2",
+        "@zenstackhq/trpc": "^1.12.2",
         "babel-plugin-superjson-next": "^0.4.5",
         "bcryptjs": "^2.4.3",
         "cross-env": "^7.0.3",
@@ -57,6 +57,6 @@
         "prisma": "^5.7.1",
         "tailwindcss": "^3.1.8",
         "typescript": "^5.3.2",
-        "zenstack": "^1.12.1"
+        "zenstack": "^1.12.2"
     }
 }
