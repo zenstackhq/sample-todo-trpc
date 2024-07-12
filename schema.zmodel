@@ -153,12 +153,8 @@ model Todo {
     title       String    @length(1, 100)
     completedAt DateTime?
 
-    // require login
-    @@deny('all', auth() == null)
-
-    // owner has full access, also space members have full access (if the parent List is not private)
-    @@allow('all', list.owner == auth())
-    @@allow('all', list.space.members?[user == auth()] && !list.private)
+    // full access if the parent list is readable
+    @@allow('all', check(list, 'read'))
 
     // update cannot change owner
     @@deny('update', future().owner != owner)
