@@ -27,7 +27,7 @@
         "@trpc/next": "^10.44.1",
         "@trpc/react-query": "^10.5.0",
         "@trpc/server": "^10.5.0",
-        "@zenstackhq/runtime": "^2.3.1",
+        "@zenstackhq/runtime": "^2.3.2",
         "@zenstackhq/trpc": "^2.3.1",
         "babel-plugin-superjson-next": "^0.4.5",
         "bcryptjs": "^2.4.3",
