@@ -60,6 +60,9 @@ const errorWrappedProc = t.procedure.use(async ({ next }) => {
     }
 });
 
-export const appRouter = createCRUDRouter(t.router, errorWrappedProc);
+export const createTRPCRouter = t.router;
+export const procedure = errorWrappedProc;
+
+export const appRouter = createCRUDRouter();
 
 export type AppRouter = typeof appRouter;

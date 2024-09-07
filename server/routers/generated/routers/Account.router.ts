@@ -1,15 +1,18 @@
 /* eslint-disable */
-import { type RouterFactory, type ProcBuilder, type BaseConfig, db } from ".";
+import { db } from ".";
+import { createTRPCRouter } from "../../_app";
+import { procedure } from "../../_app";
 import * as _Schema from '@zenstackhq/runtime/zod/input';
 const $Schema: typeof _Schema = (_Schema as any).default ?? _Schema;
 import { checkRead, checkMutate } from '../helper';
 import type { Prisma } from '@zenstackhq/runtime/models';
 import type { UseTRPCMutationOptions, UseTRPCMutationResult, UseTRPCQueryOptions, UseTRPCQueryResult, UseTRPCInfiniteQueryOptions, UseTRPCInfiniteQueryResult } from '@trpc/react-query/shared';
 import type { TRPCClientErrorLike } from '@trpc/client';
-import type { AnyRouter } from '@trpc/server';
+import type { AnyTRPCRouter as AnyRouter } from '@trpc/server';
+import type { UseTRPCSuspenseQueryOptions, UseTRPCSuspenseQueryResult, UseTRPCSuspenseInfiniteQueryOptions, UseTRPCSuspenseInfiniteQueryResult } from '@trpc/react-query/shared';
 
-export default function createRouter<Config extends BaseConfig>(router: RouterFactory<Config>, procedure: ProcBuilder<Config>) {
-    return router({
+export default function createRouter() {
+    return createTRPCRouter({
 
         aggregate: procedure.input($Schema.AccountInputSchema.aggregate).query(({ ctx, input }) => checkRead(db(ctx).account.aggregate(input as any))),
 
@@ -50,18 +53,27 @@ export interface ClientType<AppRouter extends AnyRouter, Context = AppRouter['_d
 
         useQuery: <T extends Prisma.AccountAggregateArgs, TData = Prisma.GetAccountAggregateType<T>>(
             input: Prisma.Subset<T, Prisma.AccountAggregateArgs>,
-            opts?: UseTRPCQueryOptions<string, T, Prisma.GetAccountAggregateType<T>, TData, Error>
+            opts?: UseTRPCQueryOptions<Prisma.GetAccountAggregateType<T>, TData, Error>
         ) => UseTRPCQueryResult<
             TData,
             TRPCClientErrorLike<AppRouter>
         >;
         useInfiniteQuery: <T extends Prisma.AccountAggregateArgs>(
             input: Omit<Prisma.Subset<T, Prisma.AccountAggregateArgs>, 'cursor'>,
-            opts?: UseTRPCInfiniteQueryOptions<string, T, Prisma.GetAccountAggregateType<T>, Error>
+            opts?: UseTRPCInfiniteQueryOptions<T, Prisma.GetAccountAggregateType<T>, Error>
         ) => UseTRPCInfiniteQueryResult<
             Prisma.GetAccountAggregateType<T>,
-            TRPCClientErrorLike<AppRouter>
+            TRPCClientErrorLike<AppRouter>,
+            T
         >;
+        useSuspenseQuery: <T extends Prisma.AccountAggregateArgs, TData = Prisma.GetAccountAggregateType<T>>(
+            input: Prisma.Subset<T, Prisma.AccountAggregateArgs>,
+            opts?: UseTRPCSuspenseQueryOptions<Prisma.GetAccountAggregateType<T>, TData, Error>
+        ) => UseTRPCSuspenseQueryResult<TData, TRPCClientErrorLike<AppRouter>>;
+        useSuspenseInfiniteQuery: <T extends Prisma.AccountAggregateArgs>(
+            input: Omit<Prisma.Subset<T, Prisma.AccountAggregateArgs>, 'cursor'>,
+            opts?: UseTRPCSuspenseInfiniteQueryOptions<T, Prisma.GetAccountAggregateType<T>, Error>
+        ) => UseTRPCSuspenseInfiniteQueryResult<Prisma.GetAccountAggregateType<T>, TRPCClientErrorLike<AppRouter>, T>;
 
     };
     createMany: {
@@ -124,90 +136,135 @@ export interface ClientType<AppRouter extends AnyRouter, Context = AppRouter['_d
 
         useQuery: <T extends Prisma.AccountFindFirstArgs, TData = Prisma.AccountGetPayload<T>>(
             input: Prisma.SelectSubset<T, Prisma.AccountFindFirstArgs>,
-            opts?: UseTRPCQueryOptions<string, T, Prisma.AccountGetPayload<T>, TData, Error>
+            opts?: UseTRPCQueryOptions<Prisma.AccountGetPayload<T>, TData, Error>
         ) => UseTRPCQueryResult<
             TData,
             TRPCClientErrorLike<AppRouter>
         >;
         useInfiniteQuery: <T extends Prisma.AccountFindFirstArgs>(
             input: Omit<Prisma.SelectSubset<T, Prisma.AccountFindFirstArgs>, 'cursor'>,
-            opts?: UseTRPCInfiniteQueryOptions<string, T, Prisma.AccountGetPayload<T>, Error>
+            opts?: UseTRPCInfiniteQueryOptions<T, Prisma.AccountGetPayload<T>, Error>
         ) => UseTRPCInfiniteQueryResult<
             Prisma.AccountGetPayload<T>,
-            TRPCClientErrorLike<AppRouter>
+            TRPCClientErrorLike<AppRouter>,
+            T
         >;
+        useSuspenseQuery: <T extends Prisma.AccountFindFirstArgs, TData = Prisma.AccountGetPayload<T>>(
+            input: Prisma.SelectSubset<T, Prisma.AccountFindFirstArgs>,
+            opts?: UseTRPCSuspenseQueryOptions<Prisma.AccountGetPayload<T>, TData, Error>
+        ) => UseTRPCSuspenseQueryResult<TData, TRPCClientErrorLike<AppRouter>>;
+        useSuspenseInfiniteQuery: <T extends Prisma.AccountFindFirstArgs>(
+            input: Omit<Prisma.SelectSubset<T, Prisma.AccountFindFirstArgs>, 'cursor'>,
+            opts?: UseTRPCSuspenseInfiniteQueryOptions<T, Prisma.AccountGetPayload<T>, Error>
+        ) => UseTRPCSuspenseInfiniteQueryResult<Prisma.AccountGetPayload<T>, TRPCClientErrorLike<AppRouter>, T>;
 
     };
     findFirstOrThrow: {
 
         useQuery: <T extends Prisma.AccountFindFirstOrThrowArgs, TData = Prisma.AccountGetPayload<T>>(
             input: Prisma.SelectSubset<T, Prisma.AccountFindFirstOrThrowArgs>,
-            opts?: UseTRPCQueryOptions<string, T, Prisma.AccountGetPayload<T>, TData, Error>
+            opts?: UseTRPCQueryOptions<Prisma.AccountGetPayload<T>, TData, Error>
         ) => UseTRPCQueryResult<
             TData,
             TRPCClientErrorLike<AppRouter>
         >;
         useInfiniteQuery: <T extends Prisma.AccountFindFirstOrThrowArgs>(
             input: Omit<Prisma.SelectSubset<T, Prisma.AccountFindFirstOrThrowArgs>, 'cursor'>,
-            opts?: UseTRPCInfiniteQueryOptions<string, T, Prisma.AccountGetPayload<T>, Error>
+            opts?: UseTRPCInfiniteQueryOptions<T, Prisma.AccountGetPayload<T>, Error>
         ) => UseTRPCInfiniteQueryResult<
             Prisma.AccountGetPayload<T>,
-            TRPCClientErrorLike<AppRouter>
+            TRPCClientErrorLike<AppRouter>,
+            T
         >;
+        useSuspenseQuery: <T extends Prisma.AccountFindFirstOrThrowArgs, TData = Prisma.AccountGetPayload<T>>(
+            input: Prisma.SelectSubset<T, Prisma.AccountFindFirstOrThrowArgs>,
+            opts?: UseTRPCSuspenseQueryOptions<Prisma.AccountGetPayload<T>, TData, Error>
+        ) => UseTRPCSuspenseQueryResult<TData, TRPCClientErrorLike<AppRouter>>;
+        useSuspenseInfiniteQuery: <T extends Prisma.AccountFindFirstOrThrowArgs>(
+            input: Omit<Prisma.SelectSubset<T, Prisma.AccountFindFirstOrThrowArgs>, 'cursor'>,
+            opts?: UseTRPCSuspenseInfiniteQueryOptions<T, Prisma.AccountGetPayload<T>, Error>
+        ) => UseTRPCSuspenseInfiniteQueryResult<Prisma.AccountGetPayload<T>, TRPCClientErrorLike<AppRouter>, T>;
 
     };
     findMany: {
 
         useQuery: <T extends Prisma.AccountFindManyArgs, TData = Array<Prisma.AccountGetPayload<T>>>(
             input: Prisma.SelectSubset<T, Prisma.AccountFindManyArgs>,
-            opts?: UseTRPCQueryOptions<string, T, Array<Prisma.AccountGetPayload<T>>, TData, Error>
+            opts?: UseTRPCQueryOptions<Array<Prisma.AccountGetPayload<T>>, TData, Error>
         ) => UseTRPCQueryResult<
             TData,
             TRPCClientErrorLike<AppRouter>
         >;
         useInfiniteQuery: <T extends Prisma.AccountFindManyArgs>(
             input: Omit<Prisma.SelectSubset<T, Prisma.AccountFindManyArgs>, 'cursor'>,
-            opts?: UseTRPCInfiniteQueryOptions<string, T, Array<Prisma.AccountGetPayload<T>>, Error>
+            opts?: UseTRPCInfiniteQueryOptions<T, Array<Prisma.AccountGetPayload<T>>, Error>
         ) => UseTRPCInfiniteQueryResult<
             Array<Prisma.AccountGetPayload<T>>,
-            TRPCClientErrorLike<AppRouter>
+            TRPCClientErrorLike<AppRouter>,
+            T
         >;
+        useSuspenseQuery: <T extends Prisma.AccountFindManyArgs, TData = Array<Prisma.AccountGetPayload<T>>>(
+            input: Prisma.SelectSubset<T, Prisma.AccountFindManyArgs>,
+            opts?: UseTRPCSuspenseQueryOptions<Array<Prisma.AccountGetPayload<T>>, TData, Error>
+        ) => UseTRPCSuspenseQueryResult<TData, TRPCClientErrorLike<AppRouter>>;
+        useSuspenseInfiniteQuery: <T extends Prisma.AccountFindManyArgs>(
+            input: Omit<Prisma.SelectSubset<T, Prisma.AccountFindManyArgs>, 'cursor'>,
+            opts?: UseTRPCSuspenseInfiniteQueryOptions<T, Array<Prisma.AccountGetPayload<T>>, Error>
+        ) => UseTRPCSuspenseInfiniteQueryResult<Array<Prisma.AccountGetPayload<T>>, TRPCClientErrorLike<AppRouter>, T>;
 
     };
     findUnique: {
 
         useQuery: <T extends Prisma.AccountFindUniqueArgs, TData = Prisma.AccountGetPayload<T>>(
             input: Prisma.SelectSubset<T, Prisma.AccountFindUniqueArgs>,
-            opts?: UseTRPCQueryOptions<string, T, Prisma.AccountGetPayload<T>, TData, Error>
+            opts?: UseTRPCQueryOptions<Prisma.AccountGetPayload<T>, TData, Error>
         ) => UseTRPCQueryResult<
             TData,
             TRPCClientErrorLike<AppRouter>
         >;
         useInfiniteQuery: <T extends Prisma.AccountFindUniqueArgs>(
             input: Omit<Prisma.SelectSubset<T, Prisma.AccountFindUniqueArgs>, 'cursor'>,
-            opts?: UseTRPCInfiniteQueryOptions<string, T, Prisma.AccountGetPayload<T>, Error>
+            opts?: UseTRPCInfiniteQueryOptions<T, Prisma.AccountGetPayload<T>, Error>
         ) => UseTRPCInfiniteQueryResult<
             Prisma.AccountGetPayload<T>,
-            TRPCClientErrorLike<AppRouter>
+            TRPCClientErrorLike<AppRouter>,
+            T
         >;
+        useSuspenseQuery: <T extends Prisma.AccountFindUniqueArgs, TData = Prisma.AccountGetPayload<T>>(
+            input: Prisma.SelectSubset<T, Prisma.AccountFindUniqueArgs>,
+            opts?: UseTRPCSuspenseQueryOptions<Prisma.AccountGetPayload<T>, TData, Error>
+        ) => UseTRPCSuspenseQueryResult<TData, TRPCClientErrorLike<AppRouter>>;
+        useSuspenseInfiniteQuery: <T extends Prisma.AccountFindUniqueArgs>(
+            input: Omit<Prisma.SelectSubset<T, Prisma.AccountFindUniqueArgs>, 'cursor'>,
+            opts?: UseTRPCSuspenseInfiniteQueryOptions<T, Prisma.AccountGetPayload<T>, Error>
+        ) => UseTRPCSuspenseInfiniteQueryResult<Prisma.AccountGetPayload<T>, TRPCClientErrorLike<AppRouter>, T>;
 
     };
     findUniqueOrThrow: {
 
         useQuery: <T extends Prisma.AccountFindUniqueOrThrowArgs, TData = Prisma.AccountGetPayload<T>>(
             input: Prisma.SelectSubset<T, Prisma.AccountFindUniqueOrThrowArgs>,
-            opts?: UseTRPCQueryOptions<string, T, Prisma.AccountGetPayload<T>, TData, Error>
+            opts?: UseTRPCQueryOptions<Prisma.AccountGetPayload<T>, TData, Error>
         ) => UseTRPCQueryResult<
             TData,
             TRPCClientErrorLike<AppRouter>
         >;
         useInfiniteQuery: <T extends Prisma.AccountFindUniqueOrThrowArgs>(
             input: Omit<Prisma.SelectSubset<T, Prisma.AccountFindUniqueOrThrowArgs>, 'cursor'>,
-            opts?: UseTRPCInfiniteQueryOptions<string, T, Prisma.AccountGetPayload<T>, Error>
+            opts?: UseTRPCInfiniteQueryOptions<T, Prisma.AccountGetPayload<T>, Error>
         ) => UseTRPCInfiniteQueryResult<
             Prisma.AccountGetPayload<T>,
-            TRPCClientErrorLike<AppRouter>
+            TRPCClientErrorLike<AppRouter>,
+            T
         >;
+        useSuspenseQuery: <T extends Prisma.AccountFindUniqueOrThrowArgs, TData = Prisma.AccountGetPayload<T>>(
+            input: Prisma.SelectSubset<T, Prisma.AccountFindUniqueOrThrowArgs>,
+            opts?: UseTRPCSuspenseQueryOptions<Prisma.AccountGetPayload<T>, TData, Error>
+        ) => UseTRPCSuspenseQueryResult<TData, TRPCClientErrorLike<AppRouter>>;
+        useSuspenseInfiniteQuery: <T extends Prisma.AccountFindUniqueOrThrowArgs>(
+            input: Omit<Prisma.SelectSubset<T, Prisma.AccountFindUniqueOrThrowArgs>, 'cursor'>,
+            opts?: UseTRPCSuspenseInfiniteQueryOptions<T, Prisma.AccountGetPayload<T>, Error>
+        ) => UseTRPCSuspenseInfiniteQueryResult<Prisma.AccountGetPayload<T>, TRPCClientErrorLike<AppRouter>, T>;
 
     };
     groupBy: {
@@ -270,7 +327,7 @@ export interface ClientType<AppRouter extends AnyRouter, Context = AppRouter['_d
             }[OrderFields]
             , TData = {} extends InputErrors ? Prisma.GetAccountGroupByPayload<T> : InputErrors>(
                 input: Prisma.SubsetIntersection<T, Prisma.AccountGroupByArgs, OrderByArg> & InputErrors,
-                opts?: UseTRPCQueryOptions<string, T, {} extends InputErrors ? Prisma.GetAccountGroupByPayload<T> : InputErrors, TData, Error>
+                opts?: UseTRPCQueryOptions<{} extends InputErrors ? Prisma.GetAccountGroupByPayload<T> : InputErrors, TData, Error>
             ) => UseTRPCQueryResult<
                 TData,
                 TRPCClientErrorLike<AppRouter>
@@ -333,11 +390,132 @@ export interface ClientType<AppRouter extends AnyRouter, Context = AppRouter['_d
             }[OrderFields]
         >(
             input: Omit<Prisma.SubsetIntersection<T, Prisma.AccountGroupByArgs, OrderByArg> & InputErrors, 'cursor'>,
-            opts?: UseTRPCInfiniteQueryOptions<string, T, {} extends InputErrors ? Prisma.GetAccountGroupByPayload<T> : InputErrors, Error>
+            opts?: UseTRPCInfiniteQueryOptions<T, {} extends InputErrors ? Prisma.GetAccountGroupByPayload<T> : InputErrors, Error>
         ) => UseTRPCInfiniteQueryResult<
             {} extends InputErrors ? Prisma.GetAccountGroupByPayload<T> : InputErrors,
-            TRPCClientErrorLike<AppRouter>
+            TRPCClientErrorLike<AppRouter>,
+            T
         >;
+        useSuspenseQuery: <T extends Prisma.AccountGroupByArgs,
+            HasSelectOrTake extends Prisma.Or<
+                Prisma.Extends<'skip', Prisma.Keys<T>>,
+                Prisma.Extends<'take', Prisma.Keys<T>>
+            >,
+            OrderByArg extends Prisma.True extends HasSelectOrTake
+            ? { orderBy: Prisma.AccountGroupByArgs['orderBy'] }
+            : { orderBy?: Prisma.AccountGroupByArgs['orderBy'] },
+            OrderFields extends Prisma.ExcludeUnderscoreKeys<Prisma.Keys<Prisma.MaybeTupleToUnion<T['orderBy']>>>,
+            ByFields extends Prisma.MaybeTupleToUnion<T['by']>,
+            ByValid extends Prisma.Has<ByFields, OrderFields>,
+            HavingFields extends Prisma.GetHavingFields<T['having']>,
+            HavingValid extends Prisma.Has<ByFields, HavingFields>,
+            ByEmpty extends T['by'] extends never[] ? Prisma.True : Prisma.False,
+            InputErrors extends ByEmpty extends Prisma.True
+            ? `Error: "by" must not be empty.`
+            : HavingValid extends Prisma.False
+            ? {
+                [P in HavingFields]: P extends ByFields
+                ? never
+                : P extends string
+                ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+                : [
+                    Error,
+                    'Field ',
+                    P,
+                    ` in "having" needs to be provided in "by"`,
+                ]
+            }[HavingFields]
+            : 'take' extends Prisma.Keys<T>
+            ? 'orderBy' extends Prisma.Keys<T>
+            ? ByValid extends Prisma.True
+            ? {}
+            : {
+                [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+            : 'Error: If you provide "take", you also need to provide "orderBy"'
+            : 'skip' extends Prisma.Keys<T>
+            ? 'orderBy' extends Prisma.Keys<T>
+            ? ByValid extends Prisma.True
+            ? {}
+            : {
+                [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+            : 'Error: If you provide "skip", you also need to provide "orderBy"'
+            : ByValid extends Prisma.True
+            ? {}
+            : {
+                [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+            , TData = {} extends InputErrors ? Prisma.GetAccountGroupByPayload<T> : InputErrors>(
+                input: Prisma.SubsetIntersection<T, Prisma.AccountGroupByArgs, OrderByArg> & InputErrors,
+                opts?: UseTRPCSuspenseQueryOptions<{} extends InputErrors ? Prisma.GetAccountGroupByPayload<T> : InputErrors, TData, Error>
+            ) => UseTRPCSuspenseQueryResult<TData, TRPCClientErrorLike<AppRouter>>;
+        useSuspenseInfiniteQuery: <T extends Prisma.AccountGroupByArgs,
+            HasSelectOrTake extends Prisma.Or<
+                Prisma.Extends<'skip', Prisma.Keys<T>>,
+                Prisma.Extends<'take', Prisma.Keys<T>>
+            >,
+            OrderByArg extends Prisma.True extends HasSelectOrTake
+            ? { orderBy: Prisma.AccountGroupByArgs['orderBy'] }
+            : { orderBy?: Prisma.AccountGroupByArgs['orderBy'] },
+            OrderFields extends Prisma.ExcludeUnderscoreKeys<Prisma.Keys<Prisma.MaybeTupleToUnion<T['orderBy']>>>,
+            ByFields extends Prisma.MaybeTupleToUnion<T['by']>,
+            ByValid extends Prisma.Has<ByFields, OrderFields>,
+            HavingFields extends Prisma.GetHavingFields<T['having']>,
+            HavingValid extends Prisma.Has<ByFields, HavingFields>,
+            ByEmpty extends T['by'] extends never[] ? Prisma.True : Prisma.False,
+            InputErrors extends ByEmpty extends Prisma.True
+            ? `Error: "by" must not be empty.`
+            : HavingValid extends Prisma.False
+            ? {
+                [P in HavingFields]: P extends ByFields
+                ? never
+                : P extends string
+                ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+                : [
+                    Error,
+                    'Field ',
+                    P,
+                    ` in "having" needs to be provided in "by"`,
+                ]
+            }[HavingFields]
+            : 'take' extends Prisma.Keys<T>
+            ? 'orderBy' extends Prisma.Keys<T>
+            ? ByValid extends Prisma.True
+            ? {}
+            : {
+                [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+            : 'Error: If you provide "take", you also need to provide "orderBy"'
+            : 'skip' extends Prisma.Keys<T>
+            ? 'orderBy' extends Prisma.Keys<T>
+            ? ByValid extends Prisma.True
+            ? {}
+            : {
+                [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+            : 'Error: If you provide "skip", you also need to provide "orderBy"'
+            : ByValid extends Prisma.True
+            ? {}
+            : {
+                [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        >(
+            input: Omit<Prisma.SubsetIntersection<T, Prisma.AccountGroupByArgs, OrderByArg> & InputErrors, 'cursor'>,
+            opts?: UseTRPCSuspenseInfiniteQueryOptions<T, {} extends InputErrors ? Prisma.GetAccountGroupByPayload<T> : InputErrors, Error>
+        ) => UseTRPCSuspenseInfiniteQueryResult<{} extends InputErrors ? Prisma.GetAccountGroupByPayload<T> : InputErrors, TRPCClientErrorLike<AppRouter>, T>;
 
     };
     updateMany: {
@@ -390,7 +568,7 @@ export interface ClientType<AppRouter extends AnyRouter, Context = AppRouter['_d
             : Prisma.GetScalarType<T['select'], Prisma.AccountCountAggregateOutputType>
             : number>(
                 input: Prisma.Subset<T, Prisma.AccountCountArgs>,
-                opts?: UseTRPCQueryOptions<string, T, 'select' extends keyof T
+                opts?: UseTRPCQueryOptions<'select' extends keyof T
                     ? T['select'] extends true
                     ? number
                     : Prisma.GetScalarType<T['select'], Prisma.AccountCountAggregateOutputType>
@@ -401,7 +579,7 @@ export interface ClientType<AppRouter extends AnyRouter, Context = AppRouter['_d
             >;
         useInfiniteQuery: <T extends Prisma.AccountCountArgs>(
             input: Omit<Prisma.Subset<T, Prisma.AccountCountArgs>, 'cursor'>,
-            opts?: UseTRPCInfiniteQueryOptions<string, T, 'select' extends keyof T
+            opts?: UseTRPCInfiniteQueryOptions<T, 'select' extends keyof T
                 ? T['select'] extends true
                 ? number
                 : Prisma.GetScalarType<T['select'], Prisma.AccountCountAggregateOutputType>
@@ -412,8 +590,33 @@ export interface ClientType<AppRouter extends AnyRouter, Context = AppRouter['_d
             ? number
             : Prisma.GetScalarType<T['select'], Prisma.AccountCountAggregateOutputType>
             : number,
-            TRPCClientErrorLike<AppRouter>
+            TRPCClientErrorLike<AppRouter>,
+            T
         >;
+        useSuspenseQuery: <T extends Prisma.AccountCountArgs, TData = 'select' extends keyof T
+            ? T['select'] extends true
+            ? number
+            : Prisma.GetScalarType<T['select'], Prisma.AccountCountAggregateOutputType>
+            : number>(
+                input: Prisma.Subset<T, Prisma.AccountCountArgs>,
+                opts?: UseTRPCSuspenseQueryOptions<'select' extends keyof T
+                    ? T['select'] extends true
+                    ? number
+                    : Prisma.GetScalarType<T['select'], Prisma.AccountCountAggregateOutputType>
+                    : number, TData, Error>
+            ) => UseTRPCSuspenseQueryResult<TData, TRPCClientErrorLike<AppRouter>>;
+        useSuspenseInfiniteQuery: <T extends Prisma.AccountCountArgs>(
+            input: Omit<Prisma.Subset<T, Prisma.AccountCountArgs>, 'cursor'>,
+            opts?: UseTRPCSuspenseInfiniteQueryOptions<T, 'select' extends keyof T
+                ? T['select'] extends true
+                ? number
+                : Prisma.GetScalarType<T['select'], Prisma.AccountCountAggregateOutputType>
+                : number, Error>
+        ) => UseTRPCSuspenseInfiniteQueryResult<'select' extends keyof T
+            ? T['select'] extends true
+            ? number
+            : Prisma.GetScalarType<T['select'], Prisma.AccountCountAggregateOutputType>
+            : number, TRPCClientErrorLike<AppRouter>, T>;
 
     };
 }
