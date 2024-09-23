@@ -16,19 +16,19 @@ export default function createRouter() {
 
         aggregate: procedure.input($Schema.SpaceUserInputSchema.aggregate).query(({ ctx, input }) => checkRead(db(ctx).spaceUser.aggregate(input as any))),
 
-        createMany: procedure.input($Schema.SpaceUserInputSchema.createMany).mutation(async ({ ctx, input }) => checkMutate(db(ctx).spaceUser.createMany(input as any))),
+        createMany: procedure.input($Schema.SpaceUserInputSchema.createMany.optional()).mutation(async ({ ctx, input }) => checkMutate(db(ctx).spaceUser.createMany(input as any))),
 
         create: procedure.input($Schema.SpaceUserInputSchema.create).mutation(async ({ ctx, input }) => checkMutate(db(ctx).spaceUser.create(input as any))),
 
-        deleteMany: procedure.input($Schema.SpaceUserInputSchema.deleteMany).mutation(async ({ ctx, input }) => checkMutate(db(ctx).spaceUser.deleteMany(input as any))),
+        deleteMany: procedure.input($Schema.SpaceUserInputSchema.deleteMany.optional()).mutation(async ({ ctx, input }) => checkMutate(db(ctx).spaceUser.deleteMany(input as any))),
 
         delete: procedure.input($Schema.SpaceUserInputSchema.delete).mutation(async ({ ctx, input }) => checkMutate(db(ctx).spaceUser.delete(input as any))),
 
-        findFirst: procedure.input($Schema.SpaceUserInputSchema.findFirst).query(({ ctx, input }) => checkRead(db(ctx).spaceUser.findFirst(input as any))),
+        findFirst: procedure.input($Schema.SpaceUserInputSchema.findFirst.optional()).query(({ ctx, input }) => checkRead(db(ctx).spaceUser.findFirst(input as any))),
 
-        findFirstOrThrow: procedure.input($Schema.SpaceUserInputSchema.findFirst).query(({ ctx, input }) => checkRead(db(ctx).spaceUser.findFirstOrThrow(input as any))),
+        findFirstOrThrow: procedure.input($Schema.SpaceUserInputSchema.findFirst.optional()).query(({ ctx, input }) => checkRead(db(ctx).spaceUser.findFirstOrThrow(input as any))),
 
-        findMany: procedure.input($Schema.SpaceUserInputSchema.findMany).query(({ ctx, input }) => checkRead(db(ctx).spaceUser.findMany(input as any))),
+        findMany: procedure.input($Schema.SpaceUserInputSchema.findMany.optional()).query(({ ctx, input }) => checkRead(db(ctx).spaceUser.findMany(input as any))),
 
         findUnique: procedure.input($Schema.SpaceUserInputSchema.findUnique).query(({ ctx, input }) => checkRead(db(ctx).spaceUser.findUnique(input as any))),
 
@@ -42,7 +42,7 @@ export default function createRouter() {
 
         upsert: procedure.input($Schema.SpaceUserInputSchema.upsert).mutation(async ({ ctx, input }) => checkMutate(db(ctx).spaceUser.upsert(input as any))),
 
-        count: procedure.input($Schema.SpaceUserInputSchema.count).query(({ ctx, input }) => checkRead(db(ctx).spaceUser.count(input as any))),
+        count: procedure.input($Schema.SpaceUserInputSchema.count.optional()).query(({ ctx, input }) => checkRead(db(ctx).spaceUser.count(input as any))),
 
     }
     );
@@ -135,14 +135,14 @@ export interface ClientType<AppRouter extends AnyRouter, Context = AppRouter['_d
     findFirst: {
 
         useQuery: <T extends Prisma.SpaceUserFindFirstArgs, TData = Prisma.SpaceUserGetPayload<T>>(
-            input: Prisma.SelectSubset<T, Prisma.SpaceUserFindFirstArgs>,
+            input?: Prisma.SelectSubset<T, Prisma.SpaceUserFindFirstArgs>,
             opts?: UseTRPCQueryOptions<Prisma.SpaceUserGetPayload<T>, TData, Error>
         ) => UseTRPCQueryResult<
             TData,
             TRPCClientErrorLike<AppRouter>
         >;
         useInfiniteQuery: <T extends Prisma.SpaceUserFindFirstArgs>(
-            input: Omit<Prisma.SelectSubset<T, Prisma.SpaceUserFindFirstArgs>, 'cursor'>,
+            input?: Omit<Prisma.SelectSubset<T, Prisma.SpaceUserFindFirstArgs>, 'cursor'>,
             opts?: UseTRPCInfiniteQueryOptions<T, Prisma.SpaceUserGetPayload<T>, Error>
         ) => UseTRPCInfiniteQueryResult<
             Prisma.SpaceUserGetPayload<T>,
@@ -150,11 +150,11 @@ export interface ClientType<AppRouter extends AnyRouter, Context = AppRouter['_d
             T
         >;
         useSuspenseQuery: <T extends Prisma.SpaceUserFindFirstArgs, TData = Prisma.SpaceUserGetPayload<T>>(
-            input: Prisma.SelectSubset<T, Prisma.SpaceUserFindFirstArgs>,
+            input?: Prisma.SelectSubset<T, Prisma.SpaceUserFindFirstArgs>,
             opts?: UseTRPCSuspenseQueryOptions<Prisma.SpaceUserGetPayload<T>, TData, Error>
         ) => UseTRPCSuspenseQueryResult<TData, TRPCClientErrorLike<AppRouter>>;
         useSuspenseInfiniteQuery: <T extends Prisma.SpaceUserFindFirstArgs>(
-            input: Omit<Prisma.SelectSubset<T, Prisma.SpaceUserFindFirstArgs>, 'cursor'>,
+            input?: Omit<Prisma.SelectSubset<T, Prisma.SpaceUserFindFirstArgs>, 'cursor'>,
             opts?: UseTRPCSuspenseInfiniteQueryOptions<T, Prisma.SpaceUserGetPayload<T>, Error>
         ) => UseTRPCSuspenseInfiniteQueryResult<Prisma.SpaceUserGetPayload<T>, TRPCClientErrorLike<AppRouter>, T>;
 
@@ -162,14 +162,14 @@ export interface ClientType<AppRouter extends AnyRouter, Context = AppRouter['_d
     findFirstOrThrow: {
 
         useQuery: <T extends Prisma.SpaceUserFindFirstOrThrowArgs, TData = Prisma.SpaceUserGetPayload<T>>(
-            input: Prisma.SelectSubset<T, Prisma.SpaceUserFindFirstOrThrowArgs>,
+            input?: Prisma.SelectSubset<T, Prisma.SpaceUserFindFirstOrThrowArgs>,
             opts?: UseTRPCQueryOptions<Prisma.SpaceUserGetPayload<T>, TData, Error>
         ) => UseTRPCQueryResult<
             TData,
             TRPCClientErrorLike<AppRouter>
         >;
         useInfiniteQuery: <T extends Prisma.SpaceUserFindFirstOrThrowArgs>(
-            input: Omit<Prisma.SelectSubset<T, Prisma.SpaceUserFindFirstOrThrowArgs>, 'cursor'>,
+            input?: Omit<Prisma.SelectSubset<T, Prisma.SpaceUserFindFirstOrThrowArgs>, 'cursor'>,
             opts?: UseTRPCInfiniteQueryOptions<T, Prisma.SpaceUserGetPayload<T>, Error>
         ) => UseTRPCInfiniteQueryResult<
             Prisma.SpaceUserGetPayload<T>,
@@ -177,11 +177,11 @@ export interface ClientType<AppRouter extends AnyRouter, Context = AppRouter['_d
             T
         >;
         useSuspenseQuery: <T extends Prisma.SpaceUserFindFirstOrThrowArgs, TData = Prisma.SpaceUserGetPayload<T>>(
-            input: Prisma.SelectSubset<T, Prisma.SpaceUserFindFirstOrThrowArgs>,
+            input?: Prisma.SelectSubset<T, Prisma.SpaceUserFindFirstOrThrowArgs>,
             opts?: UseTRPCSuspenseQueryOptions<Prisma.SpaceUserGetPayload<T>, TData, Error>
         ) => UseTRPCSuspenseQueryResult<TData, TRPCClientErrorLike<AppRouter>>;
         useSuspenseInfiniteQuery: <T extends Prisma.SpaceUserFindFirstOrThrowArgs>(
-            input: Omit<Prisma.SelectSubset<T, Prisma.SpaceUserFindFirstOrThrowArgs>, 'cursor'>,
+            input?: Omit<Prisma.SelectSubset<T, Prisma.SpaceUserFindFirstOrThrowArgs>, 'cursor'>,
             opts?: UseTRPCSuspenseInfiniteQueryOptions<T, Prisma.SpaceUserGetPayload<T>, Error>
         ) => UseTRPCSuspenseInfiniteQueryResult<Prisma.SpaceUserGetPayload<T>, TRPCClientErrorLike<AppRouter>, T>;
 
@@ -189,14 +189,14 @@ export interface ClientType<AppRouter extends AnyRouter, Context = AppRouter['_d
     findMany: {
 
         useQuery: <T extends Prisma.SpaceUserFindManyArgs, TData = Array<Prisma.SpaceUserGetPayload<T>>>(
-            input: Prisma.SelectSubset<T, Prisma.SpaceUserFindManyArgs>,
+            input?: Prisma.SelectSubset<T, Prisma.SpaceUserFindManyArgs>,
             opts?: UseTRPCQueryOptions<Array<Prisma.SpaceUserGetPayload<T>>, TData, Error>
         ) => UseTRPCQueryResult<
             TData,
             TRPCClientErrorLike<AppRouter>
         >;
         useInfiniteQuery: <T extends Prisma.SpaceUserFindManyArgs>(
-            input: Omit<Prisma.SelectSubset<T, Prisma.SpaceUserFindManyArgs>, 'cursor'>,
+            input?: Omit<Prisma.SelectSubset<T, Prisma.SpaceUserFindManyArgs>, 'cursor'>,
             opts?: UseTRPCInfiniteQueryOptions<T, Array<Prisma.SpaceUserGetPayload<T>>, Error>
         ) => UseTRPCInfiniteQueryResult<
             Array<Prisma.SpaceUserGetPayload<T>>,
@@ -204,11 +204,11 @@ export interface ClientType<AppRouter extends AnyRouter, Context = AppRouter['_d
             T
         >;
         useSuspenseQuery: <T extends Prisma.SpaceUserFindManyArgs, TData = Array<Prisma.SpaceUserGetPayload<T>>>(
-            input: Prisma.SelectSubset<T, Prisma.SpaceUserFindManyArgs>,
+            input?: Prisma.SelectSubset<T, Prisma.SpaceUserFindManyArgs>,
             opts?: UseTRPCSuspenseQueryOptions<Array<Prisma.SpaceUserGetPayload<T>>, TData, Error>
         ) => UseTRPCSuspenseQueryResult<TData, TRPCClientErrorLike<AppRouter>>;
         useSuspenseInfiniteQuery: <T extends Prisma.SpaceUserFindManyArgs>(
-            input: Omit<Prisma.SelectSubset<T, Prisma.SpaceUserFindManyArgs>, 'cursor'>,
+            input?: Omit<Prisma.SelectSubset<T, Prisma.SpaceUserFindManyArgs>, 'cursor'>,
             opts?: UseTRPCSuspenseInfiniteQueryOptions<T, Array<Prisma.SpaceUserGetPayload<T>>, Error>
         ) => UseTRPCSuspenseInfiniteQueryResult<Array<Prisma.SpaceUserGetPayload<T>>, TRPCClientErrorLike<AppRouter>, T>;
 
@@ -567,7 +567,7 @@ export interface ClientType<AppRouter extends AnyRouter, Context = AppRouter['_d
             ? number
             : Prisma.GetScalarType<T['select'], Prisma.SpaceUserCountAggregateOutputType>
             : number>(
-                input: Prisma.Subset<T, Prisma.SpaceUserCountArgs>,
+                input?: Prisma.Subset<T, Prisma.SpaceUserCountArgs>,
                 opts?: UseTRPCQueryOptions<'select' extends keyof T
                     ? T['select'] extends true
                     ? number
@@ -578,7 +578,7 @@ export interface ClientType<AppRouter extends AnyRouter, Context = AppRouter['_d
                 TRPCClientErrorLike<AppRouter>
             >;
         useInfiniteQuery: <T extends Prisma.SpaceUserCountArgs>(
-            input: Omit<Prisma.Subset<T, Prisma.SpaceUserCountArgs>, 'cursor'>,
+            input?: Omit<Prisma.Subset<T, Prisma.SpaceUserCountArgs>, 'cursor'>,
             opts?: UseTRPCInfiniteQueryOptions<T, 'select' extends keyof T
                 ? T['select'] extends true
                 ? number
@@ -598,7 +598,7 @@ export interface ClientType<AppRouter extends AnyRouter, Context = AppRouter['_d
             ? number
             : Prisma.GetScalarType<T['select'], Prisma.SpaceUserCountAggregateOutputType>
             : number>(
-                input: Prisma.Subset<T, Prisma.SpaceUserCountArgs>,
+                input?: Prisma.Subset<T, Prisma.SpaceUserCountArgs>,
                 opts?: UseTRPCSuspenseQueryOptions<'select' extends keyof T
                     ? T['select'] extends true
                     ? number
@@ -606,7 +606,7 @@ export interface ClientType<AppRouter extends AnyRouter, Context = AppRouter['_d
                     : number, TData, Error>
             ) => UseTRPCSuspenseQueryResult<TData, TRPCClientErrorLike<AppRouter>>;
         useSuspenseInfiniteQuery: <T extends Prisma.SpaceUserCountArgs>(
-            input: Omit<Prisma.Subset<T, Prisma.SpaceUserCountArgs>, 'cursor'>,
+            input?: Omit<Prisma.Subset<T, Prisma.SpaceUserCountArgs>, 'cursor'>,
             opts?: UseTRPCSuspenseInfiniteQueryOptions<T, 'select' extends keyof T
                 ? T['select'] extends true
                 ? number

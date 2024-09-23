@@ -16,19 +16,19 @@ export default function createRouter() {
 
         aggregate: procedure.input($Schema.AccountInputSchema.aggregate).query(({ ctx, input }) => checkRead(db(ctx).account.aggregate(input as any))),
 
-        createMany: procedure.input($Schema.AccountInputSchema.createMany).mutation(async ({ ctx, input }) => checkMutate(db(ctx).account.createMany(input as any))),
+        createMany: procedure.input($Schema.AccountInputSchema.createMany.optional()).mutation(async ({ ctx, input }) => checkMutate(db(ctx).account.createMany(input as any))),
 
         create: procedure.input($Schema.AccountInputSchema.create).mutation(async ({ ctx, input }) => checkMutate(db(ctx).account.create(input as any))),
 
-        deleteMany: procedure.input($Schema.AccountInputSchema.deleteMany).mutation(async ({ ctx, input }) => checkMutate(db(ctx).account.deleteMany(input as any))),
+        deleteMany: procedure.input($Schema.AccountInputSchema.deleteMany.optional()).mutation(async ({ ctx, input }) => checkMutate(db(ctx).account.deleteMany(input as any))),
 
         delete: procedure.input($Schema.AccountInputSchema.delete).mutation(async ({ ctx, input }) => checkMutate(db(ctx).account.delete(input as any))),
 
-        findFirst: procedure.input($Schema.AccountInputSchema.findFirst).query(({ ctx, input }) => checkRead(db(ctx).account.findFirst(input as any))),
+        findFirst: procedure.input($Schema.AccountInputSchema.findFirst.optional()).query(({ ctx, input }) => checkRead(db(ctx).account.findFirst(input as any))),
 
-        findFirstOrThrow: procedure.input($Schema.AccountInputSchema.findFirst).query(({ ctx, input }) => checkRead(db(ctx).account.findFirstOrThrow(input as any))),
+        findFirstOrThrow: procedure.input($Schema.AccountInputSchema.findFirst.optional()).query(({ ctx, input }) => checkRead(db(ctx).account.findFirstOrThrow(input as any))),
 
-        findMany: procedure.input($Schema.AccountInputSchema.findMany).query(({ ctx, input }) => checkRead(db(ctx).account.findMany(input as any))),
+        findMany: procedure.input($Schema.AccountInputSchema.findMany.optional()).query(({ ctx, input }) => checkRead(db(ctx).account.findMany(input as any))),
 
         findUnique: procedure.input($Schema.AccountInputSchema.findUnique).query(({ ctx, input }) => checkRead(db(ctx).account.findUnique(input as any))),
 
@@ -42,7 +42,7 @@ export default function createRouter() {
 
         upsert: procedure.input($Schema.AccountInputSchema.upsert).mutation(async ({ ctx, input }) => checkMutate(db(ctx).account.upsert(input as any))),
 
-        count: procedure.input($Schema.AccountInputSchema.count).query(({ ctx, input }) => checkRead(db(ctx).account.count(input as any))),
+        count: procedure.input($Schema.AccountInputSchema.count.optional()).query(({ ctx, input }) => checkRead(db(ctx).account.count(input as any))),
 
     }
     );
@@ -135,14 +135,14 @@ export interface ClientType<AppRouter extends AnyRouter, Context = AppRouter['_d
     findFirst: {
 
         useQuery: <T extends Prisma.AccountFindFirstArgs, TData = Prisma.AccountGetPayload<T>>(
-            input: Prisma.SelectSubset<T, Prisma.AccountFindFirstArgs>,
+            input?: Prisma.SelectSubset<T, Prisma.AccountFindFirstArgs>,
             opts?: UseTRPCQueryOptions<Prisma.AccountGetPayload<T>, TData, Error>
         ) => UseTRPCQueryResult<
             TData,
             TRPCClientErrorLike<AppRouter>
         >;
         useInfiniteQuery: <T extends Prisma.AccountFindFirstArgs>(
-            input: Omit<Prisma.SelectSubset<T, Prisma.AccountFindFirstArgs>, 'cursor'>,
+            input?: Omit<Prisma.SelectSubset<T, Prisma.AccountFindFirstArgs>, 'cursor'>,
             opts?: UseTRPCInfiniteQueryOptions<T, Prisma.AccountGetPayload<T>, Error>
         ) => UseTRPCInfiniteQueryResult<
             Prisma.AccountGetPayload<T>,
@@ -150,11 +150,11 @@ export interface ClientType<AppRouter extends AnyRouter, Context = AppRouter['_d
             T
         >;
         useSuspenseQuery: <T extends Prisma.AccountFindFirstArgs, TData = Prisma.AccountGetPayload<T>>(
-            input: Prisma.SelectSubset<T, Prisma.AccountFindFirstArgs>,
+            input?: Prisma.SelectSubset<T, Prisma.AccountFindFirstArgs>,
             opts?: UseTRPCSuspenseQueryOptions<Prisma.AccountGetPayload<T>, TData, Error>
         ) => UseTRPCSuspenseQueryResult<TData, TRPCClientErrorLike<AppRouter>>;
         useSuspenseInfiniteQuery: <T extends Prisma.AccountFindFirstArgs>(
-            input: Omit<Prisma.SelectSubset<T, Prisma.AccountFindFirstArgs>, 'cursor'>,
+            input?: Omit<Prisma.SelectSubset<T, Prisma.AccountFindFirstArgs>, 'cursor'>,
             opts?: UseTRPCSuspenseInfiniteQueryOptions<T, Prisma.AccountGetPayload<T>, Error>
         ) => UseTRPCSuspenseInfiniteQueryResult<Prisma.AccountGetPayload<T>, TRPCClientErrorLike<AppRouter>, T>;
 
@@ -162,14 +162,14 @@ export interface ClientType<AppRouter extends AnyRouter, Context = AppRouter['_d
     findFirstOrThrow: {
 
         useQuery: <T extends Prisma.AccountFindFirstOrThrowArgs, TData = Prisma.AccountGetPayload<T>>(
-            input: Prisma.SelectSubset<T, Prisma.AccountFindFirstOrThrowArgs>,
+            input?: Prisma.SelectSubset<T, Prisma.AccountFindFirstOrThrowArgs>,
             opts?: UseTRPCQueryOptions<Prisma.AccountGetPayload<T>, TData, Error>
         ) => UseTRPCQueryResult<
             TData,
             TRPCClientErrorLike<AppRouter>
         >;
         useInfiniteQuery: <T extends Prisma.AccountFindFirstOrThrowArgs>(
-            input: Omit<Prisma.SelectSubset<T, Prisma.AccountFindFirstOrThrowArgs>, 'cursor'>,
+            input?: Omit<Prisma.SelectSubset<T, Prisma.AccountFindFirstOrThrowArgs>, 'cursor'>,
             opts?: UseTRPCInfiniteQueryOptions<T, Prisma.AccountGetPayload<T>, Error>
         ) => UseTRPCInfiniteQueryResult<
             Prisma.AccountGetPayload<T>,
@@ -177,11 +177,11 @@ export interface ClientType<AppRouter extends AnyRouter, Context = AppRouter['_d
             T
         >;
         useSuspenseQuery: <T extends Prisma.AccountFindFirstOrThrowArgs, TData = Prisma.AccountGetPayload<T>>(
-            input: Prisma.SelectSubset<T, Prisma.AccountFindFirstOrThrowArgs>,
+            input?: Prisma.SelectSubset<T, Prisma.AccountFindFirstOrThrowArgs>,
             opts?: UseTRPCSuspenseQueryOptions<Prisma.AccountGetPayload<T>, TData, Error>
         ) => UseTRPCSuspenseQueryResult<TData, TRPCClientErrorLike<AppRouter>>;
         useSuspenseInfiniteQuery: <T extends Prisma.AccountFindFirstOrThrowArgs>(
-            input: Omit<Prisma.SelectSubset<T, Prisma.AccountFindFirstOrThrowArgs>, 'cursor'>,
+            input?: Omit<Prisma.SelectSubset<T, Prisma.AccountFindFirstOrThrowArgs>, 'cursor'>,
             opts?: UseTRPCSuspenseInfiniteQueryOptions<T, Prisma.AccountGetPayload<T>, Error>
         ) => UseTRPCSuspenseInfiniteQueryResult<Prisma.AccountGetPayload<T>, TRPCClientErrorLike<AppRouter>, T>;
 
@@ -189,14 +189,14 @@ export interface ClientType<AppRouter extends AnyRouter, Context = AppRouter['_d
     findMany: {
 
         useQuery: <T extends Prisma.AccountFindManyArgs, TData = Array<Prisma.AccountGetPayload<T>>>(
-            input: Prisma.SelectSubset<T, Prisma.AccountFindManyArgs>,
+            input?: Prisma.SelectSubset<T, Prisma.AccountFindManyArgs>,
             opts?: UseTRPCQueryOptions<Array<Prisma.AccountGetPayload<T>>, TData, Error>
         ) => UseTRPCQueryResult<
             TData,
             TRPCClientErrorLike<AppRouter>
         >;
         useInfiniteQuery: <T extends Prisma.AccountFindManyArgs>(
-            input: Omit<Prisma.SelectSubset<T, Prisma.AccountFindManyArgs>, 'cursor'>,
+            input?: Omit<Prisma.SelectSubset<T, Prisma.AccountFindManyArgs>, 'cursor'>,
             opts?: UseTRPCInfiniteQueryOptions<T, Array<Prisma.AccountGetPayload<T>>, Error>
         ) => UseTRPCInfiniteQueryResult<
             Array<Prisma.AccountGetPayload<T>>,
@@ -204,11 +204,11 @@ export interface ClientType<AppRouter extends AnyRouter, Context = AppRouter['_d
             T
         >;
         useSuspenseQuery: <T extends Prisma.AccountFindManyArgs, TData = Array<Prisma.AccountGetPayload<T>>>(
-            input: Prisma.SelectSubset<T, Prisma.AccountFindManyArgs>,
+            input?: Prisma.SelectSubset<T, Prisma.AccountFindManyArgs>,
             opts?: UseTRPCSuspenseQueryOptions<Array<Prisma.AccountGetPayload<T>>, TData, Error>
         ) => UseTRPCSuspenseQueryResult<TData, TRPCClientErrorLike<AppRouter>>;
         useSuspenseInfiniteQuery: <T extends Prisma.AccountFindManyArgs>(
-            input: Omit<Prisma.SelectSubset<T, Prisma.AccountFindManyArgs>, 'cursor'>,
+            input?: Omit<Prisma.SelectSubset<T, Prisma.AccountFindManyArgs>, 'cursor'>,
             opts?: UseTRPCSuspenseInfiniteQueryOptions<T, Array<Prisma.AccountGetPayload<T>>, Error>
         ) => UseTRPCSuspenseInfiniteQueryResult<Array<Prisma.AccountGetPayload<T>>, TRPCClientErrorLike<AppRouter>, T>;
 
@@ -567,7 +567,7 @@ export interface ClientType<AppRouter extends AnyRouter, Context = AppRouter['_d
             ? number
             : Prisma.GetScalarType<T['select'], Prisma.AccountCountAggregateOutputType>
             : number>(
-                input: Prisma.Subset<T, Prisma.AccountCountArgs>,
+                input?: Prisma.Subset<T, Prisma.AccountCountArgs>,
                 opts?: UseTRPCQueryOptions<'select' extends keyof T
                     ? T['select'] extends true
                     ? number
@@ -578,7 +578,7 @@ export interface ClientType<AppRouter extends AnyRouter, Context = AppRouter['_d
                 TRPCClientErrorLike<AppRouter>
             >;
         useInfiniteQuery: <T extends Prisma.AccountCountArgs>(
-            input: Omit<Prisma.Subset<T, Prisma.AccountCountArgs>, 'cursor'>,
+            input?: Omit<Prisma.Subset<T, Prisma.AccountCountArgs>, 'cursor'>,
             opts?: UseTRPCInfiniteQueryOptions<T, 'select' extends keyof T
                 ? T['select'] extends true
                 ? number
@@ -598,7 +598,7 @@ export interface ClientType<AppRouter extends AnyRouter, Context = AppRouter['_d
             ? number
             : Prisma.GetScalarType<T['select'], Prisma.AccountCountAggregateOutputType>
             : number>(
-                input: Prisma.Subset<T, Prisma.AccountCountArgs>,
+                input?: Prisma.Subset<T, Prisma.AccountCountArgs>,
                 opts?: UseTRPCSuspenseQueryOptions<'select' extends keyof T
                     ? T['select'] extends true
                     ? number
@@ -606,7 +606,7 @@ export interface ClientType<AppRouter extends AnyRouter, Context = AppRouter['_d
                     : number, TData, Error>
             ) => UseTRPCSuspenseQueryResult<TData, TRPCClientErrorLike<AppRouter>>;
         useSuspenseInfiniteQuery: <T extends Prisma.AccountCountArgs>(
-            input: Omit<Prisma.Subset<T, Prisma.AccountCountArgs>, 'cursor'>,
+            input?: Omit<Prisma.Subset<T, Prisma.AccountCountArgs>, 'cursor'>,
             opts?: UseTRPCSuspenseInfiniteQueryOptions<T, 'select' extends keyof T
                 ? T['select'] extends true
                 ? number
