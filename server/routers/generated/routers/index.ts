@@ -8,12 +8,6 @@ import createUserRouter from "./User.router";
 import createListRouter from "./List.router";
 import createTodoRouter from "./Todo.router";
 import createAccountRouter from "./Account.router";
-import { ClientType as SpaceClientType } from "./Space.router";
-import { ClientType as SpaceUserClientType } from "./SpaceUser.router";
-import { ClientType as UserClientType } from "./User.router";
-import { ClientType as ListClientType } from "./List.router";
-import { ClientType as TodoClientType } from "./Todo.router";
-import { ClientType as AccountClientType } from "./Account.router";
 
 export function db(ctx: any) {
     if (!ctx.prisma) {
@@ -32,13 +26,4 @@ export function createRouter() {
         account: createAccountRouter(),
     }
     );
-}
-
-export interface ClientType<AppRouter extends AnyRouter> {
-    space: SpaceClientType<AppRouter>;
-    spaceUser: SpaceUserClientType<AppRouter>;
-    user: UserClientType<AppRouter>;
-    list: ListClientType<AppRouter>;
-    todo: TodoClientType<AppRouter>;
-    account: AccountClientType<AppRouter>;
 }
