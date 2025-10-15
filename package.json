@@ -27,8 +27,8 @@
         "@trpc/next": "^11.0.0-rc.502",
         "@trpc/react-query": "^11.0.0-rc.502",
         "@trpc/server": "^11.0.0-rc.502",
-        "@zenstackhq/runtime": "^2.19.2",
-        "@zenstackhq/trpc": "^2.19.2",
+        "@zenstackhq/runtime": "^2.20.1",
+        "@zenstackhq/trpc": "^2.20.1",
         "babel-plugin-superjson-next": "^0.4.5",
         "bcryptjs": "^2.4.3",
         "cross-env": "^7.0.3",
@@ -46,7 +46,7 @@
     "devDependencies": {
         "@tailwindcss/line-clamp": "^0.4.2",
         "@types/bcryptjs": "^2.4.2",
-        "@types/node": "^14.17.3",
+        "@types/node": "^18.19.130",
         "@types/react": "18.0.21",
         "@types/react-dom": "18.0.6",
         "autoprefixer": "^10.4.12",
@@ -56,6 +56,6 @@
         "prisma": "^6.1.0",
         "tailwindcss": "^3.1.8",
         "typescript": "^5.3.2",
-        "zenstack": "^2.19.2"
+        "zenstack": "^2.20.1"
     }
 }
