@@ -3,7 +3,6 @@
  ******************************************************************************/
 
 /* eslint-disable */
-// @ts-nocheck
 
 import type { Prisma } from '@zenstackhq/runtime/models';
 import type { TRPCClientErrorLike, TRPCRequestOptions } from '@trpc/client';
